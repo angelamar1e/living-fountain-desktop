@@ -10,7 +10,6 @@
 
     <Grid Background="White">
         <StackPanel>
-            <TextBlock>Hi</TextBlock>
             <TextBlock>Salary</TextBlock>
         </StackPanel>
     </Grid>
