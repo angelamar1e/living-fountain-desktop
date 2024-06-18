@@ -7,7 +7,33 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Credits.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LivingFountainHome.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Salary.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Sales.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Credits.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LivingFountainHome.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Salary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Sales.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

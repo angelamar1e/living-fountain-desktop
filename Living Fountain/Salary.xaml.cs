@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,18 +16,13 @@ using System.Windows.Shapes;
 namespace Living_Fountain
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Salary.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class Salary : Page
     {
-        public MainWindow()
+        public Salary()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
