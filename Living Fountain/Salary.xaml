@@ -9,6 +9,9 @@
       Title="Salary">
 
     <Grid Background="White">
-        <TextBlock>Salary</TextBlock>
+        <StackPanel>
+            <TextBlock>Hi</TextBlock>
+            <TextBlock>Salary</TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
