@@ -10,7 +10,7 @@
 
     <Grid Background="White">
         <StackPanel>
-            <TextBlock>Salary</TextBlock>
+            <TextBlock FontSize="24" FontWeight="Bold" Margin="20,20,0,0">Salary</TextBlock>
         </StackPanel>
 
         <Grid>
@@ -19,7 +19,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
+            <Rectangle HorizontalAlignment="Left" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="0"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="0,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="0,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="2"/>
+
         </Grid>
-        
+
     </Grid>
 </Page>
