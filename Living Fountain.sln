@@ -6,10 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Living Fountain", "Living Fountain\Living Fountain.csproj", "{CD933E53-D52B-4576-AF97-4A874FAE652F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6A7B0227-BB99-417B-909E-0ED01091C921}"
-	ProjectSection(SolutionItems) = preProject
-		Living Fountain\icon_peso.png = Living Fountain\icon_peso.png
-		Living Fountain\icon_trolley.png = Living Fountain\icon_trolley.png
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -28,8 +28,15 @@
                         <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Deliverers"/>
                     </Grid>
                     <TextBlock FontSize="40" FontWeight="SemiBold" Margin="20,50,0,10" HorizontalAlignment="Left" Text="Manuel" TextDecorations="Underline" Width="148" Foreground="#FF098BFF"/>
-                    <Image Source="/icon_trolley.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Bottom"/>
-                    <Image Source="/icon_peso.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" Margin="40,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="30,0,0,10" VerticalAlignment="Bottom">
+                        <Image Source="images/icon_trolley.png" Height="30" Width="30"/>
+                        <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="20"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0" VerticalAlignment="Bottom">
+                        <Image Source="images/icon_peso.png" Height="30" Width="30"/>
+                        <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="650.00"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
 
@@ -41,9 +48,13 @@
                         <Rectangle Fill="#FF098BFF" Stroke="#FF098BFF"/>
                         <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Refillers"/>
                     </Grid>
+                    
                     <TextBlock FontSize="35" FontWeight="SemiBold" Margin="20,50,0,10" HorizontalAlignment="Left" Text="Chris" TextDecorations="Underline" Width="148" Foreground="#FF098BFF"/>
-                    <Image Source="/icon_trolley.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Bottom"/>
-                    <Image Source="/icon_peso.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" Margin="40,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="30,5,0,0" VerticalAlignment="Bottom">
+                        <Image Source="images/icon_peso.png" Height="30" Width="30"/>
+                        <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="650.00"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
 
@@ -56,8 +67,11 @@
                         <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Washers"/>
                     </Grid>
                     <TextBlock FontSize="35" FontWeight="SemiBold" Margin="20,50,0,10" HorizontalAlignment="Left" Text="Emma" TextDecorations="Underline" Width="148" Foreground="#FF098BFF"/>
-                    <Image Source="/icon_trolley.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Bottom"/>
-                    <Image Source="/icon_peso.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" Margin="40,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="30,5,0,0" VerticalAlignment="Bottom">
+                        <Image Source="images/icon_peso.png" Height="30" Width="30"/>
+                        <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="650.00"/>
+                    </StackPanel>
                 </StackPanel>
             </Grid>
 
