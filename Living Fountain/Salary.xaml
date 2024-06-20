@@ -15,28 +15,28 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle HorizontalAlignment="Left" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="0"/>
-            <Rectangle HorizontalAlignment="Left" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
-            <Rectangle HorizontalAlignment="Left" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="2"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="0"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="2"/>
 
-            <StackPanel Grid.Column="0" Margin="48,85,0,0">
-                <TextBlock FontSize="16" FontWeight="Bold" Margin="20,20,0,0" Text="Deliverers"/>
-                <TextBlock FontSize="14" FontWeight="SemiBold" Margin="68,10,0,0" Text="Manuel" TextDecorations="Underline"/>
+            <StackPanel Grid.Column="0" Margin="0,85,10,0">
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,0" HorizontalAlignment="Center" Text="Deliverers"/>
+                <TextBlock FontSize="14" FontWeight="SemiBold" Margin="68,10,0,0" HorizontalAlignment="Center" Text="Manuel" TextDecorations="Underline"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" Margin="48,85,0,0">
-                <TextBlock FontSize="16" FontWeight="Bold" Margin="20,20,0,0" Text="Refillers"/>
-                <TextBlock FontSize="14" FontWeight="SemiBold" Margin="68,10,0,0" Text="Chris" TextDecorations="Underline"/>
+            <StackPanel Grid.Column="1" Margin="0,85,10,0">
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,0" HorizontalAlignment="Center" Text="Refillers"/>
+                <TextBlock FontSize="14" FontWeight="SemiBold" Margin="68,10,0,0" HorizontalAlignment="Center" Text="Chris" TextDecorations="Underline"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="2" Margin="48,85,0,0">
-                <TextBlock FontSize="16" FontWeight="Bold" Margin="20,20,0,0" Text="Washers"/>
-                <TextBlock FontSize="14" FontWeight="SemiBold" Margin="68,10,0,0" Text="Emma" TextDecorations="Underline"/>
+            <StackPanel Grid.Column="2" Margin="0,85,10,0">
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="0,20,0,0" HorizontalAlignment="Center" Text="Washers"/>
+                <TextBlock FontSize="14" FontWeight="SemiBold" Margin="68,10,0,0" HorizontalAlignment="Center" Text="Emma" TextDecorations="Underline"/>
             </StackPanel>
 
         </Grid>
