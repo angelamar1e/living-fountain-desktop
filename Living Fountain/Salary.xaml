@@ -12,5 +12,14 @@
         <StackPanel>
             <TextBlock>Salary</TextBlock>
         </StackPanel>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        
     </Grid>
 </Page>
