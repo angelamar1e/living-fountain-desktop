@@ -24,6 +24,18 @@
             <Rectangle HorizontalAlignment="Center" Height="263" Margin="0,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
             <Rectangle HorizontalAlignment="Center" Height="263" Margin="0,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="2"/>
 
+            <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="48,85,0,0">
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="20,20,0,0">Deliverer</TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" HorizontalAlignment="Left" Margin="48,85,0,0">
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="20,20,0,0">Refillers</TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" HorizontalAlignment="Left" Margin="48,85,0,0">
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="20,20,0,0">Washer</TextBlock>
+            </StackPanel>
+
         </Grid>
 
     </Grid>
