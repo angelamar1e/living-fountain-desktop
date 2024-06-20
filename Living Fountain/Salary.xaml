@@ -31,9 +31,9 @@
                         <Rectangle Fill="#FF098BFF" Stroke="#FF098BFF"/>
                         <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Deliverers"/>
                     </Grid>
-                    <TextBlock FontSize="35" FontWeight="SemiBold" Margin="10,15,0,10" HorizontalAlignment="Left" Text="Manuel" TextDecorations="Underline" Width="148" Foreground="#FF098BFF"/>
-                    <Image Source="/icon_trolley.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" HorizontalAlignment="Left" Margin="30,0,0,0" VerticalAlignment="Bottom"/>
-                    <Image Source="/icon_peso.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                    <TextBlock FontSize="40" FontWeight="SemiBold" Margin="20,50,0,10" HorizontalAlignment="Left" Text="Manuel" TextDecorations="Underline" Width="148" Foreground="#FF098BFF"/>
+                    <Image Source="/icon_trolley.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" HorizontalAlignment="Left" Margin="40,0,0,0" VerticalAlignment="Bottom"/>
+                    <Image Source="/icon_peso.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" Margin="40,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Grid>
 
