@@ -8,12 +8,23 @@
       d:DesignHeight="800" d:DesignWidth="1500"
       Title="Sales">
 
-    <Grid Background="White" >
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="99*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+
+        <!-- Gradient background -->
+        <Rectangle Grid.Column="0">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#5494E6" Offset="0" />
+                    <GradientStop Color="#2551A9" Offset="1" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <!-- end of gradient -->
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height ="30*"/>
@@ -43,11 +54,12 @@
             <Image HorizontalAlignment="Center" Height="228" VerticalAlignment="Center" Width="223" Source="/logo.png"/>
         </Grid>
 
+
         <Border Grid.Column="1" Margin="50,50,38,50" CornerRadius="10">
             <StackPanel Margin="10">
                 <!-- SALES & Add New Order Title -->
-                <Label Content="SALES" HorizontalAlignment="Left" Margin="10,10,0,10" FontSize="40" FontWeight="Bold" Foreground="#3498db"/>
-                <Label Content="Add New Order" HorizontalAlignment="Center" Margin="0,0,0,20" FontSize="30" FontWeight="Bold" Foreground="#3498db"/>
+                <Label Content="SALES" HorizontalAlignment="Left" Margin="10,10,0,10" FontSize="40" FontWeight="Bold" Foreground="#2C61EC"/>
+                <Label Content="Add New Order" HorizontalAlignment="Center" Margin="0,0,0,20" FontSize="30" FontWeight="Bold" Foreground="#2C61EC"/>
 
                 <!-- Customer/Order Details & Submit Button -->
                 <Border BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="10">
@@ -60,8 +72,8 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Column="0" Content="Customer" FontSize="25" FontWeight="Bold" Foreground="#3498db"/>
-                            <Label Grid.Column="1" Content="Order" FontSize="25" FontWeight="Bold" Foreground="#3498db"/>
+                            <Label Grid.Column="0" Content="Customer" FontSize="25" FontWeight="Bold" Foreground="#2C61EC"/>
+                            <Label Grid.Column="1" Content="Order" FontSize="25" FontWeight="Bold" Foreground="#2C61EC"/>
                         </Grid>
 
                         <Grid>
@@ -77,12 +89,12 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Grid.Column="0" Content="Block" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#3498db"/>
-                            <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#3498db"/>
-                            <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#3498db"/>
-                            <Label Grid.Column="3" Content="Type" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#3498db"/>
-                            <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#3498db"/>
-                            <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="#3498db"/>
+                            <Label Grid.Column="0" Content="Block" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                            <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                            <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                            <Label Grid.Column="3" Content="Type" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                            <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
+                            <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
 
                             <TextBox Grid.Column="0" Grid.Row="1" Width="100" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1"/>
                             <TextBox Grid.Column="1" Grid.Row="1" Width="100" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1"/>
@@ -99,7 +111,7 @@
                             </ComboBox>
                         </Grid>
 
-                        <Button Content="Submit" FontSize="15" FontWeight="Bold" Margin="0,20,0,10" Width="100" Height="35" Background="#3498db" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
+                        <Button Content="Submit" FontSize="15" FontWeight="Bold" Margin="0,20,0,10" Width="100" Height="35" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
 
                     </StackPanel>
                 </Border>
@@ -113,15 +125,15 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Column="0" Content="Order Records" FontSize="25" FontWeight="Bold" Foreground="#3498db" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Label Grid.Column="1" Content="Filter by date: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="268,0,0,0"/>
+                    <Label Grid.Column="0" Content="Order Records" FontSize="25" FontWeight="Bold" Foreground="#2C61EC" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Label Grid.Column="1" Content="Filter by date: " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#2C61EC" FontSize="20" FontWeight="Bold" Margin="268,0,0,0"/>
                     <DatePicker Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
                 </Grid>
 
                 <Border BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="10">
                     <StackPanel Margin="10">
-                        <Label Content="Date" FontSize="25" FontWeight="Bold" Foreground="#3498db" HorizontalAlignment="Left"/>
-                        <Label Content="Revenue" FontSize="25" FontWeight="Bold" Foreground="#3498db" HorizontalAlignment="Left"/>
+                        <Label Content="Date" FontSize="25" FontWeight="Bold" Foreground="#2C61EC" HorizontalAlignment="Left"/>
+                        <Label Content="Revenue" FontSize="25" FontWeight="Bold" Foreground="#2C61EC" HorizontalAlignment="Left"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60*"/>
@@ -133,8 +145,8 @@
                                 <RowDefinition Height="100*"/>
                             </Grid.RowDefinitions>
                             <!-- Grid 0: Table -->
-                            <Button Grid.Column="2" Content="Edit" FontSize="15" FontWeight="Bold" Width="100" Background="#3498db" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-                            <Button Grid.Column="3" Content="Delete" FontSize="15" FontWeight="Bold" Width="100" Background="#3498db" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
+                            <Button Grid.Column="2" Content="Edit" FontSize="15" FontWeight="Bold" Width="100" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
+                            <Button Grid.Column="3" Content="Delete" FontSize="15" FontWeight="Bold" Width="100" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
                         </Grid>
                     </StackPanel>
                 </Border>
