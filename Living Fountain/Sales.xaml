@@ -100,12 +100,9 @@
                         </Grid>
 
                         <Button Content="Submit" FontSize="15" FontWeight="Bold" Margin="0,20,0,10" Width="100" Height="35" Background="#3498db" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-                    
+
                     </StackPanel>
                 </Border>
-
-
-
 
                 <Grid Margin="0,30,0,0">
                     <Grid.ColumnDefinitions>
@@ -120,6 +117,27 @@
                     <Label Grid.Column="1" Content="Filter by date: " HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Margin="268,0,0,0"/>
                     <DatePicker Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
                 </Grid>
+
+                <Border BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="10">
+                    <StackPanel Margin="10">
+                        <Label Content="Date" FontSize="25" FontWeight="Bold" Foreground="#3498db" HorizontalAlignment="Left"/>
+                        <Label Content="Revenue" FontSize="25" FontWeight="Bold" Foreground="#3498db" HorizontalAlignment="Left"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100*"/>
+                            </Grid.RowDefinitions>
+                            <!-- Grid 0: Table -->
+                            <Button Grid.Column="2" Content="Edit" FontSize="15" FontWeight="Bold" Width="100" Background="#3498db" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
+                            <Button Grid.Column="3" Content="Delete" FontSize="15" FontWeight="Bold" Width="100" Background="#3498db" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
 
             </StackPanel>
         </Border>
