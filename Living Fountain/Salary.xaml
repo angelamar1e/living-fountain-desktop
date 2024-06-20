@@ -20,9 +20,9 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" Grid.Column="0"/>
-            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
-            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" Grid.Column="2"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" RadiusX="20" RadiusY="20" Grid.Column="0"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" RadiusX="20" RadiusY="20" Grid.Column="1"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" RadiusX="20" RadiusY="20" Grid.Column="2"/>
 
             <StackPanel HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" VerticalAlignment="Top" Width="191" Grid.Column="0">
                 <Rectangle Height="45"  Width="193" Fill="#FF098BFF" RenderTransformOrigin="0.49,1.015" Stroke="#FF098BFF"/>
