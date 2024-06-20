@@ -8,28 +8,27 @@
       d:DesignHeight="800" d:DesignWidth="1500"
       Title="Sales">
 
-    <Grid Background="White">
+    <Grid Background="White" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
-
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="70*"/>
+                <RowDefinition Height ="30*"/>
+                <RowDefinition Height ="70*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30*"/>
-                    <RowDefinition Height="30*"/>
-                    <RowDefinition Height="30*"/>
-                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height ="30*"/>
+                    <RowDefinition Height ="30*"/>
+                    <RowDefinition Height ="30*"/>
+                    <RowDefinition Height ="40*"/>
                 </Grid.RowDefinitions>
-                <Button Content="Sales" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22" Click="Sales_Button_Click" Height="51" Width="120" Background="#2c3e50" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-                <Button Content="Credits" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Click="Credits_Button_Click" Height="50" Width="120" FontSize="22" Background="#2c3e50" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-                <Button Content="Salary" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Click="Salary_Button_Click" Height="50" Width="120" FontSize="22" Background="#2c3e50" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="127" Grid.Row="3" Margin="0,33,0,0" Height="50" Background="#34495e" Foreground="White" BorderBrush="Transparent" BorderThickness="0">
+                <Button Content="Sales" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" FontSize="22" Click="Sales_Button_Click" Height="51" Width="120"/>
+                <Button Content="Credits" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="1" Click="Credits_Button_Click" Height="50" Width="120" FontSize="22"/>
+                <Button Content="Salary" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="2" Click="Salary_Button_Click" Height="50" Width="120" FontSize="22"/>
+                <ComboBox HorizontalAlignment="Center" VerticalAlignment="Top" Width="127" Grid.Row="3" Margin="0,33,0,0" Height="50" RenderTransformOrigin="0.5,0.5">
                     <ComboBox.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
