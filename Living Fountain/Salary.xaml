@@ -20,24 +20,27 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="0"/>
-            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
-            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="Black" VerticalAlignment="Top" Width="191" Grid.Column="2"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" Grid.Column="0"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" Grid.Column="1"/>
+            <Rectangle HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" Stroke="#FF098BFF" VerticalAlignment="Top" Width="191" Grid.Column="2"/>
 
             <StackPanel HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" VerticalAlignment="Top" Width="191" Grid.Column="0">
-                <TextBlock FontSize="16" FontWeight="Bold" Margin="10,50,0,0" HorizontalAlignment="Left" Text="Deliverers"/>
+                <Rectangle Height="45"  Width="193" Fill="#FF098BFF" RenderTransformOrigin="0.49,1.015" Stroke="#FF098BFF"/>
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="10,25,0,0" HorizontalAlignment="Left" Text="Deliverers"/>
                 <TextBlock FontSize="14" FontWeight="SemiBold" Margin="0,10,0,0" HorizontalAlignment="Center" Text="Manuel" TextDecorations="Underline"/>
                 <Image Source="/icon_trolley.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Bottom"/>
                 <Image Source="/icon_peso.png" Height="30" Width="23" RenderTransformOrigin="-0.892,1.067" Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" VerticalAlignment="Top" Width="191" Grid.Column="1">
-                <TextBlock FontSize="16" FontWeight="Bold" Margin="10,50,0,0" HorizontalAlignment="Left" Text="Refillers"/>
+                <Rectangle Height="45"  Width="193" Fill="#FF098BFF" RenderTransformOrigin="0.49,1.015" Stroke="#FF098BFF"/>
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="10,25,0,0" HorizontalAlignment="Left" Text="Refillers"/>
                 <TextBlock FontSize="14" FontWeight="SemiBold" Margin="0,10,0,0" HorizontalAlignment="Center" Text="Chris" TextDecorations="Underline"/>
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center" Height="263" Margin="48,85,0,0" VerticalAlignment="Top" Width="191" Grid.Column="2">
-                <TextBlock FontSize="16" FontWeight="Bold" Margin="10,50,0,0" HorizontalAlignment="Left" Text="Washers"/>
+                <Rectangle Height="45"  Width="193" Fill="#FF098BFF" RenderTransformOrigin="0.49,1.015" Stroke="#FF098BFF"/>
+                <TextBlock FontSize="16" FontWeight="Bold" Margin="10,25,0,0" HorizontalAlignment="Left" Text="Washers"/>
                 <TextBlock FontSize="14" FontWeight="SemiBold" Margin="0,10,0,0" HorizontalAlignment="Center" Text="Emma" TextDecorations="Underline"/>
             </StackPanel>
 
