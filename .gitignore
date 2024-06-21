@@ -2,4 +2,7 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Living Fountain
+/Living Fountain/obj
+/Living Fountain/bin
+/Living Fountain/.vs
+/.vs
