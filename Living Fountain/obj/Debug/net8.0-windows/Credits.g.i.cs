@@ -53,7 +53,7 @@ namespace Living_Fountain {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Living Fountain;V1.0.0.0;component/credits.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Living Fountain;component/credits.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Credits.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

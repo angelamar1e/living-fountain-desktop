@@ -61,7 +61,7 @@ namespace Living_Fountain {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Living Fountain;V1.0.0.0;component/livingfountainhome.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Living Fountain;component/livingfountainhome.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\LivingFountainHome.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

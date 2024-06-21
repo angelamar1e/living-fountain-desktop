@@ -38,11 +38,11 @@
                     <RowDefinition Height ="20*"/>
                     <RowDefinition Height ="20*"/>
                 </Grid.RowDefinitions>
-                <Button Content="Sales" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" FontSize="22" Click="Sales_Button_Click" Height="51" Width="120"/>
-                <Button Content="Customer" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="1" Click="Customer_Button_Click" Height="50" Width="120" FontSize="22"/>
-                <Button Content="Credits" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="2" Click="Salary_Button_Click" Height="50" Width="120" FontSize="22"/>
-                <Button Content="Salary" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="3" Click="Salary_Button_Click" Height="50" Width="120" FontSize="22"/>
-                <Button Content="Revenue" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="4" Click="Revenue_Button_Click" Height="50" Width="120" FontSize="22"/>
+                <Button Content="Sales" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" FontSize="22" Height="51" Width="120"/>
+                <Button Content="Customer" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="1" Height="50" Width="120" FontSize="22"/>
+                <Button Content="Credits" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="2" Height="50" Width="120" FontSize="22"/>
+                <Button Content="Salary" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="3" Height="50" Width="120" FontSize="22"/>
+                <Button Content="Revenue" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-0.101,-0.651" Grid.Row="4" Height="50" Width="120" FontSize="22"/>
             </Grid>
             <Image HorizontalAlignment="Center" Height="228" VerticalAlignment="Center" Width="223" Source="/logo.png"/>
         </Grid>
