@@ -9,6 +9,10 @@
       Title="Sales">
 
     <Grid Background="White">
-        <TextBlock>Sales</TextBlock>
+        <StackPanel HorizontalAlignment="Stretch">
+            <TextBlock>Sales</TextBlock>
+        </StackPanel>
+        <DataGrid x:Name="OrderRecords" AutoGenerateColumns="True" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+        </DataGrid>
     </Grid>
 </Page>
