@@ -20,20 +20,27 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-        <!-- Weekly Revenue Section -->
-        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="10">
-            
+            <!-- Weekly Revenue Section -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="69,44,332,-24" Grid.ColumnSpan="3">
+                <!-- Content of your Weekly Revenue section -->
             </ScrollViewer>
 
-            <Line X1="0" Y1="0" X2="0" Y2="1" Stroke="Black" StrokeThickness="2" Stretch="Fill" Grid.Column="1"/>
+            <!-- Separator Line -->
+            <Line X1="0" Y1="0" X2="0" Y2="1" Stroke="#FFE2E2E2" StrokeThickness="2" Stretch="Fill" Grid.Column="1"/>
 
             <!-- Monthly Revenue Section -->
             <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" Margin="10">
-               
+                <Rectangle HorizontalAlignment="Center" Height="40" Margin="0,10,0,0" Stroke="#FF2C61EC" VerticalAlignment="Top" Width="359" Fill="#FF2C61EC"/>
             </ScrollViewer>
 
-        </Grid>
+            <!-- Second Rectangle and Label -->
+            <Rectangle Grid.Column="0" HorizontalAlignment="Center" Height="40" Margin="0,20,0,0" Stroke="#FF2C61EC" VerticalAlignment="Top" Width="359" Fill="#FF2C61EC"/>
+            <Label Grid.Column="0" Content="Weekly Revenue" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontWeight="SemiBold" FontSize="16" Foreground="White"/>
 
+            <!-- Label for Monthly Revenue -->
+            <Label Grid.Column="2" Content="Monthly Revenue" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontWeight="SemiBold" FontSize="16" Foreground="White"/>
+        </Grid>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="478,-26,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
