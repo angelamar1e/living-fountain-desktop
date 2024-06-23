@@ -13,12 +13,24 @@
             <TextBlock Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="20,20,0,0" Foreground="#2c61ec">REVENUE</TextBlock>
         </StackPanel>
 
-        <Grid Margin="20,20,20,20">
+        <Grid Margin="20,87,20,20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+
+        <!-- Weekly Revenue Section -->
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="10">
+            
+            </ScrollViewer>
+
+            <Line X1="0" Y1="0" X2="0" Y2="1" Stroke="Black" StrokeThickness="2" Stretch="Fill" Grid.Column="1"/>
+
+            <!-- Monthly Revenue Section -->
+            <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" Margin="10">
+               
+            </ScrollViewer>
 
         </Grid>
 
