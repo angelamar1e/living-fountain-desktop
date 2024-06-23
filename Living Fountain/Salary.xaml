@@ -11,6 +11,7 @@
     <Grid Background="White">
         <StackPanel>
             <TextBlock Width="120" HorizontalAlignment="Left" FontSize="30" FontWeight="Bold" Margin="20,20,0,0" Foreground="#2c61ec">SALARY</TextBlock>
+            <TextBlock x:Name="CurrentDateTextBlock" Width="176" FontSize="30" FontWeight="Bold" Foreground="#2c61ec" RenderTransformOrigin="0.367,0.506"/>
         </StackPanel>
 
         <Grid>

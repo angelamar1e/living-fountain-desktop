@@ -23,6 +23,8 @@ namespace Living_Fountain
         public Salary()
         {
             InitializeComponent();
+
+            CurrentDateTextBlock.Text = DateTime.Now.ToString("D"); // Long date pattern (e.g., Wednesday, June 20, 2024)
         }
     }
 }
