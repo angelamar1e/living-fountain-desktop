@@ -21,8 +21,23 @@
             </Grid.ColumnDefinitions>
 
             <!-- Weekly Revenue Section -->
-            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="69,44,332,-24" Grid.ColumnSpan="3">
-                <!-- Content of your Weekly Revenue section -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="10">
+                <StackPanel Margin="50">
+                    <Expander Header="2024" IsExpanded="True">
+                        <StackPanel Margin="0,20,0,20">
+                            <Expander Header="January">
+                                <StackPanel Margin="10">
+                                    <ListBox>
+                                        <ListBoxItem Content="Week 1: $1000"/>
+                                        <ListBoxItem Content="Week 2: $1200"/>
+                                        <ListBoxItem Content="Week 3: $1300"/>
+                                        <ListBoxItem Content="Week 4: $1500"/>
+                                    </ListBox>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
             </ScrollViewer>
 
             <!-- Separator Line -->
@@ -30,17 +45,27 @@
 
             <!-- Monthly Revenue Section -->
             <ScrollViewer Grid.Column="2" VerticalScrollBarVisibility="Auto" Margin="10">
-                <Rectangle HorizontalAlignment="Center" Height="40" Margin="0,10,0,0" Stroke="#FF2C61EC" VerticalAlignment="Top" Width="359" Fill="#FF2C61EC"/>
+                <StackPanel Margin="50">
+                    <Expander Header="2024" IsExpanded="True">
+                        <StackPanel Margin="10">
+                            <Expander Header="January">
+                                <StackPanel Margin="10">
+                                    <ListBox>
+                                        <ListBoxItem Content="Monthly Total: $5000"/>
+                                    </ListBox>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
             </ScrollViewer>
 
-            <!-- Second Rectangle and Label -->
-            <Rectangle Grid.Column="0" HorizontalAlignment="Center" Height="40" Margin="0,20,0,0" Stroke="#FF2C61EC" VerticalAlignment="Top" Width="359" Fill="#FF2C61EC"/>
-            <Label Grid.Column="0" Content="Weekly Revenue" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontWeight="SemiBold" FontSize="16" Foreground="White"/>
+            <!-- Header Rectangles and Labels -->
+            <Rectangle Grid.Column="0" HorizontalAlignment="Center" Height="40" Margin="0,10,0,0" Stroke="#FF2C61EC" VerticalAlignment="Top" Width="450" Fill="#FF2C61EC"/>
+            <Label Grid.Column="0" Content="Weekly Revenue" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="16" Foreground="White"/>
 
-            <!-- Label for Monthly Revenue -->
-            <Label Grid.Column="2" Content="Monthly Revenue" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" FontWeight="SemiBold" FontSize="16" Foreground="White"/>
+            <Rectangle Grid.Column="2" HorizontalAlignment="Center" Height="40" Margin="0,10,0,0" Stroke="#FF2C61EC" VerticalAlignment="Top" Width="450" Fill="#FF2C61EC"/>
+            <Label Grid.Column="2" Content="Monthly Revenue" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="16" Foreground="White"/>
         </Grid>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="478,-26,0,0" VerticalAlignment="Top"/>
-
     </Grid>
 </Page>
