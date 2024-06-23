@@ -11,7 +11,7 @@
     <Grid Background="White">
         <StackPanel>
             <TextBlock Width="154" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="20,20,0,0" Foreground="#2c61ec">SALARY</TextBlock>
-            <TextBlock x:Name="CurrentDateTextBlock" FontSize="25" FontWeight="Bold" Foreground="#2c61ec" RenderTransformOrigin="0.367,0.506" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock x:Name="CurrentDateTextBlock" FontSize="25" FontWeight="SemiBold" Foreground="#2c61ec" RenderTransformOrigin="0.367,0.506" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </StackPanel>
 
         <Grid>
@@ -30,13 +30,19 @@
                     </Grid>
                     <TextBlock FontSize="40" FontWeight="SemiBold" Margin="20,50,0,10" HorizontalAlignment="Left" Text="Manuel" TextDecorations="Underline" Width="148" Foreground="#2c61ec"/>
 
-                    <StackPanel Orientation="Horizontal" Margin="30,0,0,10" VerticalAlignment="Bottom">
-                        <Image Source="images/icon_trolley.png" Height="30" Width="30"/>
+                    <StackPanel Orientation="Horizontal" Margin="30,0,0,0" VerticalAlignment="Bottom">
+                        <Image Source="C:\Users\riann\source\repos\COMP20133\Living Fountain\images\icon_trolley.png" Height="30" Width="30"/>
                         <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="20"/>
                     </StackPanel>
+                    <StackPanel>
+                        <TextBlock FontSize="12" Text="qty" HorizontalAlignment="Right" Margin="0,0,65,0" Foreground="Gray"/>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="30,0,0,0" VerticalAlignment="Bottom">
-                        <Image Source="images/icon_peso.png" Height="30" Width="30"/>
+                        <Image Source="C:\Users\riann\source\repos\COMP20133\Living Fountain\images\icon_peso.png" Height="30" Width="30"/>
                         <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="650.00"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock FontSize="12" Text="pesos" HorizontalAlignment="Right" Margin="0,0,50,0" Foreground="Gray"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -53,8 +59,11 @@
                     <TextBlock FontSize="35" FontWeight="SemiBold" Margin="20,50,0,10" HorizontalAlignment="Left" Text="Chris" TextDecorations="Underline" Width="148" Foreground="#2c61ec"/>
 
                     <StackPanel Orientation="Horizontal" Margin="30,5,0,0" VerticalAlignment="Bottom">
-                        <Image Source="images/icon_peso.png" Height="30" Width="30"/>
+                        <Image Source="C:\Users\riann\source\repos\COMP20133\Living Fountain\images\icon_peso.png" Height="30" Width="30"/>
                         <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="650.00"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock FontSize="12" Text="pesos" HorizontalAlignment="Right" Margin="0,0,50,0" Foreground="Gray"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
@@ -67,16 +76,19 @@
                         <Rectangle Fill="#2c61ec" Stroke="#2c61ec"/>
                         <TextBlock FontSize="16" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Washers"/>
                     </Grid>
+
                     <TextBlock FontSize="35" FontWeight="SemiBold" Margin="20,50,0,10" HorizontalAlignment="Left" Text="Emma" TextDecorations="Underline" Width="148" Foreground="#2c61ec"/>
 
                     <StackPanel Orientation="Horizontal" Margin="30,5,0,0" VerticalAlignment="Bottom">
-                        <Image Source="images/icon_peso.png" Height="30" Width="30"/>
+                        <Image Source="C:\Users\riann\source\repos\COMP20133\Living Fountain\images\icon_peso.png" Height="30" Width="30"/>
                         <TextBlock FontSize="14" VerticalAlignment="Center" Margin="50,0,0,0" Text="650.00"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock FontSize="12" Text="pesos" HorizontalAlignment="Right" Margin="0,0,50,0" Foreground="Gray"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
-
+            
         </Grid>
-
     </Grid>
 </Page>
