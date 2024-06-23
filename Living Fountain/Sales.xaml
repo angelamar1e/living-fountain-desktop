@@ -12,7 +12,30 @@
         <StackPanel HorizontalAlignment="Stretch">
             <TextBlock>Sales</TextBlock>
         </StackPanel>
-        <DataGrid x:Name="OrderRecords" AutoGenerateColumns="True" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+        <DataGrid x:Name="OrderRecords" Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Block" Binding="{Binding block}" />
+                <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
+                <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
+                <DataGridTextColumn Header="Product" Binding="{Binding product.product_desc}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding price}" />
+                <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding status}"/>
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Edit button -->
+                                <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" Tag="{Binding id}" />
+
+                                <!-- Delete button -->
+                                <Button x:Name="deleteBtn" Content="Delete" Margin="2" Tag="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Page>

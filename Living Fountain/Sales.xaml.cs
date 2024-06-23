@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Living_Fountain.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,11 +10,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Living_Fountain
 {
@@ -20,20 +25,93 @@ namespace Living_Fountain
     /// </summary>
     public partial class Sales : Page
     {
+        public ObservableCollection<order> Orders { get; set; }
+        private LivingFountainHome home;
         public Sales()
         {
             InitializeComponent();
+
+            Orders = new ObservableCollection<order>();
             LoadData();
+            OrderRecords.ItemsSource= Orders;
+            //GetStatusTypes();
         }
+
         private void LoadData()
         {
-            string query = "SELECT block, lot, phase, product_desc as 'product', quantity, o.price, employee_name as 'deliverer', s.status_desc as 'status' " +
-                "FROM living_fountain.orders as o " +
-                "LEFT JOIN living_fountain.products as p ON o.product_code = p.code " +
-                "LEFT JOIN living_fountain.employees as e ON o.deliverer_id = e.id " +
-                "LEFT JOIN living_fountain.order_status as s ON o.status = s.code";
+            using(var dc = new living_fountainContext())
+            {
+                var orders = from o in dc.orders
+                             join p in dc.products on o.product_code equals p.code
+                             join e in dc.employees on o.deliverer_id equals e.id
+                             join s in dc.order_statuses on o.status equals s.code
+                             select new Living_Fountain.order
+                             {
+                                id = o.id,
+                                block = o.block,
+                                lot = o.lot,
+                                phase = o.phase,
+                                product = new Living_Fountain.product
+                                {
+                                  product_desc = p.product_desc
+                                },
+                                quantity = o.quantity,
+                                price = o.price,
+                                deliverer = new Living_Fountain.employee
+                                {
+                                    employee_name = e.employee_name
+                                },
+                                 status = s.status_desc
+                             };
 
-            DataGridHelper.LoadData(OrderRecords, query, "Block", "Lot", "Phase", "Product", "Quantity", "Price", "Deliverer", "Status");
+                foreach (var order in orders){
+                    Orders.Add(order);
+                }
+            }
         }
+
+        public List<order_status> Status { get; set; }
+        private void GetStatusTypes()
+        {
+            living_fountainContext dataContext = new living_fountainContext();
+            var items = dataContext.order_statuses.ToList();
+
+            Status = items.Select(item => new order_status
+            {
+                code = item.code,
+                status_desc = item.status_desc,
+            }).ToList();
+        }
+
+        private void EditButtonClick(object sender, RoutedEventArgs e)
+        {
+            // Access the parent Frame (MainFrame)
+            Frame parentFrame = FindParentFrame(this);
+
+            if (parentFrame != null)
+            {
+                // Navigate MainFrame to Edit_Order.xaml
+                parentFrame.NavigationService.Navigate(new Edit_Order());
+            }
+        }
+
+        private Frame FindParentFrame(DependencyObject child)
+        {
+            // Traverse up the visual tree to find the parent Frame
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            if (parentObject == null)
+            {
+                return null;
+            }
+
+            if (parentObject is Frame frame)
+            {
+                return frame;
+            }
+
+            return FindParentFrame(parentObject);
+        }
+
     }
 }
