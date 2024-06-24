@@ -56,3 +56,4 @@ C:\Users\bea\source\repos\COMP20133\Living Fountain\obj\Debug\net8.0-windows\Liv
 C:\Users\bea\source\repos\COMP20133\Living Fountain\obj\Debug\net8.0-windows\Living Fountain.sourcelink.json
 C:\Users\bea\source\repos\COMP20133\Living Fountain\obj\Debug\net8.0-windows\Living Fountain.genruntimeconfig.cache
 C:\Users\bea\source\repos\COMP20133\Living Fountain\obj\Debug\net8.0-windows\ref\Living Fountain.dll
+C:\Users\bea\source\repos\COMP20133\Living Fountain\obj\Debug\net8.0-windows\EditOrder.g.cs
