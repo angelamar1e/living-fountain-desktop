@@ -19,7 +19,7 @@
         <Rectangle Grid.Column="0">
             <Rectangle.Fill>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#5494E6" Offset="0.5" />
+                    <GradientStop Color="#5494E6" Offset="0.7" />
                     <GradientStop Color="#2551A9" Offset="1" />
                 </LinearGradientBrush>
             </Rectangle.Fill>
@@ -40,15 +40,20 @@
                 </Grid.RowDefinitions>
 
                 <Button Grid.Row="0" Content="Sales" Width="150" Height="50" FontSize="22"
-                FontWeight="Bold" Foreground="#2C61EC" Background="White" Margin="0 10"/>
+                    FontWeight="Bold" Background="#2C61EC" Foreground="WHite" Margin="0 10" 
+                    BorderThickness="0"/>
                 <Button Grid.Row="1" Content="Customer" Width="150" Height="50" FontSize="22"
-                FontWeight="Bold" Foreground="#2C61EC" Background="White" Margin="0 10"/>
+                FontWeight="Bold" Background="#2C61EC" Foreground="WHite" Margin="0 10" 
+                    BorderThickness="0"/>
                 <Button Grid.Row="2" Content="Credits" Width="150" Height="50" FontSize="22"
-                FontWeight="Bold" Foreground="#2C61EC" Background="White" Margin="0 10"/>
+                FontWeight="Bold" Background="#2C61EC" Foreground="WHite" Margin="0 10" 
+                    BorderThickness="0"/>
                 <Button Grid.Row="3" Content="Salary" Width="150" Height="50" FontSize="22"
-                FontWeight="Bold" Foreground="#2C61EC" Background="White" Margin="0 10"/>
+                FontWeight="Bold" Background="#2C61EC" Foreground="WHite" Margin="0 10" 
+                    BorderThickness="0"/>
                 <Button Grid.Row="4" Content="Revenue" Width="150" Height="50" FontSize="22"
-                FontWeight="Bold" Foreground="#2C61EC" Background="White" Margin="0 10"/>
+                FontWeight="Bold" Background="#2C61EC" Foreground="WHite" Margin="0 10" 
+                    BorderThickness="0"/>
 
             </Grid>
             <Image HorizontalAlignment="Center" Height="228" VerticalAlignment="Center" Width="223" Source="/logo.png"/>
