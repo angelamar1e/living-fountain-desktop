@@ -1,5 +1,6 @@
 ﻿using Living_Fountain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,12 +33,21 @@ namespace Living_Fountain
             InitializeComponent();
 
             Orders = new ObservableCollection<order>();
-            LoadData();
-            OrderRecords.ItemsSource= Orders;
-            //GetStatusTypes();
+            
+            DateOnly currentDate = SetCurrentDate();
+            
+            LoadData(currentDate);
+
+            if (Orders.Count == 0)
+            {
+                OrderRecords.Visibility = Visibility.Hidden;
+                noRecords.Visibility = Visibility.Visible;
+            }
+
+            OrderRecords.ItemsSource = Orders;
         }
 
-        private void LoadData()
+        private void LoadData(DateOnly date)
         {
             using(var dc = new living_fountainContext())
             {
@@ -45,6 +55,7 @@ namespace Living_Fountain
                              join p in dc.products on o.product_code equals p.code
                              join e in dc.employees on o.deliverer_id equals e.id
                              join s in dc.order_statuses on o.status equals s.code
+                             where o.date == date
                              select new Living_Fountain.order
                              {
                                 id = o.id,
@@ -83,6 +94,16 @@ namespace Living_Fountain
             }).ToList();
         }
 
+        private DateOnly SetCurrentDate()
+        {
+            DateTime currDateTime = new DateTime();
+            currDateTime = DateTime.Now;
+            DateOnly dateOnly = DateOnly.FromDateTime(currDateTime);
+            currentDate.Text = dateOnly.ToString("MMMM dd, yyyy");
+
+            return dateOnly;
+        }
+
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
             // Access the parent Frame (MainFrame)
@@ -112,6 +133,5 @@ namespace Living_Fountain
 
             return FindParentFrame(parentObject);
         }
-
     }
 }
