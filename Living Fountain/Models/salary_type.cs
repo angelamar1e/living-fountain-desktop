@@ -16,7 +16,7 @@ public partial class salary_type
     public int id { get; set; }
 
     [StringLength(1)]
-    public string emp_type_code { get; set; }
+    public char emp_type_code { get; set; }
 
     [Column(TypeName = "decimal(3, 0)")]
     public decimal amount { get; set; }

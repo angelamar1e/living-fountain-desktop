@@ -20,7 +20,7 @@ public partial class employee
     public string employee_name { get; set; }
 
     [StringLength(1)]
-    public string emp_type_code { get; set; }
+    public char emp_type_code { get; set; }
 
     [ForeignKey("emp_type_code")]
     [InverseProperty("employees")]

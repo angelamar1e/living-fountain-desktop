@@ -1,5 +1,6 @@
 ﻿using Living_Fountain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -26,30 +27,25 @@ namespace Living_Fountain
     /// </summary>
     public partial class Sales : Page
     {
+        public List<product> Products { get; set; }
         public ObservableCollection<order> Orders { get; set; }
+        public ObservableCollection<employee> Deliverers { get; set; }
+
+
         private LivingFountainHome home;
         public Sales()
         {
             InitializeComponent();
 
             Orders = new ObservableCollection<order>();
-            
-            DateOnly currentDate = SetCurrentDate();
-            
-            LoadData(currentDate);
-
-            if (Orders.Count == 0)
-            {
-                OrderRecords.Visibility = Visibility.Hidden;
-                noRecords.Visibility = Visibility.Visible;
-            }
-
-            OrderRecords.ItemsSource = Orders;
+            SetDate();
+            GetProductTypes();
+            GetDeliverers();
         }
 
         private void LoadData(DateOnly date)
         {
-            using(var dc = new living_fountainContext())
+            using(living_fountainContext dc = new living_fountainContext())
             {
                 var orders = from o in dc.orders
                              join p in dc.products on o.product_code equals p.code
@@ -81,38 +77,88 @@ namespace Living_Fountain
             }
         }
 
-        public List<order_status> Status { get; set; }
-        private void GetStatusTypes()
+        private void GetProductTypes()
         {
-            living_fountainContext dataContext = new living_fountainContext();
-            var items = dataContext.order_statuses.ToList();
+            living_fountainContext dc = new living_fountainContext();
+            var items = dc.products.ToList();
 
-            Status = items.Select(item => new order_status
+            Products = items.Select(item => new product
             {
                 code = item.code,
-                status_desc = item.status_desc,
+                product_desc = item.product_desc
             }).ToList();
+
+            productTypeCombo.ItemsSource = Products;
         }
 
-        private DateOnly SetCurrentDate()
+        private void GetDeliverers() 
         {
-            DateTime currDateTime = new DateTime();
-            currDateTime = DateTime.Now;
-            DateOnly dateOnly = DateOnly.FromDateTime(currDateTime);
+            Deliverers = new ObservableCollection<employee>();
+            using (living_fountainContext dc = new living_fountainContext())
+            {
+                var deliverers = from emp in dc.employees
+                                 where emp.emp_type_code == 'D'
+                                 select new employee
+                                 {
+                                     employee_name = emp.employee_name
+                                 };
+                foreach (var deliverer in deliverers)
+                {
+                    Deliverers.Add(deliverer);
+                }
+            }
+            delivererCombo.ItemsSource = Deliverers;
+        }
+
+        private void SetDate()
+        {
+            DateTime dateTime = DateTime.Now;
+            DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
             currentDate.Text = dateOnly.ToString("MMMM dd, yyyy");
 
-            return dateOnly;
+            LoadData(dateOnly);
+            OrderRecords.ItemsSource = Orders;
+            countRecords();
         }
 
+        private void datePicker_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            DateTime dateTime = datePicker.SelectedDate ?? DateTime.Now;
+            DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
+            currentDate.Text = dateOnly.ToString("MMMM dd, yyyy");
+
+            LoadData(dateOnly);
+            OrderRecords.ItemsSource = Orders;
+            countRecords();
+        }
+
+        private void countRecords()
+        {
+            if (Orders.Count == 0)
+            {
+                OrderRecords.Visibility = Visibility.Hidden;
+                noRecords.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                OrderRecords.Visibility = Visibility.Visible;
+            }
+        }
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
-            // Access the parent Frame (MainFrame)
-            Frame parentFrame = FindParentFrame(this);
-
-            if (parentFrame != null)
+            if (sender is System.Windows.Controls.Button button)
             {
-                // Navigate MainFrame to Edit_Order.xaml
-                parentFrame.NavigationService.Navigate(new Edit_Order());
+                // Retrieve the id from the button's Tag property
+                int id = (int)button.Tag;
+
+                // Access the parent Frame (MainFrame)
+                Frame parentFrame = FindParentFrame(this);
+
+                if (parentFrame != null)
+                {
+                    // Navigate MainFrame to Edit_Order.xaml with the id parameter
+                    parentFrame.NavigationService.Navigate(new Edit_Order(id));
+                }
             }
         }
 

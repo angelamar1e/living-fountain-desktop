@@ -44,7 +44,7 @@
                 <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="3" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
-                <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
+                <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -60,9 +60,13 @@
                 <TextBox Name="lotField"/>
                 <TextBox Grid.Column="1" Name="blockField"/>
                 <TextBox Grid.Column="2" Name="phaseField"/>
-                <ComboBox Grid.Column="3" Name="orderTypeCombo"/>
+                <ComboBox Grid.Column="3" Name="productTypeCombo"
+                          DisplayMemberPath="product_desc"
+                          SelectedValuePath="code"/>
                 <TextBox Grid.Column="4" Name="quantityField"/>
-                <ComboBox Grid.Column="5" Name="delivererCombo"/>
+                <ComboBox Grid.Column="5" Name="delivererCombo"
+                          DisplayMemberPath="employee_name"
+                          SelectedValuePath="employee_name"/>
                 <Button Grid.Column="6" Name="submitButton" Content="Submit"/>
             </Grid>
         </Grid>
@@ -73,38 +77,38 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Name="tableLabel" VerticalAlignment="Bottom" FontSize="20">Order Records •</TextBlock>
-                <TextBlock x:Name="currentDate"></TextBlock>
+                <TextBlock x:Name="currentDate" VerticalAlignment="Bottom"></TextBlock>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Center">Filter by date: </TextBlock>
-            <DatePicker Name="datePicker" Width="120" Height="30"></DatePicker>
+                <TextBlock VerticalAlignment="Center">Filter by date:</TextBlock>
+                <DatePicker Name="datePicker" Width="120" Height="30" CalendarClosed="datePicker_CalendarClosed"></DatePicker>
             </StackPanel>
         </Grid>
         <TextBlock Name="noRecords" Grid.Row="5" Visibility="Hidden">No order records found.</TextBlock>
         <DataGrid x:Name="OrderRecords" Grid.Row="5" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch">
-        <DataGrid.Columns>
-            <DataGridTextColumn Header="Block" Binding="{Binding block}" />
-            <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
-            <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
-            <DataGridTextColumn Header="Product" Binding="{Binding product.product_desc}" />
-            <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
-            <DataGridTextColumn Header="Price" Binding="{Binding price}" />
-            <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
-            <DataGridTextColumn Header="Status" Binding="{Binding status}"/>
-            <DataGridTemplateColumn Header="Actions">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <!-- Edit button -->
-                            <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" Tag="{Binding id}" />
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Block" Binding="{Binding block}" />
+                <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
+                <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
+                <DataGridTextColumn Header="Product" Binding="{Binding product.product_desc}" />
+                <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
+                <DataGridTextColumn Header="Price" Binding="{Binding price}" />
+                <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding status}"/>
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!-- Edit button -->
+                                <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" Tag="{Binding id}" />
 
-                            <!-- Delete button -->
-                            <Button x:Name="deleteBtn" Content="Delete" Margin="2" Tag="{Binding}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-        </DataGrid.Columns>
-    </DataGrid>
+                                <!-- Delete button -->
+                                <Button x:Name="deleteBtn" Content="Delete" Margin="2" Tag="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

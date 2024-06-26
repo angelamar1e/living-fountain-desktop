@@ -14,7 +14,7 @@ public partial class employee_type
 {
     [Key]
     [StringLength(1)]
-    public string code { get; set; }
+    public char code { get; set; }
 
     [StringLength(20)]
     public string emp_type_desc { get; set; }

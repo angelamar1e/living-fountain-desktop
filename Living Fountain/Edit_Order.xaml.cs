@@ -20,7 +20,7 @@ namespace Living_Fountain
     /// </summary>
     public partial class Edit_Order : Page
     {
-        public Edit_Order()
+        public Edit_Order(int id)
         {
             InitializeComponent();
         }
