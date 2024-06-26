@@ -90,7 +90,7 @@
                 <DataGridTextColumn Header="Block" Binding="{Binding block}" />
                 <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
                 <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
-                <DataGridTextColumn Header="Product" Binding="{Binding product.product_desc}" />
+                <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}" />
                 <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding price}" />
                 <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
