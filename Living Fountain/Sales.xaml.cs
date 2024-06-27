@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System;
 
 namespace Living_Fountain
 {
@@ -15,28 +16,33 @@ namespace Living_Fountain
         public List<product> Products { get; set; }
         public List<order> Orders { get; set; }
         public List<employee> Deliverers { get; set; }
+        public List<order_status> Statuses { get; set; }
 
         private LivingFountainHome home;
         public Sales()
         {
             InitializeComponent();
 
-            SetDate();
+            GetInitialData();
             GetProductTypes();
             GetDeliverers();
+            GetStatusTypes();
         }
 
         private void LoadData(DateOnly date)
         {
             using (var dc = new living_fountainContext())
             {
-               Orders = dc.orders
-                          .Include(o => o.product_codeNavigation) // Include related product
-                          .Include(o => o.deliverer) // Include related deliverer (employee)
-                          .Include(o => o.statusNavigation) // Include related status
-                          .Where(o => o.date == date)
-                          .ToList();
+                Orders = dc.orders
+                           .Include(o => o.product_codeNavigation) // Include related product
+                           .Include(o => o.deliverer) // Include related deliverer (employee)
+                           .Include(o => o.statusNavigation) // Include related status
+                           .Where(o => o.date == date)
+                           .ToList();
             }
+
+            OrderRecords.ItemsSource = Orders;
+            countRecords();
         }
 
         private void GetProductTypes()
@@ -49,7 +55,7 @@ namespace Living_Fountain
             }
         }
 
-        private void GetDeliverers() 
+        private void GetDeliverers()
         {
             using (var dc = new living_fountainContext())
             {
@@ -60,15 +66,23 @@ namespace Living_Fountain
             delivererCombo.ItemsSource = Deliverers;
         }
 
-        private void SetDate()
+        private void GetStatusTypes()
+        {
+            using (var dc = new living_fountainContext())
+            {
+                Statuses = dc.order_statuses
+                               .ToList();
+            }
+            statusCombo.ItemsSource = Statuses;
+        }
+
+        private void GetInitialData()
         {
             DateTime dateTime = DateTime.Now;
             DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
             currentDate.Text = dateOnly.ToString("MMMM dd, yyyy");
 
             LoadData(dateOnly);
-            OrderRecords.ItemsSource = Orders;
-            countRecords();
         }
 
         private void datePicker_CalendarClosed(object sender, RoutedEventArgs e)
@@ -78,8 +92,6 @@ namespace Living_Fountain
             currentDate.Text = dateOnly.ToString("MMMM dd, yyyy");
 
             LoadData(dateOnly);
-            OrderRecords.ItemsSource = Orders;
-            countRecords();
         }
 
         private void countRecords()
@@ -113,6 +125,56 @@ namespace Living_Fountain
             }
         }
 
+        private void DeleteButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.Button button)
+            {
+                // Retrieve the order from the button's Tag property
+                int orderId = (int)button.Tag;
+                var orderToDelete = Orders.FirstOrDefault(o => o.id == orderId);
+
+                // Show confirmation message box
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to delete this order record?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                // Handle the user's response
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        // Proceed with deletion
+                        DeleteOrder(orderToDelete);
+                        break;
+                    case MessageBoxResult.No:
+                        // Do nothing or handle cancellation
+                        break;
+                }
+            }
+        }
+
+        private void DeleteOrder(order orderToDelete)
+        {
+            DateOnly date;
+            using (var dc = new living_fountainContext())
+            {
+                // Find the order in the database
+                var order = dc.orders.SingleOrDefault(o => o.id == orderToDelete.id);
+                if (order != null)
+                {
+                    date = order.date.GetValueOrDefault();
+                    // Remove the order from the database
+                    dc.orders.Remove(order);
+                    dc.SaveChanges();
+                    LoadData(date);
+                }
+
+            }
+
+            // Remove the order from the ObservableCollection to update the UI
+            Orders.Remove(orderToDelete);
+
+            // Show a success message
+            MessageBox.Show("Order deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
         private Frame FindParentFrame(DependencyObject child)
         {
             // Traverse up the visual tree to find the parent Frame
@@ -144,21 +206,26 @@ namespace Living_Fountain
                 newOrder.phase = existingCustomer.phase;
                 newOrder.date = DateOnly.FromDateTime(DateTime.Now);
 
-                // Get selected product and deliverer
+                // Get selected from comboboxes
                 var selectedProduct = (product)productTypeCombo.SelectedItem;
                 var selectedDeliverer = (employee)delivererCombo.SelectedItem;
+                var selectedStatus = (order_status)statusCombo.SelectedItem;
 
                 newOrder.product_code = selectedProduct.code;
                 newOrder.quantity = int.Parse(quantityField.Text);
                 newOrder.price = OrderHelper.ComputeNewPrice(newOrder.quantity, selectedProduct.price);
                 newOrder.deliverer_id = selectedDeliverer.id;
+                newOrder.status = selectedStatus.code;
 
                 // Add newOrder to the context
                 dc.orders.Add(newOrder);
 
                 // Save changes to the database
                 dc.SaveChanges();
-                countRecords();
+
+
+                MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                GetInitialData();
             }
         }
     }

@@ -38,6 +38,7 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Block" HorizontalAlignment="Left" Margin="18,0,0,0" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
@@ -45,10 +46,12 @@
                 <Label Grid.Column="3" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
+                <Label Grid.Column="6" Content="Status" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
             </Grid>
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
@@ -67,7 +70,10 @@
                 <ComboBox Grid.Column="5" Name="delivererCombo"
                           DisplayMemberPath="employee_name"
                           SelectedValuePath="id"/>
-                <Button Grid.Column="6" Name="submitButton" Content="Submit" Click="SubmitButtonClick"/>
+                <ComboBox Grid.Column="6" Name="statusCombo"
+                          DisplayMemberPath="status_desc"
+                          SelectedValuePath="code"/>
+                <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick"/>
             </Grid>
         </Grid>
         <Grid Grid.Row="4">
@@ -85,7 +91,7 @@
             </StackPanel>
         </Grid>
         <TextBlock Name="noRecords" Grid.Row="5" Visibility="Hidden">No order records found.</TextBlock>
-        <DataGrid x:Name="OrderRecords" Grid.Row="5" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+        <DataGrid x:Name="OrderRecords" Grid.Row="5" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Block" Binding="{Binding block}" />
                 <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
@@ -94,7 +100,7 @@
                 <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
                 <DataGridTextColumn Header="Price" Binding="{Binding price}" />
                 <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
-                <DataGridTextColumn Header="Status" Binding="{Binding status}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding statusNavigation.status_desc}"/>
                 <DataGridTemplateColumn Header="Actions">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -103,7 +109,7 @@
                                 <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" Tag="{Binding id}" />
 
                                 <!-- Delete button -->
-                                <Button x:Name="deleteBtn" Content="Delete" Margin="2" Tag="{Binding}" />
+                                <Button x:Name="deleteBtn" Content="Delete" Click="DeleteButtonClick" Margin="2" Tag="{Binding id}" />
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
