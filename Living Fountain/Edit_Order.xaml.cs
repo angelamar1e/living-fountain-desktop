@@ -1,21 +1,8 @@
 ﻿using Living_Fountain.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Living_Fountain.Helpers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.EntityFrameworkCore;
-using System.Data.SqlTypes;
 
 
 namespace Living_Fountain
@@ -66,7 +53,7 @@ namespace Living_Fountain
                 if (orderToUpdate != null)
                 {
                     
-                    var existingCustomer = GetOrCreateCustomer(SelectedOrder.block ?? 0, SelectedOrder.lot ?? 0, SelectedOrder.phase ?? 0, dc);
+                    var existingCustomer = OrderHelper.GetOrCreateCustomer(dc, SelectedOrder.block ?? 0, SelectedOrder.lot ?? 0, SelectedOrder.phase ?? 0);
 
                     // Update properties of orderToUpdate with SelectedOrder's values
                     orderToUpdate.block = existingCustomer.block;
@@ -76,7 +63,7 @@ namespace Living_Fountain
 
                     if (orderToUpdate.quantity != SelectedOrder.quantity)
                     {
-                        orderToUpdate.price = ComputeNewPrice(SelectedOrder.quantity, orderToUpdate.product_codeNavigation.price);
+                        orderToUpdate.price = OrderHelper.ComputeNewPrice(SelectedOrder.quantity, orderToUpdate.product_codeNavigation.price);
                         orderToUpdate.quantity = SelectedOrder.quantity;
                     }
 
@@ -88,35 +75,6 @@ namespace Living_Fountain
                 }
             }
         }
-
-        private customer GetOrCreateCustomer(int block, int lot, int phase, living_fountainContext dc)
-        {
-            var existingCustomer = dc.customers.FirstOrDefault(c => c.block == block && c.lot == lot && c.phase == phase);
-
-            if (existingCustomer == null)
-            {
-                // Customer does not exist, create a new customer
-                existingCustomer = new customer
-                {
-                    block = block,
-                    lot = lot,
-                    phase = phase
-                };
-
-                dc.customers.Add(existingCustomer);
-                dc.SaveChanges(); // Save changes to add new customer to the database
-            }
-
-            return existingCustomer;
-        }
-
-        private decimal? ComputeNewPrice(int? quantity, decimal? price)
-        {
-            decimal? newPrice = quantity * price;
-
-            return newPrice;
-        }
-
 
         private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {

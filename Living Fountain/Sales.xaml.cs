@@ -1,4 +1,5 @@
 ﻿using Living_Fountain.Models;
+using Living_Fountain.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,23 +30,11 @@ namespace Living_Fountain
         {
             using (var dc = new living_fountainContext())
             {
-                Orders = dc.orders
+               Orders = dc.orders
                           .Include(o => o.product_codeNavigation) // Include related product
                           .Include(o => o.deliverer) // Include related deliverer (employee)
                           .Include(o => o.statusNavigation) // Include related status
                           .Where(o => o.date == date)
-                          .Select(o => new order
-                          {
-                              id = o.id,
-                              block = o.block,
-                              lot = o.lot,
-                              phase = o.phase,
-                              product_codeNavigation = o.product_codeNavigation,
-                              quantity = o.quantity,
-                              price = o.price,
-                              deliverer = o.deliverer,
-                              status = o.statusNavigation.status_desc
-                          })
                           .ToList();
             }
         }
@@ -54,19 +43,11 @@ namespace Living_Fountain
         {
             using (var dc = new living_fountainContext())
             {
-                Products = dc.products
-                            .Select(item => new product
-                            {
-                                code = item.code,
-                                product_desc = item.product_desc
-                            })
-                            .ToList();
+                Products = dc.products.ToList();
 
                 productTypeCombo.ItemsSource = Products;
             }
         }
-
-
 
         private void GetDeliverers() 
         {
@@ -74,12 +55,6 @@ namespace Living_Fountain
             {
                 Deliverers = dc.employees
                                .Where(e => e.emp_type_code == 'D')
-                               .Select
-                               (item => new employee
-                                 {
-                                     employee_name = item.employee_name,
-                                     id = item.id
-                                 })
                                .ToList();
             }
             delivererCombo.ItemsSource = Deliverers;
@@ -154,6 +129,37 @@ namespace Living_Fountain
             }
 
             return FindParentFrame(parentObject);
+        }
+
+        private void SubmitButtonClick(object sender, RoutedEventArgs e)
+        {
+            using (var dc = new living_fountainContext())
+            {
+                order newOrder = new order();
+                var existingCustomer = OrderHelper.GetOrCreateCustomer(dc, int.Parse(blockField.Text), int.Parse(lotField.Text), int.Parse(phaseField.Text));
+
+                // Update properties of orderToUpdate with SelectedOrder's values
+                newOrder.block = existingCustomer.block;
+                newOrder.lot = existingCustomer.lot;
+                newOrder.phase = existingCustomer.phase;
+                newOrder.date = DateOnly.FromDateTime(DateTime.Now);
+
+                // Get selected product and deliverer
+                var selectedProduct = (product)productTypeCombo.SelectedItem;
+                var selectedDeliverer = (employee)delivererCombo.SelectedItem;
+
+                newOrder.product_code = selectedProduct.code;
+                newOrder.quantity = int.Parse(quantityField.Text);
+                newOrder.price = OrderHelper.ComputeNewPrice(newOrder.quantity, selectedProduct.price);
+                newOrder.deliverer_id = selectedDeliverer.id;
+
+                // Add newOrder to the context
+                dc.orders.Add(newOrder);
+
+                // Save changes to the database
+                dc.SaveChanges();
+                countRecords();
+            }
         }
     }
 }
