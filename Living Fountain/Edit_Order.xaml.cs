@@ -22,7 +22,9 @@ namespace Living_Fountain
             productTypeCombo.ItemsSource = ProductTypes;
             List<employee> Deliverers = sales.Deliverers;
             delivererCombo.ItemsSource = Deliverers;
-            
+            List<order_status> Statuses = sales.Statuses;
+            statusCombo.ItemsSource = Statuses;
+
 
             this.DataContext = this;
         }

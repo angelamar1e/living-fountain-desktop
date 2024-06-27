@@ -37,6 +37,7 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Block" HorizontalAlignment="Left" Margin="18,0,0,0" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
@@ -44,10 +45,12 @@
                 <Label Grid.Column="3" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
                 <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
+                <Label Grid.Column="6" Content="Status" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
             </Grid>
 
             <Grid Grid.Row="1" DataContext="{Binding SelectedOrder, Mode=TwoWay}">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
@@ -68,7 +71,11 @@
                           SelectedValue="{Binding deliverer_id, Mode=TwoWay}"
                           DisplayMemberPath="employee_name"
                           SelectedValuePath="id"/>
-                <Button Grid.Column="6" Name="submitButton" Content="Submit" Click="SubmitButtonClick" />
+                <ComboBox Grid.Column="6" Name="statusCombo"
+                          SelectedValue="{Binding status, Mode=TwoWay}"
+                          DisplayMemberPath="status_desc"
+                          SelectedValuePath="code"/>  
+                <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick" />
             </Grid>
         </Grid>
     </Grid>
