@@ -106,7 +106,8 @@
                     </StackPanel>
                 </Border>
 
-            </StackPanel>
+
+</StackPanel>
         </Border>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
