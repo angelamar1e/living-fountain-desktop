@@ -2,8 +2,16 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Living Fountain
 /Living Fountain/obj
 /Living Fountain/bin
 /Living Fountain/.vs
 /.vs
+/Living Fountain/obj/project.nuget.cache
+/Living Fountain/obj/project.assets.json
+/Living Fountain/obj/Living Fountain.csproj.nuget.g.props
+/Living Fountain/obj/Debug/net8.0-windows/Living Fountain.AssemblyInfo.cs
+/Living Fountain/obj/Debug/net8.0-windows/Living Fountain.assets.cache
+/Living Fountain/obj/Living Fountain.csproj.nuget.dgspec.json
+/Living Fountain/obj/Debug/net8.0-windows/Living Fountain.AssemblyInfoInputs.cache
+/Living Fountain/obj/Debug/net8.0-windows/Living Fountain.designer.runtimeconfig.json
+/Living Fountain/obj/Debug/net8.0-windows/Living Fountain.AssemblyInfo.cs

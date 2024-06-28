@@ -1,0 +1,88 @@
+﻿<Page x:Class="Living_Fountain.Edit_Order"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Living_Fountain"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Edit_Order">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="200"/>
+        </Grid.RowDefinitions>
+        <!--Editing order title with id-->
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+            <TextBlock>Editing order # </TextBlock>
+            <TextBlock x:Name="orderId"></TextBlock>
+        </StackPanel>
+        <!--Order record subsection titles-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Margin="20 0 0 0">Customer</TextBlock>
+            <TextBlock Margin="200 0 0 0">Order</TextBlock>
+        </StackPanel>
+        
+        <!--Fields and labels for editing order-->
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <!--Labels-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Block" HorizontalAlignment="Left" Margin="18,0,0,0" VerticalAlignment="Center" Padding="0"/>
+                <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
+                <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
+                <Label Grid.Column="3" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
+                <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
+                <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
+                <Label Grid.Column="6" Content="Status" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
+            </Grid>
+            
+            <!--Fields-->
+            <Grid Grid.Row="1" DataContext="{Binding SelectedOrder, Mode=TwoWay}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="blockField" Text="{Binding block}"/>
+                <TextBox Grid.Column="1" Name="lotField" Text="{Binding lot}"/>
+                <TextBox Grid.Column="2" Name="phaseField" Text="{Binding phase}"/>
+                <ComboBox Grid.Column="3" Name="productTypeCombo"
+                          DisplayMemberPath="product_desc"
+                          SelectedValuePath="code"
+                          SelectedValue="{Binding product_code, Mode=TwoWay}"/>
+                <TextBox Grid.Column="4" Name="quantityField" Text="{Binding quantity}"/>
+                <ComboBox Grid.Column="5" Name="delivererCombo"
+                          SelectedValue="{Binding deliverer_id, Mode=TwoWay}"
+                          DisplayMemberPath="employee_name"
+                          SelectedValuePath="id"/>
+                <ComboBox Grid.Column="6" Name="statusCombo"
+                          SelectedValue="{Binding status, Mode=TwoWay}"
+                          DisplayMemberPath="status_desc"
+                          SelectedValuePath="code"/>  
+                <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

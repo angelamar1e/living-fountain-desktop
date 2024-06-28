@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Living Fountain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a331da8ad4c6103b79599a5a50289bfd1090023")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81cee6c81a1f4a0b0adce653352fd3ad0158548b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Living Fountain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Living Fountain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

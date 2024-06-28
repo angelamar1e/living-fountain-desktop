@@ -9,6 +9,9 @@
       Title="Credits">
 
     <Grid Background="White">
+        <StackPanel>
         <TextBlock>Credits</TextBlock>
+        <TextBlock>hELLO</TextBlock>
+        </StackPanel>
     </Grid>
 </Page>
