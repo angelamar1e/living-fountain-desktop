@@ -11,6 +11,9 @@
     <Compile Update="LivingFountainHome.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="EditOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Salary.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -29,6 +32,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="EditOrder.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Salary.xaml">
