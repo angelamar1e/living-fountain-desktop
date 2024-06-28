@@ -9,10 +9,9 @@
       Title="Sales">
 
     <Grid Background="White">
-<<<<<<< HEAD
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -24,8 +23,8 @@
             <TextBlock>Sales</TextBlock>
         </StackPanel>
             
-        <!--Add New Order section title-->     
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center">Add New Order</TextBlock>
+        <!--Add New Order section title-->
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#2C61EC">Add New Order</TextBlock>
         
         <!--Add New Order subsection titles-->     
         <StackPanel Grid.Row="2" Orientation="Horizontal">
@@ -136,7 +135,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-=======
+
 
         <Border Grid.Column="1" Margin="50,50,38,50" CornerRadius="10">
             <StackPanel Margin="10">
@@ -236,6 +235,5 @@
 
             </StackPanel>
         </Border>
->>>>>>> origin/bea
     </Grid>
 </Page>
