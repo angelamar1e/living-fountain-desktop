@@ -13,22 +13,24 @@ namespace Living_Fountain
     /// </summary>
     public partial class Sales : Page
     {
-        public List<product> Products { get; set; }
         public List<order> Orders { get; set; }
+        public List<product> Products { get; set; }
         public List<employee> Deliverers { get; set; }
         public List<order_status> Statuses { get; set; }
 
-        private LivingFountainHome home;
         public Sales()
         {
             InitializeComponent();
 
             GetInitialData();
+
+            // To bind the combo boxes to items from db
             GetProductTypes();
             GetDeliverers();
             GetStatusTypes();
         }
 
+        // retrieving order records from db
         private void LoadData(DateOnly date)
         {
             using (var dc = new living_fountainContext())
@@ -76,6 +78,7 @@ namespace Living_Fountain
             statusCombo.ItemsSource = Statuses;
         }
 
+        // the default data displayed in the table are orders for the current date
         private void GetInitialData()
         {
             DateTime dateTime = DateTime.Now;
@@ -85,6 +88,7 @@ namespace Living_Fountain
             LoadData(dateOnly);
         }
 
+        // order records are filtered as date picker is changed
         private void datePicker_CalendarClosed(object sender, RoutedEventArgs e)
         {
             DateTime dateTime = datePicker.SelectedDate ?? DateTime.Now;
@@ -94,6 +98,7 @@ namespace Living_Fountain
             LoadData(dateOnly);
         }
 
+        // table of order records is hidden if no records are found for the selected date
         private void countRecords()
         {
             if (Orders.Count == 0)
@@ -106,6 +111,8 @@ namespace Living_Fountain
                 OrderRecords.Visibility = Visibility.Visible;
             }
         }
+
+        // navigates to edit_order page with the id of the order record
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
             Sales sales = this;
@@ -125,6 +132,25 @@ namespace Living_Fountain
             }
         }
 
+        private Frame FindParentFrame(DependencyObject child)
+        {
+            // Traverse up the visual tree to find the parent Frame
+            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
+
+            if (parentObject == null)
+            {
+                return null;
+            }
+
+            if (parentObject is Frame frame)
+            {
+                return frame;
+            }
+
+            return FindParentFrame(parentObject);
+        }
+
+        // confirms deletion
         private void DeleteButtonClick(object sender, RoutedEventArgs e)
         {
             if (sender is System.Windows.Controls.Button button)
@@ -175,24 +201,7 @@ namespace Living_Fountain
             MessageBox.Show("Order deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private Frame FindParentFrame(DependencyObject child)
-        {
-            // Traverse up the visual tree to find the parent Frame
-            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
-
-            if (parentObject == null)
-            {
-                return null;
-            }
-
-            if (parentObject is Frame frame)
-            {
-                return frame;
-            }
-
-            return FindParentFrame(parentObject);
-        }
-
+        // submission of new order record
         private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {
             using (var dc = new living_fountainContext())

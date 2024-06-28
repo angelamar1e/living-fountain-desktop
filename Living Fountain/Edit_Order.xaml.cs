@@ -16,15 +16,22 @@ namespace Living_Fountain
         public Edit_Order(int id, Sales sales)
         {
             InitializeComponent();
+
+            // to display order id on edit order title
             orderId.Text = id.ToString();
+            
+            // retrieving data with id
             LoadData(id);
+
+            // bind lists from Sales page as items for combo boxes
             List<product> ProductTypes = sales.Products;
             productTypeCombo.ItemsSource = ProductTypes;
+
             List<employee> Deliverers = sales.Deliverers;
             delivererCombo.ItemsSource = Deliverers;
+            
             List<order_status> Statuses = sales.Statuses;
             statusCombo.ItemsSource = Statuses;
-
 
             this.DataContext = this;
         }
