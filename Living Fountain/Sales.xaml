@@ -9,6 +9,7 @@
       Title="Sales">
 
     <Grid Background="White">
+<<<<<<< HEAD
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
