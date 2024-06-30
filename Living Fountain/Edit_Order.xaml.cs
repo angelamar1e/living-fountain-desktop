@@ -94,6 +94,16 @@ namespace Living_Fountain
         private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {
             SaveChanges();
+            MessageBox.Show("Order updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            // Access the parent Frame (MainFrame)
+            Frame parentFrame = NavigationHelper.FindParentFrame(this);
+
+            if (parentFrame != null)
+            {
+                // Navigate MainFrame to Edit_Order.xaml with the id parameter
+                parentFrame.NavigationService.Navigate(new Sales(OrderHelper.GetDateOnly(SelectedOrder.date)));
+            }
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)

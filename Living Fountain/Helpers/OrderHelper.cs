@@ -1,5 +1,7 @@
 ﻿using Azure.Core;
 using Living_Fountain.Models;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace Living_Fountain.Helpers
 {
@@ -19,7 +21,7 @@ namespace Living_Fountain.Helpers
 
             return dateOnly;
         }
-        
+
         public static customer GetOrCreateCustomer(living_fountainContext context, int block, int lot, int phase)
         {
             // Attempt to find the customer in the database
