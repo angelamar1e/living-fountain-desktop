@@ -41,9 +41,14 @@ namespace Living_Fountain
             Main.Content = new Salary();
         }
 
-        private void Main_Navigated(object sender, NavigationEventArgs e)
+        private void Customers_Button_Click(object sender, RoutedEventArgs e)
         {
+            Main.Content = new Customers();
+        }
 
+        private void Revenue_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Revenue();
         }
     }
 }
