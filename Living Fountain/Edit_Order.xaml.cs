@@ -13,7 +13,8 @@ namespace Living_Fountain
     public partial class Edit_Order : Page
     {
         public Living_Fountain.Models.order SelectedOrder { get; set; }
-        public Edit_Order(int id, Sales sales)
+        public Sales sales = new Sales(OrderHelper.GetCurrentDate());
+        public Edit_Order(int id)
         {
             InitializeComponent();
 
@@ -23,15 +24,8 @@ namespace Living_Fountain
             // retrieving data with id
             LoadData(id);
 
-            // bind lists from Sales page as items for combo boxes
-            List<product> ProductTypes = sales.Products;
-            productTypeCombo.ItemsSource = ProductTypes;
-
-            List<employee> Deliverers = sales.Deliverers;
-            delivererCombo.ItemsSource = Deliverers;
-            
-            List<order_status> Statuses = sales.Statuses;
-            statusCombo.ItemsSource = Statuses;
+            //bind lists from Sales page as items for combo boxes
+            BindComboBoxes();
 
             this.DataContext = this;
         }
@@ -47,6 +41,18 @@ namespace Living_Fountain
 
                 SelectedOrder = order;
             }
+        }
+
+        private void BindComboBoxes()
+        {
+            List<product> ProductTypes = sales.Products;
+            productTypeCombo.ItemsSource = ProductTypes;
+
+            List<employee> Deliverers = sales.Deliverers;
+            delivererCombo.ItemsSource = Deliverers;
+
+            List<order_status> Statuses = sales.Statuses;
+            statusCombo.ItemsSource = Statuses;
         }
 
         private void SaveChanges()
@@ -88,6 +94,18 @@ namespace Living_Fountain
         private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {
             SaveChanges();
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            // Access the parent Frame (MainFrame)
+            Frame parentFrame = NavigationHelper.FindParentFrame(this);
+
+            if (parentFrame != null)
+            {
+                // Navigate MainFrame to Edit_Order.xaml with the id parameter
+                parentFrame.NavigationService.Navigate(new Sales(OrderHelper.GetDateOnly(SelectedOrder.date)));
+            }
         }
     }
 

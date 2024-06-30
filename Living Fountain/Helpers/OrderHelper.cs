@@ -1,9 +1,25 @@
-﻿using Living_Fountain.Models;
+﻿using Azure.Core;
+using Living_Fountain.Models;
 
 namespace Living_Fountain.Helpers
 {
     public class OrderHelper
-    {
+    { 
+        public static DateOnly GetCurrentDate() 
+        {
+            DateTime date = DateTime.Now;
+            DateOnly dateOnly = DateOnly.FromDateTime(date);
+
+            return dateOnly;
+        }
+
+        public static DateOnly GetDateOnly(DateOnly? date)
+        {
+            DateOnly dateOnly = date ?? GetCurrentDate();
+
+            return dateOnly;
+        }
+        
         public static customer GetOrCreateCustomer(living_fountainContext context, int block, int lot, int phase)
         {
             // Attempt to find the customer in the database

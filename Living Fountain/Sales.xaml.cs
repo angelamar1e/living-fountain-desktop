@@ -18,11 +18,19 @@ namespace Living_Fountain
         public List<employee> Deliverers { get; set; }
         public List<order_status> Statuses { get; set; }
 
-        public Sales()
+        public Sales(DateOnly selectedOrderDate)
         {
             InitializeComponent();
 
-            GetInitialData();
+            DateOnly date = OrderHelper.GetCurrentDate();
+            if (selectedOrderDate != date)
+            {
+                GetInitialData(selectedOrderDate);
+            }
+            else
+            {
+                GetInitialData(date);
+            }
 
             // To bind the combo boxes to items from db
             GetProductTypes();
@@ -47,7 +55,7 @@ namespace Living_Fountain
             countRecords();
         }
 
-        private void GetProductTypes()
+        public void GetProductTypes()
         {
             using (var dc = new living_fountainContext())
             {
@@ -57,7 +65,7 @@ namespace Living_Fountain
             }
         }
 
-        private void GetDeliverers()
+        public void GetDeliverers()
         {
             using (var dc = new living_fountainContext())
             {
@@ -68,7 +76,7 @@ namespace Living_Fountain
             delivererCombo.ItemsSource = Deliverers;
         }
 
-        private void GetStatusTypes()
+        public void GetStatusTypes()
         {
             using (var dc = new living_fountainContext())
             {
@@ -79,13 +87,11 @@ namespace Living_Fountain
         }
 
         // the default data displayed in the table are orders for the current date
-        private void GetInitialData()
+        private void GetInitialData(DateOnly date)
         {
-            DateTime dateTime = DateTime.Now;
-            DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
-            currentDate.Text = dateOnly.ToString("MMMM dd, yyyy");
+            currentDate.Text = date.ToString("MMMM dd, yyyy");
 
-            LoadData(dateOnly);
+            LoadData(date);
         }
 
         // order records are filtered as date picker is changed
@@ -122,32 +128,14 @@ namespace Living_Fountain
                 int id = (int)button.Tag;
 
                 // Access the parent Frame (MainFrame)
-                Frame parentFrame = FindParentFrame(this);
+                Frame parentFrame = NavigationHelper.FindParentFrame(this);
 
                 if (parentFrame != null)
                 {
                     // Navigate MainFrame to Edit_Order.xaml with the id parameter
-                    parentFrame.NavigationService.Navigate(new Edit_Order(id, sales));
+                    parentFrame.NavigationService.Navigate(new Edit_Order(id));
                 }
             }
-        }
-
-        private Frame FindParentFrame(DependencyObject child)
-        {
-            // Traverse up the visual tree to find the parent Frame
-            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
-
-            if (parentObject == null)
-            {
-                return null;
-            }
-
-            if (parentObject is Frame frame)
-            {
-                return frame;
-            }
-
-            return FindParentFrame(parentObject);
         }
 
         // confirms deletion
@@ -234,7 +222,7 @@ namespace Living_Fountain
 
 
                 MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                GetInitialData();
+                GetInitialData(OrderHelper.GetCurrentDate());
             }
         }
     }
