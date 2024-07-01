@@ -52,11 +52,12 @@
                         </Grid>
                     </Grid>
                     <Grid Grid.Column="1" HorizontalAlignment="Center">
-                        <Button x:Name="searchButton" Content="Search"/>
+                        <Button x:Name="searchButton" Content="Search" Click="SearchButtonClick"/>
                     </Grid>
                 </Grid>
             </Grid>
         </Grid>
+        <TextBlock Grid.Row="1" Name="noRecords" Visibility="Hidden">No customers found.</TextBlock>
         <Grid Grid.Row="1" Height="400">
             <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged">
                 <DataGrid.Columns>
