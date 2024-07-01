@@ -44,12 +44,17 @@ namespace Living_Fountain
         {
             using (var dc = new living_fountainContext())
             {
-                OrderHistory = dc.orders
+                var orders = dc.orders
                                .Include(o => o.product_codeNavigation) // Include related product
                                .Include(o => o.deliverer) // Include related deliverer (employee)
                                .Include(o => o.statusNavigation) // Include related status
                                .Where(o => o.block == customer.block && o.lot == customer.lot && o.phase == customer.phase)
                                .ToList();
+
+                var ordersSum = orders.Sum(o => o.price);
+                totalAmount.Text = "PHP" + ordersSum.ToString();
+
+                OrderHistory = orders;
             }
 
             orderHistory.ItemsSource = OrderHistory;

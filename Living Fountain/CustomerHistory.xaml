@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
             <TextBlock>Total Amount of Orders: </TextBlock>
-            <TextBlock Name="totalAmount"></TextBlock>
+            <TextBlock Grid.Column="1" Name="totalAmount"></TextBlock>
         </Grid>
     </Grid>
 </Page>
