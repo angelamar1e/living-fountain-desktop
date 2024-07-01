@@ -67,6 +67,7 @@ namespace Living_Fountain
         {
             GetFilteredOrders(blockField.Text, lotField.Text, phaseField.Text);
             CountRecords();
+            ClearSearchFields();
         }
 
         private void GetFilteredOrders(string blockText, string lotText, string phaseText)
@@ -115,6 +116,13 @@ namespace Living_Fountain
             {
                 customerRecords.Visibility = Visibility.Visible;
             }
+        }
+
+        private void ClearSearchFields()
+        {
+            blockField.Clear();
+            lotField.Clear();
+            phaseField.Clear();
         }
     }
 }
