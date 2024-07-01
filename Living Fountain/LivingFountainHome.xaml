@@ -58,6 +58,6 @@
             </Grid>
             <Image HorizontalAlignment="Center" Height="228" VerticalAlignment="Center" Width="223" Source="/logo.png"/>
         </Grid>
-        <Frame x:Name="Main" Grid.Column="1" NavigationUIVisibility="Hidden" Navigated="Main_Navigated"/>
+        <Frame x:Name="Main" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>
