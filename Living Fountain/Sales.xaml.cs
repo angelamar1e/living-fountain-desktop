@@ -52,7 +52,7 @@ namespace Living_Fountain
             }
 
             OrderRecords.ItemsSource = Orders;
-            countRecords();
+            CountRecords();
         }
 
         public void GetProductTypes()
@@ -105,7 +105,7 @@ namespace Living_Fountain
         }
 
         // table of order records is hidden if no records are found for the selected date
-        private void countRecords()
+        private void CountRecords()
         {
             if (Orders.Count == 0)
             {

@@ -1,9 +1,9 @@
-﻿using System.Windows;
-using System.Windows.Data;
-using System.Windows.Controls;
-using Living_Fountain.Helpers;
+﻿using Living_Fountain.Helpers;
 using Living_Fountain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace Living_Fountain
 {
@@ -18,7 +18,7 @@ namespace Living_Fountain
             InitializeComponent();
 
             LoadData();
-            countRecords();
+            CountRecords();
         }
 
         private void LoadData()
@@ -138,7 +138,7 @@ namespace Living_Fountain
             }
         }
 
-        private void countRecords()
+        private void CountRecords()
         {
             if (Credit.Count == 0)
             {
