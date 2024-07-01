@@ -58,8 +58,13 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Height="400">
-            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False">
-
+            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Block" Binding="{Binding Customer.block}"/>
+                    <DataGridTextColumn Header="Lot" Binding="{Binding Customer.lot}"/>
+                    <DataGridTextColumn Header="Phase" Binding="{Binding Customer.phase}"/>
+                    <DataGridTextColumn Header="Last Order Date" Binding="{Binding LastOrderDate}"/>
+                </DataGrid.Columns>
             </DataGrid>
         </Grid>
     </Grid>
