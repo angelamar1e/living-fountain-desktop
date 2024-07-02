@@ -29,5 +29,10 @@ namespace Living_Fountain
         {
             revenueFrame.Content = new Weekly_Revenue();
         }
+
+        private void monthly_Click(object sender, RoutedEventArgs e)
+        {
+            revenueFrame.Content = new Monthly_Revenue();
+        }
     }
 }
