@@ -28,9 +28,8 @@ namespace Living_Fountain
 
         private void Sales_Button_Click(object sender, RoutedEventArgs e)
         {
-            DateOnly currentDate = OrderHelper.GetCurrentDate();
-            DateTime currentDateTime = currentDate.ToDateTime(new TimeOnly(0, 0)); // Convert DateOnly to DateTime
-            Main.Content = new Sales(currentDateTime);
+            Main.Content = new Sales(OrderHelper.GetCurrentDate());
+
         }
 
         private void Credits_Button_Click(object sender, RoutedEventArgs e)

@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1500"
       Title="Sales">
-
+    
     <Page.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Validation.ErrorTemplate">
@@ -27,7 +27,7 @@
             </Style.Triggers>
         </Style>
     </Page.Resources>
-
+    
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
