@@ -7,11 +7,21 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Credits">
-
+    <Page.Resources>
+        <DataTemplate x:Key="CheckBoxCellTemplate">
+            <CheckBox Checked="CheckBox_Checked"/>
+        </DataTemplate>
+    </Page.Resources>
     <Grid Background="White">
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="500"/>
+        </Grid.RowDefinitions>
         <TextBlock>Credits</TextBlock>
-        <TextBlock>hELLO</TextBlock>
-        </StackPanel>
+        <ScrollViewer Grid.Row="1">
+            <StackPanel x:Name="dataGridContainer" Orientation="Vertical">
+                <TextBlock x:Name="noRecords" Visibility="Hidden">No credits recorded. All orders are paid.</TextBlock>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
