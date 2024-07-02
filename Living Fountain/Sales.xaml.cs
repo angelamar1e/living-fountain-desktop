@@ -5,12 +5,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System;
+using Microsoft.VisualBasic.Logging;
+using System.ComponentModel;
+using System.Windows.Documents;
+using System.Globalization;
 
 namespace Living_Fountain
 {
-    /// <summary>
-    /// Interaction logic for Sales.xaml
-    /// </summary>
     public partial class Sales : Page
     {
         public List<order> Orders { get; set; }
@@ -52,7 +53,6 @@ namespace Living_Fountain
             using (var dc = new living_fountainContext())
             {
                 Products = dc.products.ToList();
-
                 productTypeCombo.ItemsSource = Products;
             }
         }
@@ -72,8 +72,7 @@ namespace Living_Fountain
         {
             using (var dc = new living_fountainContext())
             {
-                Statuses = dc.order_statuses
-                               .ToList();
+                Statuses = dc.order_statuses.ToList();
             }
             statusCombo.ItemsSource = Statuses;
         }
@@ -191,7 +190,6 @@ namespace Living_Fountain
                     dc.SaveChanges();
                     LoadData(date);
                 }
-
             }
 
             // Remove the order from the ObservableCollection to update the UI
@@ -204,6 +202,20 @@ namespace Living_Fountain
         // submission of new order record
         private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {
+            if (!IsValid(this))
+            {
+                // Check if any of the TextBoxes have validation errors
+                if (Validation.GetHasError(blockField) ||
+                    Validation.GetHasError(lotField) ||
+                    Validation.GetHasError(phaseField) ||
+                    Validation.GetHasError(quantityField))
+                {
+                    // Show a message box with an error message if any field has a validation error
+                    MessageBox.Show("Please correct the input errors.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+
             using (var dc = new living_fountainContext())
             {
                 order newOrder = new order();
@@ -232,10 +244,66 @@ namespace Living_Fountain
                 // Save changes to the database
                 dc.SaveChanges();
 
-
                 MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 GetInitialData();
             }
         }
+
+        private bool IsValid(DependencyObject node)
+        {
+            if (Validation.GetHasError(node))
+                return false;
+
+            for (int i = 0; i != VisualTreeHelper.GetChildrenCount(node); ++i)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(node, i);
+                if (!IsValid(child))
+                    return false;
+            }
+
+            return true;
+        }
+    }
+
+    // Custom validation rule to check for non-empty input
+    public class NotEmptyValidationRule : ValidationRule
+    {
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
+            {
+                return new ValidationResult(false, "Field cannot be empty");
+            }
+            return ValidationResult.ValidResult;
+        }
+    }
+
+    // Custom validation rule to check for numeric input with digit limits and non-negative constraint
+    public class NumericValidationRule : ValidationRule
+    {
+        public int MinDigits { get; set; }
+        public int MaxDigits { get; set; }
+
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            if (int.TryParse(value.ToString(), out int number))
+            {
+                if (number <= 0)
+                {
+                    return new ValidationResult(false, "Field must be a positive number");
+                }
+
+                int digitCount = value.ToString().Length;
+                if (digitCount < MinDigits || digitCount > MaxDigits)
+                {
+                    return new ValidationResult(false, $"Field must have {MinDigits}-{MaxDigits} digits");
+                }
+
+                return ValidationResult.ValidResult;
+            }
+
+            return new ValidationResult(false, "Field must be a valid number");
+        }
     }
 }
+
