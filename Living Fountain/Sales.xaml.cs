@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Windows.Documents;
 using System.Globalization;
 using static Living_Fountain.NumericValidationRule;
+using static Living_Fountain.NotEmptyValidationRule;
 
 namespace Living_Fountain
 {
@@ -22,7 +23,7 @@ namespace Living_Fountain
         public OrderViewModel ViewModel { get; set; }
 
 
-        public Sales()
+        public Sales(DateTime currentDate)
         {
             InitializeComponent();
 
@@ -36,7 +37,7 @@ namespace Living_Fountain
             GetDeliverers();
             GetStatusTypes();
 
-        }    
+        }
 
         // retrieving order records from db
         private void LoadData(DateOnly date)
@@ -121,7 +122,7 @@ namespace Living_Fountain
         // navigates to edit_order page with the id of the order record
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
-            Sales sales = this;
+
             if (sender is System.Windows.Controls.Button button)
             {
                 // Retrieve the id from the button's Tag property
@@ -133,7 +134,7 @@ namespace Living_Fountain
                 if (parentFrame != null)
                 {
                     // Navigate MainFrame to Edit_Order.xaml with the id parameter
-                    parentFrame.NavigationService.Navigate(new Edit_Order(id, sales));
+                    parentFrame.NavigationService.Navigate(new Edit_Order(id, this));
                 }
             }
         }
