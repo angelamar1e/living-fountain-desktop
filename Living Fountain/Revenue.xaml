@@ -8,7 +8,23 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Revenue">
 
-    <Grid>
-        
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock>Revenue</TextBlock>
+        <Grid Grid.Row="1"  Width="500">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="weekly" Content="Weekly Revenue"/>
+            <Button Grid.Column="1" x:Name="monthly" Content="Monthly Revenue"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Frame Name="revenueFrame" NavigationUIVisibility="Hidden"/>
+        </Grid>
     </Grid>
 </Page>
