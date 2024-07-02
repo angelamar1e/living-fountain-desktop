@@ -98,7 +98,7 @@
                         <Binding Path="Block" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <local:NotEmptyValidationRule />
-                                <local:NumericValidationRule MinDigits="1" MaxDigits="2" />
+                                <local:NumericValidationRule MinDigits="1" MaxDigits="3" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -110,7 +110,7 @@
                         <Binding Path="Lot" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <local:NotEmptyValidationRule />
-                                <local:NumericValidationRule MinDigits="1" MaxDigits="2" />
+                                <local:NumericValidationRule MinDigits="1" MaxDigits="3" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -122,7 +122,7 @@
                         <Binding Path="Phase" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
                                 <local:NotEmptyValidationRule />
-                                <local:NumericValidationRule MinDigits="1" MaxDigits="2" />
+                                <local:NumericValidationRule MinDigits="1" MaxDigits="3" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
