@@ -20,7 +20,7 @@
         
         <!--Page Title-->
         <StackPanel HorizontalAlignment="Stretch">
-            <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="Black">Sales</TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC">Sales</TextBlock>
         </StackPanel>
             
         <!--Add New Order section title-->
@@ -29,7 +29,7 @@
         <!--Add New Order subsection titles-->
             <StackPanel Grid.Row="2" Orientation="Horizontal">
                 <TextBlock Margin="20 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Customer</TextBlock>
-                <TextBlock Margin="210 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Order</TextBlock>
+                <TextBlock Margin="220 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Order</TextBlock>
             </StackPanel>
 
             <!--Labels and fields for Add New Order-->
