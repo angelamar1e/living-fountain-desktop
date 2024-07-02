@@ -14,20 +14,51 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Width="500">
+        <Grid Margin="10,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock>Order History</TextBlock>
+            <TextBlock Width="400" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,20,0,0" Foreground="#2c61ec" Grid.ColumnSpan="2">Order History</TextBlock>
             <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <TextBlock Name="blockField"></TextBlock>
-                <TextBlock Name="lotField"></TextBlock>
-                <TextBlock Name="phaseField"></TextBlock>
+                <TextBlock Name="blockField" FontSize="30" FontWeight="SemiBold" Foreground="#FF343D53" Margin="0,30,7,0"></TextBlock>
+                <TextBlock Name="lotField" FontSize="30" FontWeight="SemiBold" Foreground="#FF343D53" Margin="0,30,7,0"></TextBlock>
+                <TextBlock Name="phaseField" FontSize="30" FontWeight="SemiBold" Foreground="#FF343D53" Margin="0,30,0,0"></TextBlock>
             </StackPanel>
         </Grid>
         <TextBlock Grid.Row="1" Name="noRecords" Visibility="Hidden" Width="500">No transactions were recorded for this customer.</TextBlock>
-        <DataGrid Grid.Row="1" Name="orderHistory" CanUserAddRows="False" Width="500" AutoGenerateColumns="False" Visibility="Visible">
+        <DataGrid Grid.Row="1" Name="orderHistory" CanUserAddRows="False" Width="500" AutoGenerateColumns="False" Visibility="Visible" Foreground="#FF343D53" Margin="0,20,0,0">
+            <DataGrid.Resources>
+                <!-- Style for DataGrid Headers -->
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF007ACC"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    <Setter Property="Height" Value="40"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,0"/> <!-- Right border -->
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                </Style>
+
+                <!-- Style for DataGrid Rows -->
+                <Style TargetType="DataGridRow">
+                    <Setter Property="FontFamily" Value="Segoe UI"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="MinHeight" Value="30"/>
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="#FF343D53"/>
+                </Style>
+
+                <!-- Style for DataGrid Cells -->
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="8"/>
+                    <Setter Property="BorderBrush" Value="LightGray"/>
+                    <Setter Property="BorderThickness" Value="0.5"/>
+                </Style>
+            </DataGrid.Resources>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Date" Binding="{Binding date}"/>
                 <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}"/>
@@ -42,7 +73,7 @@
                 <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <TextBlock>Total Amount of Orders: </TextBlock>
+            <TextBlock>Total Amount of Orders:</TextBlock>
             <TextBlock Grid.Column="1" Name="totalAmount"></TextBlock>
         </Grid>
     </Grid>
