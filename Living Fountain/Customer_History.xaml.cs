@@ -52,7 +52,7 @@ namespace Living_Fountain
                                .ToList();
 
                 var ordersSum = orders.Sum(o => o.price);
-                totalAmount.Text = "PHP" + ordersSum.ToString();
+                totalAmount.Text = "₱" + ordersSum.ToString();
 
                 OrderHistory = orders;
             }

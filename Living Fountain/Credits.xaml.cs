@@ -1,6 +1,7 @@
 ﻿using Living_Fountain.Helpers;
 using Living_Fountain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -83,11 +84,18 @@ namespace Living_Fountain
                 // Add columns using a loop
                 foreach (var column in columns)
                 {
-                    dataGrid.Columns.Add(new DataGridTextColumn
+                    var col = new DataGridTextColumn
                     {
                         Header = column.Header,
                         Binding = new Binding(column.Binding)
-                    });
+                    };
+
+                    if (column.Header == "Price")
+                    {
+                        col.Binding.StringFormat = "₱{0:N0}";
+                    }
+
+                    dataGrid.Columns.Add(col);
                 }
 
                 // Add CheckBox column using DataTemplate

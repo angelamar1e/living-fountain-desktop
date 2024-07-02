@@ -136,11 +136,18 @@ namespace Living_Fountain
                 // Add columns using a loop
                 foreach (var column in columns)
                 {
-                    salaryGrid.Columns.Add(new DataGridTextColumn
+                    var col = new DataGridTextColumn
                     {
                         Header = column.Header,
                         Binding = new Binding(column.Binding)
-                    });
+                    };
+
+                    if (column.Header == "Salary")
+                    {
+                        col.Binding.StringFormat = "₱{0:N0}";
+                    }
+
+                    salaryGrid.Columns.Add(col);
                 }
 
                 deliverersContainer.Children.Add(salaryGrid);
@@ -173,11 +180,14 @@ namespace Living_Fountain
                 CanUserAddRows = false
             };
 
-            salaryGrid.Columns.Add(new DataGridTextColumn
+            var col = new DataGridTextColumn
             {
                 Header = "Salary",
                 Binding = new Binding("salary")
-            });
+            };
+
+            col.Binding.StringFormat = "₱{0:N0}";
+            salaryGrid.Columns.Add(col);
 
             return salaryGrid;
         }
