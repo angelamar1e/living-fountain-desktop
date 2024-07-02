@@ -10,10 +10,19 @@
 
     <Page.Resources>
         <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel>
+                            <TextBlock Foreground="Red" DockPanel.Dock="Bottom" Text="{Binding ElementName=placeholderName, Path=(Validation.Errors)[0].ErrorContent}"/>
+                            <AdornedElementPlaceholder Name="placeholderName" />
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip" Value="{Binding (Validation.Errors)[0].ErrorContent}"/>
-                    <Setter Property="Background" Value="LightCoral"/>
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
                 </Trigger>
             </Style.Triggers>
         </Style>

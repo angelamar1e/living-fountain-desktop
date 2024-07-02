@@ -9,6 +9,7 @@ using Microsoft.VisualBasic.Logging;
 using System.ComponentModel;
 using System.Windows.Documents;
 using System.Globalization;
+using static Living_Fountain.NumericValidationRule;
 
 namespace Living_Fountain
 {
@@ -18,10 +19,15 @@ namespace Living_Fountain
         public List<product> Products { get; set; }
         public List<employee> Deliverers { get; set; }
         public List<order_status> Statuses { get; set; }
+        public OrderViewModel ViewModel { get; set; }
+
 
         public Sales()
         {
             InitializeComponent();
+
+            ViewModel = new OrderViewModel();
+            DataContext = ViewModel;
 
             GetInitialData();
 
@@ -29,7 +35,8 @@ namespace Living_Fountain
             GetProductTypes();
             GetDeliverers();
             GetStatusTypes();
-        }
+
+        }    
 
         // retrieving order records from db
         private void LoadData(DateOnly date)
@@ -219,7 +226,7 @@ namespace Living_Fountain
             using (var dc = new living_fountainContext())
             {
                 order newOrder = new order();
-                var existingCustomer = OrderHelper.GetOrCreateCustomer(dc, int.Parse(blockField.Text), int.Parse(lotField.Text), int.Parse(phaseField.Text));
+                var existingCustomer = OrderHelper.GetOrCreateCustomer(dc, ViewModel.Block, ViewModel.Lot, ViewModel.Phase);
 
                 // Update properties of orderToUpdate with SelectedOrder's values
                 newOrder.block = existingCustomer.block;
@@ -233,7 +240,7 @@ namespace Living_Fountain
                 var selectedStatus = (order_status)statusCombo.SelectedItem;
 
                 newOrder.product_code = selectedProduct.code;
-                newOrder.quantity = int.Parse(quantityField.Text);
+                newOrder.quantity = ViewModel.Quantity;
                 newOrder.price = OrderHelper.ComputeNewPrice(newOrder.quantity, selectedProduct.price);
                 newOrder.deliverer_id = selectedDeliverer.id;
                 newOrder.status = selectedStatus.code;
@@ -303,6 +310,73 @@ namespace Living_Fountain
             }
 
             return new ValidationResult(false, "Field must be a valid number");
+        }
+
+        public class OrderViewModel : INotifyPropertyChanged
+        {
+            private int _block;
+            private int _lot;
+            private int _phase;
+            private int _quantity;
+
+            public event PropertyChangedEventHandler PropertyChanged;
+
+            public int Block
+            {
+                get => _block;
+                set
+                {
+                    if (_block != value)
+                    {
+                        _block = value;
+                        OnPropertyChanged(nameof(Block));
+                    }
+                }
+            }
+
+            public int Lot
+            {
+                get => _lot;
+                set
+                {
+                    if (_lot != value)
+                    {
+                        _lot = value;
+                        OnPropertyChanged(nameof(Lot));
+                    }
+                }
+            }
+
+            public int Phase
+            {
+                get => _phase;
+                set
+                {
+                    if (_phase != value)
+                    {
+                        _phase = value;
+                        OnPropertyChanged(nameof(Phase));
+                    }
+                }
+            }
+
+            public int Quantity
+            {
+                get => _quantity;
+                set
+                {
+                    if (_quantity != value)
+                    {
+                        _quantity = value;
+                        OnPropertyChanged(nameof(Quantity));
+                    }
+                }
+            }
+
+            protected void OnPropertyChanged(string propertyName)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
