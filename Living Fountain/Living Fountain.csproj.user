@@ -5,7 +5,7 @@
     <Compile Update="Credits.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="CustomerHistory.xaml.cs">
+    <Compile Update="Customer_History.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Customers.xaml.cs">
@@ -26,12 +26,15 @@
     <Compile Update="Sales.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Weekly_Revenue.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Credits.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="CustomerHistory.xaml">
+    <Page Update="Customer_History.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Customers.xaml">
@@ -53,6 +56,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Sales.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Weekly_Revenue.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
