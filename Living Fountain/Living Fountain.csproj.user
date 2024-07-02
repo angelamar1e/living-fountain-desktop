@@ -58,6 +58,9 @@
     <Page Update="Sales.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Monthly_Revenue.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Weekly_Revenue.xaml">
       <SubType>Designer</SubType>
     </Page>

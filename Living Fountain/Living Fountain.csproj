@@ -27,4 +27,10 @@
     <Resource Include="logo.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Monthly_Revenue.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
