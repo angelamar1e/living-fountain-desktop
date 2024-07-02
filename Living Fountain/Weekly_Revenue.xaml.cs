@@ -47,7 +47,7 @@ namespace Living_Fountain
                     Week = g.Key.Week,
                     StartDate = g.Min(o => o.date.Value.ToDateTime(new TimeOnly())),
                     EndDate = g.Max(o => o.date.Value.ToDateTime(new TimeOnly())),
-                    TotalRevenue = g.Sum(o => o.price.Value * o.quantity.Value)
+                    TotalRevenue = g.Sum(o => o.price.Value)
                 })
                 .OrderByDescending(g => g.Year)
                 .ThenByDescending(g => g.Week)
