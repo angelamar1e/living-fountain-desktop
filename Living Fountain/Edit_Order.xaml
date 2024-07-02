@@ -12,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
@@ -31,7 +31,7 @@
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <!--Labels-->
             <Grid>
@@ -80,8 +80,11 @@
                 <ComboBox Grid.Column="6" Name="statusCombo"
                           SelectedValue="{Binding status, Mode=TwoWay}"
                           DisplayMemberPath="status_desc"
-                          SelectedValuePath="code"/>  
-                <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick" />
+                          SelectedValuePath="code"/>
+                <StackPanel Grid.Column="7">
+                    <Button Name="submitButton" Content="Submit" Click="SubmitButtonClick" />
+                    <Button Name="cancelButton" Content="Cancel" Click="CancelButtonClick" />
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Living_Fountain.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,7 @@ namespace Living_Fountain
 
         private void Sales_Button_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Sales();
+            Main.Content = new Sales(OrderHelper.GetCurrentDate());
         }
 
         private void Credits_Button_Click(object sender, RoutedEventArgs e)
@@ -40,9 +41,14 @@ namespace Living_Fountain
             Main.Content = new Salary();
         }
 
-        private void Main_Navigated(object sender, NavigationEventArgs e)
+        private void Customers_Button_Click(object sender, RoutedEventArgs e)
         {
+            Main.Content = new Customers();
+        }
 
+        private void Revenue_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Revenue();
         }
     }
 }

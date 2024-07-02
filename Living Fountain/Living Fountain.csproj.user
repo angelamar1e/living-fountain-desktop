@@ -5,6 +5,12 @@
     <Compile Update="Credits.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="CustomerHistory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Customers.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Edit_Order.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -23,6 +29,12 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Credits.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomerHistory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Customers.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Edit_Order.xaml">
