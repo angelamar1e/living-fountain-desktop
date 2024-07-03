@@ -14,14 +14,32 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock>Revenue</TextBlock>
-        <Grid Grid.Row="1"  Width="500">
+
+        <TextBlock Text="Revenue" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,10" Foreground="#2c61ec"/>
+
+        <Grid Margin="50,73,50,-24" Grid.RowSpan="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="weekly" Content="Weekly Revenue" Click="weekly_Click"/>
-            <Button Grid.Column="1" x:Name="monthly" Content="Monthly Revenue" Click="monthly_Click"/>
+
+            <Button x:Name="weekly" Content="Weekly Revenue" Click="weekly_Click" 
+                    Background="#2c61ec"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Padding="10,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Height="54" Grid.Column="1" Width="350"/>
+
+            <Button x:Name="monthly" Content="Monthly Revenue" Click="monthly_Click"
+                    Background="#2c61ec"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Padding="10,5"
+                    VerticalAlignment="Center" Height="54" Width="350" Grid.Column="2"/>
         </Grid>
         <Grid Grid.Row="2" Width="500">
             <Frame Name="revenueFrame" NavigationUIVisibility="Hidden"/>
