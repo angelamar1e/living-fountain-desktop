@@ -32,7 +32,11 @@
                 <DataGridTextColumn Header="Date" Binding="{Binding date}"/>
                 <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}"/>
                 <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}"/>
-                <DataGridTextColumn Header="Price" Binding="{Binding price}"/>
+                <DataGridTextColumn Header="Price">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="price" StringFormat="₱{0:N0}" />
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding statusNavigation.status_desc}"/>
             </DataGrid.Columns>

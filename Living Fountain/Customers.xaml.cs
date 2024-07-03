@@ -20,7 +20,7 @@ namespace Living_Fountain
 {
     public partial class Customers : Page
     {
-        List<CustomerLastOrder> customerLastOrders;
+        List<customer_last_order> customerLastOrders;
         public Customers()
         {
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Living_Fountain
             using (var dc = new living_fountainContext())
             {
                 customerLastOrders = dc.customers
-                    .Select(customer => new CustomerLastOrder
+                    .Select(customer => new customer_last_order
                     {
                         Customer = customer,
                         LastOrderDate = dc.orders
@@ -48,7 +48,7 @@ namespace Living_Fountain
 
         private void CustomerRecords_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (customerRecords.SelectedItem is CustomerLastOrder selectedRecord)
+            if (customerRecords.SelectedItem is customer_last_order selectedRecord)
             {
                 var detailPage = new CustomerHistory(selectedRecord.Customer);
 
@@ -67,6 +67,7 @@ namespace Living_Fountain
         {
             GetFilteredOrders(blockField.Text, lotField.Text, phaseField.Text);
             CountRecords();
+            ClearSearchFields();
         }
 
         private void GetFilteredOrders(string blockText, string lotText, string phaseText)
@@ -91,7 +92,7 @@ namespace Living_Fountain
                 }
 
                 customerLastOrders = query
-                    .Select(customer => new CustomerLastOrder
+                    .Select(customer => new customer_last_order
                     {
                         Customer = customer,
                         LastOrderDate = dc.orders
@@ -115,6 +116,13 @@ namespace Living_Fountain
             {
                 customerRecords.Visibility = Visibility.Visible;
             }
+        }
+
+        private void ClearSearchFields()
+        {
+            blockField.Clear();
+            lotField.Clear();
+            phaseField.Clear();
         }
     }
 }
