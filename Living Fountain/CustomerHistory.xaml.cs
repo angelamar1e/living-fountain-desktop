@@ -68,5 +68,20 @@ namespace Living_Fountain
                 noRecords.Visibility = Visibility.Visible;
             }
         }
+
+        private void OnDataGridLoaded(object sender, RoutedEventArgs e)
+        {
+            // AdjustTotalAmountPosition();
+        }
+
+        private void OnDataGridSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            // AdjustTotalAmountPosition();
+        }
+
+        private void AdjustTotalAmountPosition()
+        {
+            
+        }
     }
 }
