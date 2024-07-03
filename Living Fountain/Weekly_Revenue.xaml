@@ -13,7 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="Weekly Revenue" FontSize="27" FontWeight="SemiBold" Foreground="#2c61ec" Margin="10,10,0,10"/>
+        <TextBlock Text="Weekly Revenue" FontSize="27" FontWeight="SemiBold" Foreground="#2c61ec" Margin="0,10,0,10"/>
         <StackPanel Grid.Row="1" Name="container"/>
     </Grid>
 </Page>
