@@ -14,7 +14,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="60"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
         
@@ -28,12 +28,12 @@
         
         <!--Add New Order subsection titles-->
             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <TextBlock Margin="20 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Customer</TextBlock>
-                <TextBlock Margin="220 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Order</TextBlock>
+                <TextBlock Margin="78 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Customer</TextBlock>
+                <TextBlock Margin="300 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Order</TextBlock>
             </StackPanel>
 
             <!--Labels and fields for Add New Order-->
-        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5 0 10 10">
+        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="78,10,78,0">
             <Grid Grid.Row="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
@@ -46,10 +46,10 @@
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="125"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="125"/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Block" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
                     <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
@@ -66,25 +66,25 @@
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="125"/>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="125"/>
                         <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
                     <TextBox Name="blockField" Width="75"/>
                     <TextBox Grid.Column="1" Name="lotField" Width="75"/>
                     <TextBox Grid.Column="2" Name="phaseField" Width="75"/>
                     <ComboBox Grid.Column="3" Name="productTypeCombo"
-               DisplayMemberPath="product_desc"
-               SelectedValuePath="code"/>
+                        DisplayMemberPath="product_desc"
+                        SelectedValuePath="code"/>
                     <TextBox Grid.Column="4" Name="quantityField" Width="75"/>
-                    <ComboBox Grid.Column="5" Name="delivererCombo"
-               DisplayMemberPath="employee_name"
-               SelectedValuePath="id" Width="90"/>
+                    <ComboBox Grid.Column="5" Name="delivererCombo" Width="90"
+                        DisplayMemberPath="employee_name"
+                        SelectedValuePath="id"/>
                     <ComboBox Grid.Column="6" Name="statusCombo"
-               DisplayMemberPath="status_desc"
-               SelectedValuePath="code" Width="90"/>
+                        DisplayMemberPath="status_desc"
+                        SelectedValuePath="code"/>
                     <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick" FontWeight="Bold" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Width="60"/>
                 </Grid>
             </Grid>
