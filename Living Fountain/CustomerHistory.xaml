@@ -51,6 +51,7 @@
                         <Setter Property="MinHeight" Value="30"/>
                         <Setter Property="Background" Value="White"/>
                         <Setter Property="Foreground" Value="#FF343D53"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
                     </Style>
 
                     <!-- Style for DataGrid Cells -->
@@ -60,8 +61,6 @@
                         <Setter Property="BorderThickness" Value="0.5"/>
                         <Setter Property="HorizontalAlignment" Value="Stretch"/>
                         <Setter Property="VerticalAlignment" Value="Stretch"/>
-                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                     </Style>
                 </DataGrid.Resources>
 
