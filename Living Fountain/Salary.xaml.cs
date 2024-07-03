@@ -41,6 +41,7 @@ namespace Living_Fountain
             GetEmployees();
         }
 
+
         private void GetEmployees()
         {
             DataGrid salaryGrid;

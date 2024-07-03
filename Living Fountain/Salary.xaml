@@ -8,6 +8,59 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Salary">
 
+
+    <Page.Resources>
+        <!-- Style for the DataGrid -->
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="#F0F0F0"/>
+            <Setter Property="AlternatingRowBackground" Value="WhiteSmoke"/>
+            <Setter Property="RowHeight" Value="30"/>
+            <Setter Property="GridLinesVisibility" Value="All"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="CanUserResizeColumns" Value="False"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+        </Style>
+
+        <!-- Style for DataGrid Headers -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#2c61ec"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+
+        <!-- Style for DataGrid Rows -->
+        <Style TargetType="DataGridRow">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#FF343D53"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+        </Style>
+
+        <!-- Style for DataGrid Cells -->
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+        </Style>
+    </Page.Resources>
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -18,8 +71,10 @@
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
+            
             <TextBlock Text="Salary" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,10" Foreground="#2c61ec"/>
-            <TextBlock Grid.Column="1" Name="currentDate"></TextBlock>
+            <TextBlock Grid.Column="1" Name="currentDate" FontSize="25" FontWeight="SemiBold" Foreground="#FF343D53" Margin="80,22"/>
+
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -31,8 +86,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock>Deliverers</TextBlock>
-                <StackPanel Grid.Row="1" Name="deliverersContainer"></StackPanel>
+                <TextBlock Text="Deliverers" Background="#FF2C61EC" Foreground="White" HorizontalAlignment="Center" Width="400" Padding="165,10,0,10" FontWeight="Bold"/>
+                <StackPanel Grid.Row="1" x:Name="deliverersContainer"></StackPanel>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -44,7 +99,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock>Refillers</TextBlock>
+                    <TextBlock Text="Refillers" Background="#FF2C61EC" Foreground="White" FontWeight="Bold" Padding="167,10,0,10" HorizontalAlignment="Center" Width="400"/>
                     <StackPanel Grid.Row="1" x:Name="refillersContainer"></StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
@@ -52,7 +107,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock>Washers</TextBlock>
+                    <TextBlock Background="#FF2C61EC" Foreground="White" Padding="165,10,0,7" FontWeight="Bold" HorizontalAlignment="Center" Width="400">Washers</TextBlock>
                     <StackPanel Grid.Row="1" x:Name="washersContainer"></StackPanel>
                 </Grid>
             </Grid>
