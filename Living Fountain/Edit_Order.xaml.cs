@@ -13,8 +13,8 @@ namespace Living_Fountain
     public partial class Edit_Order : Page
     {
         public Living_Fountain.Models.order SelectedOrder { get; set; }
-        public Sales sales;
-        public Edit_Order(int id, Sales salesInstance)
+        public Sales sales = new Sales(OrderHelper.GetCurrentDate());
+        public Edit_Order(int id)
         {
             InitializeComponent();
 
@@ -28,7 +28,6 @@ namespace Living_Fountain
             BindComboBoxes();
 
             this.DataContext = this;
-            this.sales = salesInstance;
         }
 
         private void LoadData(int id)
@@ -102,9 +101,8 @@ namespace Living_Fountain
 
             if (parentFrame != null)
             {
-                // Convert DateOnly to DateTime before passing to Sales
-                DateTime dateTime = SelectedOrder.date.Value.ToDateTime(TimeOnly.MinValue);
-                parentFrame.NavigationService.Navigate(new Sales(dateTime));
+                // Navigate MainFrame to Edit_Order.xaml with the id parameter
+                parentFrame.NavigationService.Navigate(new Sales(OrderHelper.GetDateOnly(SelectedOrder.date)));
             }
         }
 
@@ -115,9 +113,8 @@ namespace Living_Fountain
 
             if (parentFrame != null)
             {
-                // Convert DateOnly to DateTime before passing to Sales
-                DateTime dateTime = SelectedOrder.date.Value.ToDateTime(TimeOnly.MinValue);
-                parentFrame.NavigationService.Navigate(new Sales(dateTime));
+                // Navigate MainFrame to Edit_Order.xaml with the id parameter
+                parentFrame.NavigationService.Navigate(new Sales(OrderHelper.GetDateOnly(SelectedOrder.date)));
             }
         }
     }

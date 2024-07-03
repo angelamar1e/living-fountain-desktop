@@ -23,14 +23,22 @@ namespace Living_Fountain
         public OrderViewModel ViewModel { get; set; }
 
 
-        public Sales(DateTime currentDate)
+        public Sales(DateOnly selectedOrderDate)
         {
             InitializeComponent();
 
             ViewModel = new OrderViewModel();
             DataContext = ViewModel;
 
-            GetInitialData();
+            DateOnly date = OrderHelper.GetCurrentDate();
+            if (selectedOrderDate != date)
+            {
+                GetInitialData(selectedOrderDate);
+            }
+            else
+            {
+                GetInitialData(date);
+            }
 
             // To bind the combo boxes to items from db
             GetProductTypes();
@@ -53,10 +61,10 @@ namespace Living_Fountain
             }
 
             OrderRecords.ItemsSource = Orders;
-            countRecords();
+            CountRecords();
         }
 
-        private void GetProductTypes()
+        public void GetProductTypes()
         {
             using (var dc = new living_fountainContext())
             {
@@ -65,7 +73,7 @@ namespace Living_Fountain
             }
         }
 
-        private void GetDeliverers()
+        public void GetDeliverers()
         {
             using (var dc = new living_fountainContext())
             {
@@ -76,23 +84,23 @@ namespace Living_Fountain
             delivererCombo.ItemsSource = Deliverers;
         }
 
-        private void GetStatusTypes()
+        public void GetStatusTypes()
         {
             using (var dc = new living_fountainContext())
             {
-                Statuses = dc.order_statuses.ToList();
+                Statuses = dc.order_statuses.
+                                ToList();
             }
             statusCombo.ItemsSource = Statuses;
         }
 
         // the default data displayed in the table are orders for the current date
-        private void GetInitialData()
+        private void GetInitialData(DateOnly date)
         {
-            DateTime dateTime = DateTime.Now;
-            DateOnly dateOnly = DateOnly.FromDateTime(dateTime);
-            currentDate.Text = dateOnly.ToString("MMMM dd, yyyy");
+            
+            currentDate.Text = date.ToString("MMMM dd, yyyy");
 
-            LoadData(dateOnly);
+            LoadData(date);
         }
 
         // order records are filtered as date picker is changed
@@ -106,7 +114,7 @@ namespace Living_Fountain
         }
 
         // table of order records is hidden if no records are found for the selected date
-        private void countRecords()
+        private void CountRecords()
         {
             if (Orders.Count == 0)
             {
@@ -122,19 +130,19 @@ namespace Living_Fountain
         // navigates to edit_order page with the id of the order record
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
-
+            Sales sales = this;
             if (sender is System.Windows.Controls.Button button)
             {
                 // Retrieve the id from the button's Tag property
                 int id = (int)button.Tag;
 
                 // Access the parent Frame (MainFrame)
-                Frame parentFrame = FindParentFrame(this);
+                Frame parentFrame = NavigationHelper.FindParentFrame(this);
 
                 if (parentFrame != null)
                 {
                     // Navigate MainFrame to Edit_Order.xaml with the id parameter
-                    parentFrame.NavigationService.Navigate(new Edit_Order(id, this));
+                    parentFrame.NavigationService.Navigate(new Edit_Order(id));
                 }
             }
         }
@@ -253,7 +261,7 @@ namespace Living_Fountain
                 dc.SaveChanges();
 
                 MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                GetInitialData();
+                GetInitialData(OrderHelper.GetCurrentDate());
             }
         }
 
