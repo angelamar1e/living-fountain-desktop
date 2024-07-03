@@ -112,8 +112,41 @@
         <TextBlock Name="noRecords" Grid.Row="5" Visibility="Hidden" FontWeight="Bold" Margin="20,10,0,10">No order records found.</TextBlock>
         
         <!--Table-->
-        <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="5 10 10 10">
+        <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Background="White" Margin="78,10,78,-156" Grid.RowSpan="2">
             <DataGrid x:Name="OrderRecords" Grid.Row="5" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" CanUserAddRows="False">
+                <DataGrid.Resources>
+                    <!-- Style for DataGrid Headers -->
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#2c61ec"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    </Style>
+
+                    <!-- Style for DataGrid Rows -->
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="MinHeight" Value="30"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="#FF343D53"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                    </Style>
+
+                    <!-- Style for DataGrid Cells -->
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="8"/>
+                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                    </Style>
+                </DataGrid.Resources>
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Block" Binding="{Binding block}" />
                     <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
