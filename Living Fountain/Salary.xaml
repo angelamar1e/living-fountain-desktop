@@ -26,9 +26,8 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="SelectionMode" Value="Single"/>
             <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="Margin" Value="10"/>
             <Setter Property="Padding" Value="5"/>
-            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="Width" Value="200"/>
         </Style>
 
         <!-- Style for DataGrid Headers -->
@@ -41,7 +40,7 @@
             <Setter Property="Height" Value="40"/>
             <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
             <Setter Property="BorderThickness" Value="0,0,1,0"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Width" Value="Auto"/>
         </Style>
 
         <!-- Style for DataGrid Rows -->
@@ -51,6 +50,7 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="#FF343D53"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Width" Value="400"/>
         </Style>
 
         <!-- Style for DataGrid Cells -->
@@ -58,6 +58,7 @@
             <Setter Property="Padding" Value="8"/>
             <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
             <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="Width" Value="200"/>
         </Style>
     </Page.Resources>
 
@@ -73,7 +74,7 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock Text="Salary" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,10" Foreground="#2c61ec"/>
-            <TextBlock Grid.Column="1" Name="currentDate" FontSize="25" FontWeight="SemiBold" Foreground="#FF343D53" Margin="80,22"/>
+            <TextBlock Grid.Column="1" Name="currentDate" FontSize="25" FontWeight="SemiBold" Foreground="#FF343D53" Margin="200,22"/>
 
         </Grid>
         <Grid Grid.Row="1">
@@ -87,7 +88,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Deliverers" Background="#FF2C61EC" Foreground="White" HorizontalAlignment="Center" Width="400" Padding="165,10,0,10" FontWeight="Bold"/>
-                <StackPanel Grid.Row="1" x:Name="deliverersContainer"></StackPanel>
+                <StackPanel Grid.Row="1" x:Name="deliverersContainer" Width="400"></StackPanel>
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -100,7 +101,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Refillers" Background="#FF2C61EC" Foreground="White" FontWeight="Bold" Padding="167,10,0,10" HorizontalAlignment="Center" Width="400"/>
-                    <StackPanel Grid.Row="1" x:Name="refillersContainer"></StackPanel>
+                    <StackPanel Grid.Row="1" x:Name="refillersContainer" Width="400"></StackPanel>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
@@ -108,7 +109,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Background="#FF2C61EC" Foreground="White" Padding="165,10,0,7" FontWeight="Bold" HorizontalAlignment="Center" Width="400">Washers</TextBlock>
-                    <StackPanel Grid.Row="1" x:Name="washersContainer"></StackPanel>
+                    <StackPanel Grid.Row="1" x:Name="washersContainer" Width="400"></StackPanel>
                 </Grid>
             </Grid>
         </Grid>
