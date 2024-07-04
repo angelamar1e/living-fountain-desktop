@@ -27,8 +27,8 @@
             </StackPanel>
         </Grid>
         <TextBlock Grid.Row="1" Name="noRecords" Visibility="Hidden" Width="500">No transactions were recorded for this customer.</TextBlock>
-        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Background="White" Margin="78,30,78,-156" Grid.RowSpan="2" Grid.Row="1">
-                <DataGrid Grid.Row="1" Name="orderHistory" CanUserAddRows="False" AutoGenerateColumns="False" Visibility="Visible" Foreground="#FF343D53" Margin="-1,-1,-1,0" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2" VerticalAlignment="Stretch" Loaded="OnDataGridLoaded" SizeChanged="OnDataGridSizeChanged">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Background="White" Margin="78,30,78,-156" Grid.RowSpan="2" Grid.Row="1" Width="625">
+                <DataGrid Grid.Row="1" Name="orderHistory" CanUserAddRows="False" AutoGenerateColumns="False" Visibility="Visible" Foreground="#FF343D53" Margin="-1,-1,-1,0" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2" VerticalAlignment="Stretch" Loaded="OnDataGridLoaded" SizeChanged="OnDataGridSizeChanged" Width="560">
                 <DataGrid.Resources>
                     <!-- Style for DataGrid Headers -->
                     <Style TargetType="DataGridColumnHeader">
@@ -63,16 +63,16 @@
                 </DataGrid.Resources>
 
                 <DataGrid.Columns>
-                        <DataGridTextColumn Header="Date" Binding="{Binding date}"/>
-                        <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}"/>
-                        <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}"/>
-                        <DataGridTextColumn Header="Price">
+                        <DataGridTextColumn Header="Date" Width="70" Binding="{Binding date}"/>
+                    <DataGridTextColumn Header="Product" Width="100" Binding="{Binding product_codeNavigation.product_desc}"/>
+                        <DataGridTextColumn Header="Quantity" Width="60" Binding="{Binding quantity}"/>
+                    <DataGridTextColumn Header="Price" Width="60">
                             <DataGridTextColumn.Binding>
                                 <Binding Path="price" StringFormat="₱{0:N0}" />
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding statusNavigation.status_desc}"/>
+                    <DataGridTextColumn Header="Deliverer" Width="100" Binding="{Binding deliverer.employee_name}"/>
+                    <DataGridTextColumn Header="Status" Width="170" Binding="{Binding statusNavigation.status_desc}"/>
                     </DataGrid.Columns>
             </DataGrid>
         </Border>
