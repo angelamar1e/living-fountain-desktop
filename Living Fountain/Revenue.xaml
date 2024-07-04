@@ -17,7 +17,7 @@
 
         <TextBlock Text="Revenue" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,10" Foreground="#2c61ec"/>
 
-        <Grid Margin="59,9,41,64" Grid.Row="1">
+        <Grid Margin="0,15,41,64" Grid.Row="1" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
