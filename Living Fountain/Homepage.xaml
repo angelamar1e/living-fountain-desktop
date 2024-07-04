@@ -19,13 +19,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid Background="#F2F2F2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"/>
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock>TODAY</TextBlock>
-            <Label Grid.Column="1" Name="currentDateTime"/>
+            <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC">TODAY</TextBlock>
+            <Label Grid.Column="1" FontSize="15" FontWeight="Bold" Foreground="#2C61EC" VerticalAlignment="Center" Name="currentDateTime"/>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -37,13 +37,13 @@
                     <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="revenue"/>
+                <TextBlock FontSize="15" FontWeight="Bold" Foreground="#2C61EC" Margin="20,10,0,10" x:Name="revenue"/>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock>Products Sold</TextBlock>
+                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="#2C61EC" Margin="0,10,0,10">Products Sold</TextBlock>
                     <ListView Grid.Row="1" Name="productTypeListView" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <ListView.View>
                             <GridView>
@@ -64,21 +64,57 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock>Unpaid Deliveries</TextBlock>
-                    <TextBlock Grid.Row="1" Name="noUnpaid" Visibility="Hidden">No deliveries unpaid today.</TextBlock>
-                    <DataGrid Grid.Row="1" Name="unpaidDeliveries" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="#2C61EC" Margin="20,10,0,10">Unpaid Deliveries</TextBlock>
+                    <TextBlock Grid.Row="1" Name="noUnpaid" FontWeight="Bold" Visibility="Hidden" Margin="20,10,0,10">No deliveries unpaid today.</TextBlock>
+                    <DataGrid Grid.Row="1" Name="unpaidDeliveries" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" >
+
+                        <DataGrid.Resources>
+                            <!-- Style for DataGrid Headers -->
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#2c61ec"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                                <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+
+                            <!-- Style for DataGrid Rows -->
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="MinHeight" Value="30"/>
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="#FF343D53"/>
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                            </Style>
+
+                            <!-- Style for DataGrid Cells -->
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="8"/>
+                                <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                                <Setter Property="BorderThickness" Value="0.5"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                            </Style>
+                        </DataGrid.Resources>
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Block" Binding="{Binding block}" />
-                            <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
-                            <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
-                            <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}" />
-                            <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
-                            <DataGridTextColumn Header="Price">
+                            <DataGridTextColumn Header="Block" Width="40" Binding="{Binding block}" />
+                            <DataGridTextColumn Header="Lot"  Width="40" Binding="{Binding lot}" />
+                            <DataGridTextColumn Header="Phase"  Width="40" Binding="{Binding phase}" />
+                            <DataGridTextColumn Header="Product"  Width="80" Binding="{Binding product_codeNavigation.product_desc}" />
+                            <DataGridTextColumn Header="Quantity"  Width="60" Binding="{Binding quantity}" />
+                            <DataGridTextColumn Header="Price"  Width="40">
                                 <DataGridTextColumn.Binding>
                                     <Binding Path="price" StringFormat="₱{0:N0}" />
                                 </DataGridTextColumn.Binding>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
+                            <DataGridTextColumn Header="Deliverer"  Width="60" Binding="{Binding deliverer.employee_name}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -87,21 +123,57 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock>Undelivered Orders</TextBlock>
-                    <TextBlock Grid.Row="1" Name="noUndelivered" Visibility="Hidden">No orders undelivered today.</TextBlock>
-                    <DataGrid Grid.Row="1" Name="undeliveredOrders" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="#2C61EC" Margin="0,10,0,10">Undelivered Orders</TextBlock>
+                    <TextBlock Grid.Row="1" Name="noUndelivered" FontWeight="Bold" Visibility="Hidden" Margin="0,10,0,10">No orders undelivered today.</TextBlock>
+                    <DataGrid Grid.Row="1" Name="undeliveredOrders" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" >
+
+                        <DataGrid.Resources>
+                            <!-- Style for DataGrid Headers -->
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Background" Value="#2c61ec"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                                <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            </Style>
+
+                            <!-- Style for DataGrid Rows -->
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="MinHeight" Value="30"/>
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="#FF343D53"/>
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                            </Style>
+
+                            <!-- Style for DataGrid Cells -->
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="8"/>
+                                <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                                <Setter Property="BorderThickness" Value="0.5"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                            </Style>
+                        </DataGrid.Resources>
+
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Block" Binding="{Binding block}" />
-                            <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
-                            <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
-                            <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}" />
-                            <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
-                            <DataGridTextColumn Header="Price">
+                            <DataGridTextColumn Header="Block" Width="40" Binding="{Binding block}" />
+                            <DataGridTextColumn Header="Lot" Width="40" Binding="{Binding lot}" />
+                            <DataGridTextColumn Header="Phase" Width="40" Binding="{Binding phase}" />
+                            <DataGridTextColumn Header="Product" Width="80" Binding="{Binding product_codeNavigation.product_desc}" />
+                            <DataGridTextColumn Header="Quantity" Width="60" Binding="{Binding quantity}" />
+                            <DataGridTextColumn Header="Price" Width="40">
                                 <DataGridTextColumn.Binding>
                                     <Binding Path="price" StringFormat="₱{0:N0}" />
                                 </DataGridTextColumn.Binding>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
+                            <DataGridTextColumn Header="Deliverer" Width="60" Binding="{Binding deliverer.employee_name}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
