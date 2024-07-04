@@ -75,7 +75,7 @@ namespace Living_Fountain
             {
                 // Query to get the quantity sold today, grouped by product type
                 var quantitiesSold = dc.orders
-                    .Where(o => o.date == today)
+                    .Where(o => o.date == today && o.status == "PD")
                     .GroupBy(o => o.product_codeNavigation.product_desc)
                     .Select(g => new product_quantity_sold
                     {
