@@ -24,6 +24,7 @@ namespace Living_Fountain
         public LivingFountainHome()
         {
             InitializeComponent();
+            Main.Content = new Homepage();
         }
 
         private void Sales_Button_Click(object sender, RoutedEventArgs e)
@@ -49,6 +50,16 @@ namespace Living_Fountain
         private void Revenue_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Revenue();
+        }
+
+        private void Main_Navigated(object sender, NavigationEventArgs e)
+        {
+
+        }
+
+        private void Home_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Homepage();
         }
     }
 }
