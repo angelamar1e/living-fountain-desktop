@@ -1,0 +1,111 @@
+﻿<Page x:Class="Living_Fountain.Homepage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Living_Fountain"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Homepage">
+
+    <Page.Resources>
+        <DataTemplate x:Key="CheckBoxCellTemplate">
+            <CheckBox Checked="CheckBox_Checked"/>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock>TODAY</TextBlock>
+            <Label Grid.Column="1" Name="currentDateTime"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="revenue"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock>Products Sold</TextBlock>
+                    <ListView Grid.Row="1" Name="productTypeListView" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Product Type" DisplayMemberBinding="{Binding ProductType}"/>
+                                <GridViewColumn Header="Quantity Sold" DisplayMemberBinding="{Binding TotalQuantity}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock>Unpaid Deliveries</TextBlock>
+                    <TextBlock Grid.Row="1" Name="noUnpaid" Visibility="Hidden">No deliveries unpaid today.</TextBlock>
+                    <DataGrid Grid.Row="1" Name="unpaidDeliveries" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Block" Binding="{Binding block}" />
+                            <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
+                            <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
+                            <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}" />
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
+                            <DataGridTextColumn Header="Price">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="price" StringFormat="₱{0:N0}" />
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock>Undelivered Orders</TextBlock>
+                    <TextBlock Grid.Row="1" Name="noUndelivered" Visibility="Hidden">No orders undelivered today.</TextBlock>
+                    <DataGrid Grid.Row="1" Name="undeliveredOrders" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Block" Binding="{Binding block}" />
+                            <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
+                            <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
+                            <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}" />
+                            <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
+                            <DataGridTextColumn Header="Price">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="price" StringFormat="₱{0:N0}" />
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

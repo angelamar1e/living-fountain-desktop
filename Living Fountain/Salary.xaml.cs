@@ -43,7 +43,9 @@ namespace Living_Fountain
 
         private void GetEmployees()
         {
-            DataGrid salaryGrid;
+            List<salary_details> details;
+            ListView listView;
+
             using (var dc = new living_fountainContext())
             {
                 Employees = dc.employees
@@ -67,13 +69,15 @@ namespace Living_Fountain
                             break;
                         case 'W':
                             washersContainer.Children.Add(nameLabel);
-                            salaryGrid = GetSalary('W');
-                            washersContainer.Children.Add(salaryGrid);
+                            details = GetSalary('W');
+                            listView = CreateSalaryListView(details);
+                            washersContainer.Children.Add(listView);
                             break;
                         case 'R':
                             refillersContainer.Children.Add(nameLabel);
-                            salaryGrid = GetSalary('R');
-                            refillersContainer.Children.Add(salaryGrid);
+                            details = GetSalary('R');
+                            listView = CreateSalaryListView(details);
+                            refillersContainer.Children.Add(listView);
                             break;
                     }
                 }
@@ -119,42 +123,49 @@ namespace Living_Fountain
                     quantityDelivered = regularGallonsCount
                 });
 
-                var salaryGrid = new DataGrid
-                {
-                    AutoGenerateColumns = false,
-                    ItemsSource = details,
-                    Margin = new Thickness(10),
-                    CanUserAddRows = false
-                };
-
-                var columns = new List<(string Header, string Binding)>
-                {
-                    ("Quantity Delivered", "quantityDelivered"),
-                    ("Salary", "salary")
-                };
-
-                // Add columns using a loop
-                foreach (var column in columns)
-                {
-                    var col = new DataGridTextColumn
-                    {
-                        Header = column.Header,
-                        Binding = new Binding(column.Binding)
-                    };
-
-                    if (column.Header == "Salary")
-                    {
-                        col.Binding.StringFormat = "₱{0:N0}";
-                    }
-
-                    salaryGrid.Columns.Add(col);
-                }
-
-                deliverersContainer.Children.Add(salaryGrid);
+                DisplayDelivererSalary(details);
             }
         }
 
-        private DataGrid GetSalary(char empType)
+        private void DisplayDelivererSalary(List<salary_details> details)
+        {
+            var salaryListView = new ListView
+            {
+                Margin = new Thickness(10)
+            };
+
+            var gridView = new GridView();
+            salaryListView.View = gridView;
+
+            var columns = new List<(string Header, string Binding)>
+            {
+                ("Regular Gallons Delivered", "quantityDelivered"),
+                ("Salary", "salary")
+            };
+
+            // Add columns using a loop
+            foreach (var column in columns)
+            {
+                var gridViewColumn = new GridViewColumn
+                {
+                    Header = column.Header,
+                    DisplayMemberBinding = new Binding(column.Binding)
+                };
+
+                if (column.Header == "Salary")
+                {
+                    gridViewColumn.DisplayMemberBinding.StringFormat = "₱{0:N0}";
+                }
+
+                gridView.Columns.Add(gridViewColumn);
+            }
+
+            salaryListView.ItemsSource = details;
+
+            deliverersContainer.Children.Add(salaryListView);
+        }
+
+        private List<salary_details> GetSalary(char empType)
         {
             // collection to store the salary and qty delivered
             var details = new List<salary_details>();
@@ -172,24 +183,38 @@ namespace Living_Fountain
                 salary = salary
             });
 
-            var salaryGrid = new DataGrid
+            return details;
+        }
+
+        private ListView CreateSalaryListView(List<salary_details> details)
+        {
+            // Create a new ListView
+            var salaryListView = new ListView
             {
-                AutoGenerateColumns = false,
-                ItemsSource = details,
-                Margin = new Thickness(10),
-                CanUserAddRows = false
+                Margin = new Thickness(10)
             };
 
-            var col = new DataGridTextColumn
+            // Create a GridView to define columns
+            var gridView = new GridView();
+            salaryListView.View = gridView;
+
+            // Define the Salary column
+            var salaryColumn = new GridViewColumn
             {
                 Header = "Salary",
-                Binding = new Binding("salary")
+                DisplayMemberBinding = new Binding("salary")
+                {
+                    StringFormat = "₱{0:N0}" // Format as currency without decimal places
+                }
             };
 
-            col.Binding.StringFormat = "₱{0:N0}";
-            salaryGrid.Columns.Add(col);
+            // Add the Salary column to the GridView
+            gridView.Columns.Add(salaryColumn);
 
-            return salaryGrid;
+            // Bind the data
+            salaryListView.ItemsSource = details;
+
+            return salaryListView;
         }
 
         private List<salary_type> GetSalaryTypes(char empType)
