@@ -59,14 +59,45 @@
             </Grid>
         </Grid>
         <TextBlock Grid.Row="1" Name="noRecords" Visibility="Hidden">No customers found.</TextBlock>
-        <Grid Grid.Row="1" Height="400">
-            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged" Width="650" Margin="0,50">
+        <Grid Grid.Row="1" Height="700">
+            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged" Width="650" Margin="0,50" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Block" Width="150" Binding="{Binding Customer.block}"/>
                     <DataGridTextColumn Header="Lot" Width="150" Binding="{Binding Customer.lot}"/>
                     <DataGridTextColumn Header="Phase" Width="150" Binding="{Binding Customer.phase}"/>
                     <DataGridTextColumn Header="Last Order Date" Width="200" Binding="{Binding LastOrderDate}"/>
                 </DataGrid.Columns>
+
+                <DataGrid.Resources>
+                    <!-- Style for DataGrid Headers -->
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#2c61ec"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    </Style>
+
+                    <!-- Style for DataGrid Rows -->
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="MinHeight" Value="30"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="#FF343D53"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                    </Style>
+
+                    <!-- Style for DataGrid Cells -->
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="8"/>
+                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    </Style>
+                </DataGrid.Resources>
             </DataGrid>
         </Grid>
     </Grid>
