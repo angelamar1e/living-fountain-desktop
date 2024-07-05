@@ -11,11 +11,40 @@
         <DataTemplate x:Key="CheckBoxCellTemplate">
             <CheckBox Checked="CheckBox_Checked"/>
         </DataTemplate>
+
+        <!-- Style for DataGrid Headers -->
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#2c61ec"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        </Style>
+
+        <!-- Style for DataGrid Rows -->
+        <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#FF343D53"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+        </Style>
+
+        <!-- Style for DataGrid Cells -->
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+            <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        </Style>
     </Page.Resources>
+
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="500"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Credits" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,455" Foreground="#2c61ec" Grid.RowSpan="2"/>
         <ScrollViewer Grid.Row="1">

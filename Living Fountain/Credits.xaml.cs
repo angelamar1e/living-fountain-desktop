@@ -1,10 +1,12 @@
 ﻿using Living_Fountain.Helpers;
 using Living_Fountain.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 
 namespace Living_Fountain
 {
@@ -57,7 +59,8 @@ namespace Living_Fountain
                 {
                     Text = group.Key.ToString("MMMM dd, yyyy"), // Format the date as desired
                     FontWeight = FontWeights.Bold,
-                    Margin = new Thickness(10)
+                    Margin = new Thickness(80, 10, 10, 10),
+                    FontSize = 14
                 };
                 dataGridContainer.Children.Add(dateLabel);
 
@@ -66,19 +69,26 @@ namespace Living_Fountain
                 {
                     AutoGenerateColumns = false,
                     ItemsSource = group.Value,
-                    Margin = new Thickness(10),
-                    CanUserAddRows = false
+                    Margin = new Thickness(10, 10, 10, 10),
+                    CanUserAddRows = false,
+                    ColumnHeaderStyle = (Style)Resources["DataGridColumnHeaderStyle"],
+                    RowStyle = (Style)Resources["DataGridRowStyle"],
+                    CellStyle = (Style)Resources["DataGridCellStyle"],
+                    HorizontalAlignment= HorizontalAlignment.Left,
+                    HorizontalGridLinesBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE2E2E2")),
+                    VerticalGridLinesBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFE2E2E2")),
+                    Width = 858
                 };
 
-                var columns = new List<(string Header, string Binding)>
+                var columns = new List<(string Header, string Binding, double Width)>
                 {
-                    ("Block", "block"),
-                    ("Lot", "lot"),
-                    ("Phase", "phase"),
-                    ("Product", "product_codeNavigation.product_desc"),
-                    ("Quantity", "quantity"),
-                    ("Price", "price"),
-                    ("Deliverer", "deliverer.employee_name")
+                    ("Block", "block", 100),
+                    ("Lot", "lot", 100),
+                    ("Phase", "phase", 100),
+                    ("Product", "product_codeNavigation.product_desc", 150),
+                    ("Quantity", "quantity", 100),
+                    ("Price", "price", 100),
+                    ("Deliverer", "deliverer.employee_name", 100)
                 };
 
                 // Add columns using a loop
@@ -87,7 +97,8 @@ namespace Living_Fountain
                     var col = new DataGridTextColumn
                     {
                         Header = column.Header,
-                        Binding = new Binding(column.Binding)
+                        Binding = new Binding(column.Binding),
+                        Width = column.Width
                     };
 
                     if (column.Header == "Price")
@@ -102,11 +113,23 @@ namespace Living_Fountain
                 var checkBoxColumn = new DataGridTemplateColumn
                 {
                     Header = "Mark as Paid",
-                    CellTemplate = (DataTemplate)Resources["CheckBoxCellTemplate"]
+                    CellTemplate = (DataTemplate)Resources["CheckBoxCellTemplate"],
+                    Width = 100
                 };
                 dataGrid.Columns.Add(checkBoxColumn);
 
-                dataGridContainer.Children.Add(dataGrid);
+                // Wrap the DataGrid in a Border (Rectangle)
+                var border = new Border
+                {
+                    BorderBrush = System.Windows.Media.Brushes.Black,
+                    BorderThickness = new Thickness(1),
+                    CornerRadius = new CornerRadius(5),
+                    Margin = new Thickness(-20, 10, 10, 10),
+                    Width = 890,
+                    Child = dataGrid
+                };
+
+                dataGridContainer.Children.Add(border);
             }
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
