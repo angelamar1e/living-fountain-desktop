@@ -50,34 +50,90 @@ namespace Living_Fountain
 
                 foreach (var monthRevenue in revenueByMonth)
                 {
-                    var revenueGrid = new Grid();
-
-                    for (var x = 0; x <= 2; x++)
-                    {
-                        revenueGrid.ColumnDefinitions.Add(new ColumnDefinition
-                        {
-                            Width = new GridLength(50, GridUnitType.Star)
-                        });
-                    }
-
+                    var revenueGrid = CreateRevenueGrid(monthRevenue.MonthName + " " + monthRevenue.Year, monthRevenue.TotalRevenue.ToString("C"));
                     container.Children.Add(revenueGrid);
-
-                    var week = new TextBlock
-                    {
-                        Text = monthRevenue.MonthName + " " + monthRevenue.Year
-                    };
-
-                    revenueGrid.Children.Add(week);
-
-                    var revenue = new TextBlock
-                    {
-                        Text = monthRevenue.TotalRevenue.ToString("C")
-                    };
-
-                    Grid.SetColumn(revenue, 1);
-                    revenueGrid.Children.Add(revenue);
                 }
             }
         }
+
+        private Grid CreateRevenueGrid(string period, string totalRevenue)
+        { 
+            var revenueGrid = new Grid();
+
+            for (var x = 0; x <= 2; x++)
+            {
+                revenueGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                  Width = new GridLength(50, GridUnitType.Star)
+                });
+            }
+
+            var periodTextBlock = new TextBlock
+            {
+                Text = period,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(150, 5, -125, 0),
+                FontWeight = FontWeights.SemiBold
+            };
+
+            revenueGrid.Children.Add(periodTextBlock);
+
+            var outerRectangleContainer = new Grid
+            {
+                Width = 250,
+                Height = 50,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(15)
+            };
+
+            var outerRectangle = new Rectangle
+            {
+                Width = outerRectangleContainer.Width + 250,
+                Height = outerRectangleContainer.Height,
+                Stroke = new SolidColorBrush(Colors.Black),
+                StrokeThickness = 1,
+                RadiusX = 10,
+                RadiusY = 10,
+                Margin = new Thickness(0, 5, 0, 5)
+            };
+
+            Grid.SetColumnSpan(outerRectangle, 3);
+            revenueGrid.Children.Add(outerRectangle);
+
+            var rectangleContainer = new Grid
+            {
+                Width = 100,
+                Height = 50,
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(5)
+            };
+
+            var rectangle = new Rectangle
+            {
+                Fill = new SolidColorBrush(Color.FromRgb(44, 97, 236)),
+                Width = rectangleContainer.Width - 10,
+                Height = rectangleContainer.Height - 10,
+                RadiusX = 8,
+                RadiusY = 8,
+                Margin = new Thickness(5)
+            };
+
+            var revenueTextBlock = new TextBlock
+            {
+                Text = totalRevenue,
+                Foreground = new SolidColorBrush(Colors.White),
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+
+            rectangleContainer.Children.Add(rectangle);
+            rectangleContainer.Children.Add(revenueTextBlock);
+
+            Grid.SetColumn(rectangleContainer, 2);
+            revenueGrid.Children.Add(rectangleContainer);
+
+            return revenueGrid;
+        }
     }
 }
+

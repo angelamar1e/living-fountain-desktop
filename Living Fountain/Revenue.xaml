@@ -11,20 +11,38 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="127"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock>Revenue</TextBlock>
-        <Grid Grid.Row="1"  Width="500">
+
+        <TextBlock Text="Revenue" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,10" Foreground="#2c61ec"/>
+
+        <Grid Margin="0,15,41,64" Grid.Row="1" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="weekly" Content="Weekly Revenue" Click="weekly_Click"/>
-            <Button Grid.Column="1" x:Name="monthly" Content="Monthly Revenue" Click="monthly_Click"/>
+
+            <Button x:Name="weekly" Content="Weekly Revenue" Click="weekly_Click" 
+                    Background="#2c61ec"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Padding="10,5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center" Height="54" Grid.Column="1" Width="350" Margin="0,0,10,0"/>
+
+            <Button x:Name="monthly" Content="Monthly Revenue" Click="monthly_Click"
+                    Background="#2c61ec"
+                    Foreground="White"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Padding="10,5"
+                    VerticalAlignment="Center" Height="54" Width="350" Grid.Column="2"/>
         </Grid>
-        <Grid Grid.Row="2" Width="500">
-            <Frame Name="revenueFrame" NavigationUIVisibility="Hidden"/>
-        </Grid>
+
+        <Frame Name="revenueFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Margin="0,80,50,10" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Top"/>
     </Grid>
 </Page>
