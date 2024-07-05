@@ -59,12 +59,12 @@
         </Grid>
         <TextBlock Grid.Row="1" Name="noRecords" Visibility="Hidden">No customers found.</TextBlock>
         <Grid Grid.Row="1" Height="400">
-            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged">
+            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged" Width="650" Margin="0,50">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Block" Binding="{Binding Customer.block}"/>
-                    <DataGridTextColumn Header="Lot" Binding="{Binding Customer.lot}"/>
-                    <DataGridTextColumn Header="Phase" Binding="{Binding Customer.phase}"/>
-                    <DataGridTextColumn Header="Last Order Date" Binding="{Binding LastOrderDate}"/>
+                    <DataGridTextColumn Header="Block" Width="150" Binding="{Binding Customer.block}"/>
+                    <DataGridTextColumn Header="Lot" Width="150" Binding="{Binding Customer.lot}"/>
+                    <DataGridTextColumn Header="Phase" Width="150" Binding="{Binding Customer.phase}"/>
+                    <DataGridTextColumn Header="Last Order Date" Width="200" Binding="{Binding LastOrderDate}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
