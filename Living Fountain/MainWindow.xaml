@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Living_Fountain"
         mc:Ignorable="d"
-        Title="Living Fountain" Height="800" Width="1500" Source="LivingFountainHome.xaml" ShowsNavigationUI="False">
+        Title="Living Fountain" Width="1000" Height="600" Source="LivingFountainHome.xaml" ShowsNavigationUI="False">
 
 </NavigationWindow>
