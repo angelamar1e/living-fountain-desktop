@@ -10,6 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="fonts\FontsFree-Net-SFProText-Medium-1.ttf" />
+    <None Remove="fonts\SFPRODISPLAYBOLD.OTF" />
+    <None Remove="images\credits.png" />
+    <None Remove="images\customers.png" />
+    <None Remove="images\home.png" />
+    <None Remove="images\logo.png" />
+    <None Remove="images\revenue.png" />
+    <None Remove="images\salary.png" />
+    <None Remove="images\sales.png" />
     <None Remove="logo.png" />
   </ItemGroup>
 
@@ -24,6 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="fonts\FontsFree-Net-SFProText-Medium-1.ttf" />
+    <Resource Include="fonts\SFPRODISPLAYBOLD.OTF" />
+    <Resource Include="images\credits.png" />
+    <Resource Include="images\customers.png" />
+    <Resource Include="images\home.png" />
+    <Resource Include="images\logo.png" />
+    <Resource Include="images\revenue.png" />
+    <Resource Include="images\salary.png" />
+    <Resource Include="images\sales.png" />
     <Resource Include="logo.png" />
   </ItemGroup>
 
