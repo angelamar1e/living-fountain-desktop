@@ -7,7 +7,27 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1500"
       Title="Sales">
-
+    
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel>
+                            <TextBlock Foreground="Red" DockPanel.Dock="Bottom" Text="{Binding ElementName=placeholderName, Path=(Validation.Errors)[0].ErrorContent}"/>
+                            <AdornedElementPlaceholder Name="placeholderName" />
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+    
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -71,23 +91,75 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Name="blockField"/>
-                <TextBox Grid.Column="1" Name="lotField"/>
-                <TextBox Grid.Column="2" Name="phaseField"/>
+                
+                <!-- Block Field with Validation -->
+                <TextBox Name="blockField" Grid.Column="1">
+                    <TextBox.Text>
+                        <Binding Path="Block" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:NotEmptyValidationRule />
+                                <local:NumericValidationRule MinDigits="1" MaxDigits="3" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!-- Lot Field with Validation -->
+                <TextBox Name="lotField" Grid.Column="2">
+                    <TextBox.Text>
+                        <Binding Path="Lot" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:NotEmptyValidationRule />
+                                <local:NumericValidationRule MinDigits="1" MaxDigits="3" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!-- Phase Field with Validation -->
+                <TextBox Name="phaseField">
+                    <TextBox.Text>
+                        <Binding Path="Phase" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:NotEmptyValidationRule />
+                                <local:NumericValidationRule MinDigits="1" MaxDigits="3" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!-- Product Type ComboBox -->
                 <ComboBox Grid.Column="3" Name="productTypeCombo"
                           DisplayMemberPath="product_desc"
                           SelectedValuePath="code"/>
-                <TextBox Grid.Column="4" Name="quantityField"/>
+                
+                <!-- Quantity Field with Numeric Validation -->
+                <TextBox Name="quantityField" Grid.Column="4">
+                    <TextBox.Text>
+                        <Binding Path="Quantity" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:NotEmptyValidationRule />
+                                <local:NumericValidationRule MinDigits="1" MaxDigits="3" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!-- Deliverer ComboBox -->
                 <ComboBox Grid.Column="5" Name="delivererCombo"
                           DisplayMemberPath="employee_name"
                           SelectedValuePath="id"/>
+
+                <!-- Status ComboBox -->
                 <ComboBox Grid.Column="6" Name="statusCombo"
                           DisplayMemberPath="status_desc"
                           SelectedValuePath="code"/>
+
+                <!-- Submit Button -->
                 <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick"/>
             </Grid>
         </Grid>
-
+        
         <!--Table details-->
         <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
