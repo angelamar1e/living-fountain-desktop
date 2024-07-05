@@ -15,16 +15,11 @@ namespace Living_Fountain
         public List<product> Products { get; set; }
         public List<employee> Deliverers { get; set; }
         public List<order_status> Statuses { get; set; }
-        public OrderViewModel ViewModel { get; set; }
-
 
         public FrameworkElement[] orderFields = new FrameworkElement[7];
         public Sales(DateOnly selectedOrderDate)
         {
             InitializeComponent();
-
-            ViewModel = new OrderViewModel();
-            DataContext = ViewModel;
 
             DateOnly date = OrderHelper.GetCurrentDate();
             if (selectedOrderDate != date)
@@ -40,7 +35,6 @@ namespace Living_Fountain
             GetProductTypes();
             GetDeliverers();
             GetStatusTypes();
-
         }
 
         // retrieving order records from db
@@ -93,7 +87,7 @@ namespace Living_Fountain
         // the default data displayed in the table are orders for the current date
         private void GetInitialData(DateOnly date)
         {
-            
+
             currentDate.Text = date.ToString("MMMM dd, yyyy");
 
             LoadData(date);
@@ -120,6 +114,7 @@ namespace Living_Fountain
             else
             {
                 OrderRecords.Visibility = Visibility.Visible;
+                noRecords.Visibility = Visibility.Hidden;
             }
         }
 
@@ -141,24 +136,6 @@ namespace Living_Fountain
                     parentFrame.NavigationService.Navigate(new Edit_Order(id));
                 }
             }
-        }
-
-        private Frame FindParentFrame(DependencyObject child)
-        {
-            // Traverse up the visual tree to find the parent Frame
-            DependencyObject parentObject = VisualTreeHelper.GetParent(child);
-
-            if (parentObject == null)
-            {
-                return null;
-            }
-
-            if (parentObject is Frame frame)
-            {
-                return frame;
-            }
-
-            return FindParentFrame(parentObject);
         }
 
         // confirms deletion
@@ -268,113 +245,4 @@ namespace Living_Fountain
             DataValidationHelper.ValidateInput(sender as FrameworkElement);
         }
     }
-
-    // Custom validation rule to check for non-empty input
-    public class NotEmptyValidationRule : ValidationRule
-    {
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-        {
-            if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
-            {
-                return new ValidationResult(false, "Field cannot be empty");
-            }
-            return ValidationResult.ValidResult;
-        }
-    }
-
-    // Custom validation rule to check for numeric input with digit limits and non-negative constraint
-    public class NumericValidationRule : ValidationRule
-    {
-        public int MinDigits { get; set; }
-        public int MaxDigits { get; set; }
-
-        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-        {
-            if (int.TryParse(value.ToString(), out int number))
-            {
-                if (number <= 0)
-                {
-                    return new ValidationResult(false, "Field must be a positive number");
-                }
-
-                int digitCount = value.ToString().Length;
-                if (digitCount < MinDigits || digitCount > MaxDigits)
-                {
-                    return new ValidationResult(false, $"Field must have {MinDigits}-{MaxDigits} digits");
-                }
-
-                return ValidationResult.ValidResult;
-            }
-
-            return new ValidationResult(false, "Field must be a valid number");
-        }
-
-        public class OrderViewModel : INotifyPropertyChanged
-        {
-            private int _block;
-            private int _lot;
-            private int _phase;
-            private int _quantity;
-
-            public event PropertyChangedEventHandler PropertyChanged;
-
-            public int Block
-            {
-                get => _block;
-                set
-                {
-                    if (_block != value)
-                    {
-                        _block = value;
-                        OnPropertyChanged(nameof(Block));
-                    }
-                }
-            }
-
-            public int Lot
-            {
-                get => _lot;
-                set
-                {
-                    if (_lot != value)
-                    {
-                        _lot = value;
-                        OnPropertyChanged(nameof(Lot));
-                    }
-                }
-            }
-
-            public int Phase
-            {
-                get => _phase;
-                set
-                {
-                    if (_phase != value)
-                    {
-                        _phase = value;
-                        OnPropertyChanged(nameof(Phase));
-                    }
-                }
-            }
-
-            public int Quantity
-            {
-                get => _quantity;
-                set
-                {
-                    if (_quantity != value)
-                    {
-                        _quantity = value;
-                        OnPropertyChanged(nameof(Quantity));
-                    }
-                }
-            }
-
-            protected void OnPropertyChanged(string propertyName)
-            {
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
 }
-
