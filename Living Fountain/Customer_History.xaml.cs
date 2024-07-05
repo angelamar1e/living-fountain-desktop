@@ -35,9 +35,10 @@ namespace Living_Fountain
 
         private void DisplayAddress(customer customer)
         {
-            blockField.Text = "Block" + " " + customer.block.ToString();
-            lotField.Text = "Lot" + " " + customer.lot.ToString();
-            phaseField.Text = "Phase" + " " + customer.phase.ToString();
+            blockField.Text = "Block " + customer.block.ToString();
+            lotField.Text = "Lot " + customer.lot.ToString();
+            phaseField.Text = "Phase " +
+                "" + customer.phase.ToString();
         }
 
         private void GetOrderHistory(customer customer)
