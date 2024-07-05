@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Living_Fountain"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      FontFamily ="./fonts/#SF Pro Text Medium"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="Homepage">
 
     <Page.Resources>
@@ -14,19 +15,33 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Background="#ecf2fc">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC">TODAY</TextBlock>
-            <Label Grid.Column="1" FontSize="15" FontWeight="Bold" Foreground="#2C61EC" VerticalAlignment="Center" Name="currentDateTime"/>
-        </Grid>
+        <Border>
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="1000"/>
+                </Grid.ColumnDefinitions>
+                <Grid Background="#ecf2fc">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Left" Margin="20,10,0,0" FontSize="25" FontWeight="Bold" Foreground="#2C61EC" VerticalAlignment="Bottom">TODAY</TextBlock>
+                    <Label Grid.Row="1" FontSize="13" Margin="20 0 0 10" Foreground="#2C61EC" VerticalAlignment="Center" Name="currentDateTime"/>
+                </Grid>
+                <Grid Grid.Column="1" HorizontalAlignment="Right" Background="#ecf2fc" Width="1000">
+                    <Image Source="images/deliverer.png" Width="90" Margin="10 10"/>
+                </Grid>
+            </Grid>
+        </Border>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50*"/>
@@ -34,35 +49,52 @@
             </Grid.RowDefinitions>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="30*"/>
+                    <ColumnDefinition Width="70*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC" Margin="20,10,0,10" x:Name="revenue"/>
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock FontSize="15" FontWeight="Bold" Foreground="#2C61EC" Margin="20,10,0,10">Products Sold</TextBlock>
-                    <ListView Grid.Row="1" Name="productTypeListView" Margin="20,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <Border Background="#2378E8" CornerRadius="10" Margin="20 20 20 10">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Revenue" FontSize="15" Foreground="AliceBlue" Margin="20,10,0,0"/>
+                        <TextBlock Grid.Row="1" FontSize="30" Foreground="AliceBlue" Margin="20,10,0,10" x:Name="revenue"/>
+                    </Grid>
+                </Border>
+                <Border Grid.Column="1" Background="#6d89d7" CornerRadius="10" Margin="0 20 20 10">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
+                    </Border.Effect>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="15" FontWeight="Bold" Foreground="AliceBlue" Margin="20 10 0 0">Products Sold</TextBlock>
+                        <TextBlock Grid.Row="1" Name="zeroSold" FontSize="30" FontWeight="Bold" Foreground="AliceBlue" Margin="20 10 0 0" Visibility="Hidden">0</TextBlock>
+                        <ListView Grid.Row="1" Name="productTypeListView" Margin="20,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                            <ListView.Resources>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="#6d89d7"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="12"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Style>
+                            </ListView.Resources>
 
-                        <ListView.Resources>
-                            <Style TargetType="{x:Type GridViewColumnHeader}">
-                                <Setter Property="Background" Value="#2C61EC"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="FontSize" Value="12"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                            </Style>
-                        </ListView.Resources>
-
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Product Type" Width="175" DisplayMemberBinding="{Binding ProductType}"/>
-                                <GridViewColumn Header="Quantity Sold" Width="175" DisplayMemberBinding="{Binding TotalQuantity}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Product Type" Width="175" DisplayMemberBinding="{Binding ProductType}"/>
+                                    <GridViewColumn Header="Quantity Sold" Width="175" DisplayMemberBinding="{Binding TotalQuantity}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Border>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>

@@ -17,6 +17,7 @@ namespace Living_Fountain
         private DispatcherTimer timer;
         private List<order> UnpaidDeliveries;
         private List<order> UndeliveredOrders;
+        private List<product_quantity_sold> QuantitiesSold;
 
         public Homepage()
         {
@@ -54,7 +55,7 @@ namespace Living_Fountain
 
         private void TimerTick(object sender, EventArgs e)
         {
-            currentDateTime.Content = DateTime.Now.ToString("MMMM dd, yyyy HH:mm:ss");
+            currentDateTime.Content = DateTime.Now.ToString("MMMM dd, yyyy • h:mm tt");
         }
 
         private void GetRevenueToday()
@@ -65,7 +66,7 @@ namespace Living_Fountain
                                 .Where(o => o.date == today)
                                 .Sum(o => o.price);
 
-                 revenue.Text = "Revenue:\t\t₱" + revenueToday.ToString();
+                 revenue.Text = "₱" + revenueToday.ToString();
             }
         }
 
@@ -74,7 +75,7 @@ namespace Living_Fountain
             using (var dc = new living_fountainContext())
             {
                 // Query to get the quantity sold today, grouped by product type
-                var quantitiesSold = dc.orders
+                QuantitiesSold = dc.orders
                     .Where(o => o.date == today && o.status == "PD")
                     .GroupBy(o => o.product_codeNavigation.product_desc)
                     .Select(g => new product_quantity_sold
@@ -85,7 +86,7 @@ namespace Living_Fountain
                     .ToList();
 
                 // Bind the results to the ListView
-                productTypeListView.ItemsSource = quantitiesSold;
+                productTypeListView.ItemsSource = QuantitiesSold;
             }
         }
 
@@ -169,6 +170,17 @@ namespace Living_Fountain
 
         private void CountRecords()
         {
+            if (QuantitiesSold.Count == 0)
+            {
+                productTypeListView.Visibility = Visibility.Hidden;
+                zeroSold.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                productTypeListView.Visibility = Visibility.Visible;
+                zeroSold.Visibility = Visibility.Hidden;
+            }
+
             if (UnpaidDeliveries.Count == 0)
             {
                 unpaidDeliveries.Visibility = Visibility.Hidden;
