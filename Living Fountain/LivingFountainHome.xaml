@@ -15,10 +15,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="10"
-                                Padding="{TemplateBinding Padding}">
+                                CornerRadius="10">
                             <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
                                               Content="{TemplateBinding Content}"/>
@@ -41,30 +39,52 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="RoundedButtonStyle_Selected" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Optional: Set default properties for the button -->
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#5494e6"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
     </Page.Resources>
 
-    <Grid Background="White" >
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="99*"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="780"/>
         </Grid.ColumnDefinitions>
-
-        <!-- Gradient background -->
-        <!-- end of gradient -->
-        <Grid>
-            <Grid.RowDefinitions>
+        <Border BorderBrush="LightGray" BorderThickness="0 0 1 0">
+            <Grid Background="White">
+                <Grid.RowDefinitions>
                 <RowDefinition Height ="30*"/>
                 <RowDefinition Height ="70*"/>
             </Grid.RowDefinitions>
-        <Rectangle Grid.Row="1" RadiusX="20" RadiusY="20" Width="150" Height="320" VerticalAlignment="Top">
-            <Rectangle.Fill>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#5494E6" Offset="0.7" />
-                    <GradientStop Color="#2551A9" Offset="1" />
-                </LinearGradientBrush>
-            </Rectangle.Fill>
-        </Rectangle>
             <Image HorizontalAlignment="Center" Height="150" VerticalAlignment="Center" Width="223" Source="images/logo.png"/>
+            <Rectangle Grid.Row="1" RadiusX="20" RadiusY="20" Width="150" Height="320" VerticalAlignment="Top">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#5494E6" Offset="0.7" />
+                        <GradientStop Color="#2551A9" Offset="1" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height ="60"/>
@@ -74,68 +94,69 @@
                     <RowDefinition Height ="40"/>
                     <RowDefinition Height ="40"/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Click="Home_Button_Click">
+                <Button Name="homeButton"  Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Click="Home_Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="images/home.png" Width="20" Height="20"/>
-                        <TextBlock Grid.Column="1" Text="Home" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Text="Home" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button Grid.Row="1" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Click="Sales_Button_Click">
+                <Button Grid.Row="1" Name="salesButton" Style="{StaticResource RoundedButtonStyle}" VerticalAlignment="Bottom" Click="Sales_Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="images/sales.png" Width="20" Height="20"/>
-                        <TextBlock Grid.Column="1" Text="Sales" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Text="Sales" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button Grid.Row="2" Style="{StaticResource RoundedButtonStyle}" Click="Customers_Button_Click">
+                <Button Grid.Row="2" Name="customersButton" Style="{StaticResource RoundedButtonStyle}" Click="Customers_Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="images/customers.png" Width="20" Height="20"/>
-                        <TextBlock Grid.Column="1" Text="Customers" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Text="Customers" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button Grid.Row="3" Style="{StaticResource RoundedButtonStyle}" Click="Credits_Button_Click">
+                <Button Grid.Row="3" Name="creditsButton" Style="{StaticResource RoundedButtonStyle}" Click="Credits_Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="images/credits.png" Width="20" Height="20"/>
-                        <TextBlock Grid.Column="1" Text="Credits" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Text="Credits" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button Grid.Row="4" Style="{StaticResource RoundedButtonStyle}" Click="Salary_Button_Click">
+                <Button Grid.Row="4" Name="salaryButton" Style="{StaticResource RoundedButtonStyle}" Click="Salary_Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="images/salary.png" Width="20" Height="20"/>
-                        <TextBlock Grid.Column="1" Text="Salary" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Text="Salary" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
-                <Button Grid.Row="5" Style="{StaticResource RoundedButtonStyle}" Click="Revenue_Button_Click">
+                <Button Grid.Row="5" Name="revenueButton" Style="{StaticResource RoundedButtonStyle}" Click="Revenue_Button_Click">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="80"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="images/revenue.png" Width="20" Height="20"/>
-                        <TextBlock Grid.Column="1" Text="Revenue" HorizontalAlignment="Right"/>
+                        <TextBlock Grid.Column="1" Text="Revenue" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                 </Button>
             </Grid>
         </Grid>
-        <Frame x:Name="Main" Grid.Column="1" NavigationUIVisibility="Hidden" Navigated="Main_Navigated"/>
+        </Border>
+        <Frame x:Name="Main" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

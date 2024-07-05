@@ -30,37 +30,54 @@ namespace Living_Fountain
         private void Sales_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Sales(OrderHelper.GetCurrentDate());
-
+            SelectButton(salesButton);
         }
 
         private void Credits_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Credits();
+            SelectButton(creditsButton);
         }
 
         private void Salary_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Salary();
+            SelectButton(salaryButton);
         }
 
         private void Customers_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Customers();
+            SelectButton(customersButton);
         }
 
         private void Revenue_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Revenue();
-        }
-
-        private void Main_Navigated(object sender, NavigationEventArgs e)
-        {
-
+            SelectButton(revenueButton);
         }
 
         private void Home_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Homepage();
+            SelectButton(homeButton);
+        }
+
+        private void SetButtonStyle(Button button, Style style)
+        {
+            button.Style = style;
+        }
+
+        private void SelectButton(Button selectedButton)
+        {
+            // Reset all buttons to default style
+            foreach (Button button in new Button[] { salesButton, homeButton, customersButton, creditsButton, salaryButton, revenueButton })
+            {
+                SetButtonStyle(button, (Style)FindResource("RoundedButtonStyle"));
+            }
+
+            // Apply selected style to the selected button
+            SetButtonStyle(selectedButton, (Style)FindResource("RoundedButtonStyle_Selected"));
         }
     }
 }
