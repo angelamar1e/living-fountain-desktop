@@ -17,9 +17,9 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
-        <TextBlock>Credits</TextBlock>
+        <TextBlock Text="Credits" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,455" Foreground="#2c61ec" Grid.RowSpan="2"/>
         <ScrollViewer Grid.Row="1">
-            <StackPanel x:Name="dataGridContainer" Orientation="Vertical">
+            <StackPanel x:Name="dataGridContainer" Orientation="Vertical" Margin="0,50">
                 <TextBlock x:Name="noRecords" Visibility="Hidden">No credits recorded. All orders are paid.</TextBlock>
             </StackPanel>
         </ScrollViewer>
