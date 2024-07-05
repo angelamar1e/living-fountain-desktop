@@ -36,7 +36,6 @@ namespace Living_Fountain.Helpers
                     block = block,
                     lot = lot,
                     phase = phase
-                    // Add any other necessary fields here
                 };
 
                 context.customers.Add(customer);

@@ -71,19 +71,26 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Name="blockField"/>
-                <TextBox Grid.Column="1" Name="lotField"/>
-                <TextBox Grid.Column="2" Name="phaseField"/>
+                <TextBox Name="blockField" TextChanged="TextBox_TextChanged" Tag="Block" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000"/>
+                <TextBox Grid.Column="1" Name="lotField" TextChanged="TextBox_TextChanged" Tag="Lot" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000"/>
+                <TextBox Grid.Column="2" Name="phaseField" TextChanged="TextBox_TextChanged" Tag="Phase" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000"/>
                 <ComboBox Grid.Column="3" Name="productTypeCombo"
                           DisplayMemberPath="product_desc"
-                          SelectedValuePath="code"/>
-                <TextBox Grid.Column="4" Name="quantityField"/>
+                          SelectedValuePath="code" SelectionChanged="ComboBox_SelectionChanged" Tag="Product Type"
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000"/>
+                <TextBox Grid.Column="4" Name="quantityField" TextChanged="TextBox_TextChanged" Tag="Quantity" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000"/>
                 <ComboBox Grid.Column="5" Name="delivererCombo"
                           DisplayMemberPath="employee_name"
-                          SelectedValuePath="id"/>
+                          SelectedValuePath="id" SelectionChanged="ComboBox_SelectionChanged" Tag="Deliverer" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000"/>
                 <ComboBox Grid.Column="6" Name="statusCombo"
                           DisplayMemberPath="status_desc"
-                          SelectedValuePath="code"/>
+                          SelectedValuePath="code" SelectionChanged="ComboBox_SelectionChanged" Tag="Status" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000"/>
                 <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick"/>
             </Grid>
         </Grid>

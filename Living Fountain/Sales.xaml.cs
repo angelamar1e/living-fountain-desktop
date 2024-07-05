@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System;
+using System.Text.RegularExpressions;
 
 namespace Living_Fountain
 {
@@ -13,11 +14,12 @@ namespace Living_Fountain
     /// </summary>
     public partial class Sales : Page
     {
-        public List<order> Orders { get; set; }
+        private List<order> Orders { get; set; }
         public List<product> Products { get; set; }
         public List<employee> Deliverers { get; set; }
         public List<order_status> Statuses { get; set; }
 
+        public FrameworkElement[] orderFields = new FrameworkElement[7];
         public Sales(DateOnly selectedOrderDate)
         {
             InitializeComponent();
@@ -192,38 +194,58 @@ namespace Living_Fountain
         // submission of new order record
         private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {
-            using (var dc = new living_fountainContext())
+            orderFields[0] = blockField;
+            orderFields[1] = lotField;
+            orderFields[2] = phaseField;
+            orderFields[3] = productTypeCombo;
+            orderFields[4] = quantityField;
+            orderFields[5] = delivererCombo;
+            orderFields[6] = statusCombo;
+
+            if (DataValidationHelper.ValidNewOrder(orderFields)) // check the validity of inputs first before proceeding to add
             {
-                order newOrder = new order();
-                var existingCustomer = OrderHelper.GetOrCreateCustomer(dc, int.Parse(blockField.Text), int.Parse(lotField.Text), int.Parse(phaseField.Text));
+                using (var dc = new living_fountainContext())
+                {
+                    order newOrder = new order();
+                    var existingCustomer = OrderHelper.GetOrCreateCustomer(dc, int.Parse(blockField.Text), int.Parse(lotField.Text), int.Parse(phaseField.Text));
 
-                // Update properties of orderToUpdate with SelectedOrder's values
-                newOrder.block = existingCustomer.block;
-                newOrder.lot = existingCustomer.lot;
-                newOrder.phase = existingCustomer.phase;
-                newOrder.date = DateOnly.FromDateTime(DateTime.Now);
+                    // Update properties of orderToUpdate with SelectedOrder's values
+                    newOrder.block = existingCustomer.block;
+                    newOrder.lot = existingCustomer.lot;
+                    newOrder.phase = existingCustomer.phase;
+                    newOrder.date = OrderHelper.GetCurrentDate();
 
-                // Get selected from comboboxes
-                var selectedProduct = (product)productTypeCombo.SelectedItem;
-                var selectedDeliverer = (employee)delivererCombo.SelectedItem;
-                var selectedStatus = (order_status)statusCombo.SelectedItem;
+                    // Get selected from combo boxes
+                    var selectedProduct = (product)productTypeCombo.SelectedItem;
+                    var selectedDeliverer = (employee)delivererCombo.SelectedItem;
+                    var selectedStatus = (order_status)statusCombo.SelectedItem;
 
-                newOrder.product_code = selectedProduct.code;
-                newOrder.quantity = int.Parse(quantityField.Text);
-                newOrder.price = OrderHelper.ComputeNewPrice(newOrder.quantity, selectedProduct.price);
-                newOrder.deliverer_id = selectedDeliverer.id;
-                newOrder.status = selectedStatus.code;
+                    newOrder.product_code = selectedProduct.code;
+                    newOrder.quantity = int.Parse(quantityField.Text);
+                    newOrder.price = OrderHelper.ComputeNewPrice(newOrder.quantity, selectedProduct.price);
+                    newOrder.deliverer_id = selectedDeliverer.id;
+                    newOrder.status = selectedStatus.code;
 
-                // Add newOrder to the context
-                dc.orders.Add(newOrder);
+                    // Add newOrder to the context
+                    dc.orders.Add(newOrder);
 
-                // Save changes to the database
-                dc.SaveChanges();
+                    // Save changes to the database
+                    dc.SaveChanges();
 
 
-                MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-                GetInitialData(OrderHelper.GetCurrentDate());
+                    MessageBox.Show("Order added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    GetInitialData(OrderHelper.GetCurrentDate());
+                }
             }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DataValidationHelper.ValidateInput(sender as FrameworkElement);
+        }
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataValidationHelper.ValidateInput(sender as FrameworkElement);
         }
     }
 }
