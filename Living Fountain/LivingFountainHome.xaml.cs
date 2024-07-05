@@ -30,6 +30,7 @@ namespace Living_Fountain
         private void Sales_Button_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new Sales(OrderHelper.GetCurrentDate());
+
         }
 
         private void Credits_Button_Click(object sender, RoutedEventArgs e)

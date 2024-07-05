@@ -14,13 +14,13 @@
     </Page.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
-        <TextBlock>Credits</TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC">Credits</TextBlock>
         <ScrollViewer Grid.Row="1">
             <StackPanel x:Name="dataGridContainer" Orientation="Vertical">
-                <TextBlock x:Name="noRecords" Visibility="Hidden">No credits recorded. All orders are paid.</TextBlock>
+                <TextBlock x:Name="noRecords" Visibility="Hidden" FontWeight="Bold" Margin="20,10,0,10">No credits recorded. All orders are paid.</TextBlock>
             </StackPanel>
         </ScrollViewer>
     </Grid>

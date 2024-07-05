@@ -5,59 +5,60 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Living_Fountain"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1500"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="Sales">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="75"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
         
         <!--Page Title-->
         <StackPanel HorizontalAlignment="Stretch">
-            <TextBlock>Sales</TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC">Sales</TextBlock>
         </StackPanel>
             
         <!--Add New Order section title-->
-        <TextBlock Grid.Row="1" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Foreground="#2C61EC">Add New Order</TextBlock>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="20" FontWeight="Bold" Foreground="#2C61EC">Add New Order</TextBlock>
         
-        <!--Add New Order subsection titles-->     
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBlock Margin="20 0 0 0">Customer</TextBlock>
-            <TextBlock Margin="200 0 0 0">Order</TextBlock>
-        </StackPanel>
-        
-        <!--Labels and fields for Add New Order-->
-        <Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
-            </Grid.RowDefinitions>
-            
-            <!--Labels-->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="Block" HorizontalAlignment="Left" Margin="18,0,0,0" VerticalAlignment="Center" Padding="0"/>
-                <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
-                <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
-                <Label Grid.Column="3" Content="Type" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
-                <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="0"/>
-                <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
-                <Label Grid.Column="6" Content="Status" HorizontalAlignment="Left" VerticalAlignment="Bottom" Padding="0" Margin="0,0,0,2"/>
-            </Grid>
+        <!--Add New Order subsection titles-->
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <TextBlock Margin="78 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Customer</TextBlock>
+                <TextBlock Margin="235 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Order</TextBlock>
+            </StackPanel>
+
+            <!--Labels and fields for Add New Order-->
+        <Border Grid.Row="3" BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="78,10,78,0">
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                <!--Labels-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="125"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Block" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
+                    <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
+                    <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" />
+                    <Label Grid.Column="3" Content="Type" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" />
+                    <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" />
+                    <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,2" FontWeight="Bold" />
+                    <Label Grid.Column="6" Content="Status" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,2" FontWeight="Bold" />
+                </Grid>
 
             <!--Fields-->
             <Grid Grid.Row="1">
@@ -94,6 +95,35 @@
                 <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick"/>
             </Grid>
         </Grid>
+                <!--Fields-->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="125"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Name="blockField" Width="75"/>
+                    <TextBox Grid.Column="1" Name="lotField" Width="75"/>
+                    <TextBox Grid.Column="2" Name="phaseField" Width="75"/>
+                    <ComboBox Grid.Column="3" Name="productTypeCombo"
+                        DisplayMemberPath="product_desc"
+                        SelectedValuePath="code"/>
+                    <TextBox Grid.Column="4" Name="quantityField" Width="75"/>
+                    <ComboBox Grid.Column="5" Name="delivererCombo" Width="90"
+                        DisplayMemberPath="employee_name"
+                        SelectedValuePath="id"/>
+                    <ComboBox Grid.Column="6" Name="statusCombo"
+                        DisplayMemberPath="status_desc"
+                        SelectedValuePath="code"/>
+                    <Button Grid.Column="7" Name="submitButton" Content="Submit" Click="SubmitButtonClick" FontWeight="Bold" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Width="100"/>
+                </Grid>
+            </Grid>
+        </Border>
 
         <!--Table details-->
         <Grid Grid.Row="4">
@@ -103,148 +133,82 @@
             </Grid.ColumnDefinitions>
             <!--Table title and date-->
             <StackPanel Orientation="Horizontal">
-                <TextBlock Name="tableLabel" VerticalAlignment="Bottom" FontSize="20">Order Records •</TextBlock>
-                <TextBlock x:Name="currentDate" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Name="tableLabel" VerticalAlignment="Bottom" FontSize="20" Margin="78,5,0,10" FontWeight="Bold" Foreground="#2C61EC">Order Records •</TextBlock>
+                <TextBlock x:Name="currentDate" VerticalAlignment="Bottom" FontSize="20" Margin="20,5,0,10" FontWeight="Bold" Foreground="#2C61EC"></TextBlock>
             </StackPanel>
             <!--Date picker-->
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-                <TextBlock VerticalAlignment="Center">Filter by date:</TextBlock>
-                <DatePicker Name="datePicker" Width="120" Height="30" CalendarClosed="datePicker_CalendarClosed"></DatePicker>
+                <TextBlock VerticalAlignment="Center" FontSize="15" FontWeight="Bold" Foreground="#2C61EC" Margin="78,5,0,10">Filter by date:</TextBlock>
+                <DatePicker Name="datePicker" Width="120" Height="30" Margin="10 0 0 0" CalendarClosed="datePicker_CalendarClosed"></DatePicker>
             </StackPanel>
         </Grid>
         
         <!--textblock in case of no records found-->         
-        <TextBlock Name="noRecords" Grid.Row="5" Visibility="Hidden">No order records found.</TextBlock>
+        <TextBlock Name="noRecords" Grid.Row="5" Visibility="Hidden" FontWeight="Bold" Margin="20,10,0,10">No order records found.</TextBlock>
         
         <!--Table-->
-        <DataGrid x:Name="OrderRecords" Grid.Row="5" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" CanUserAddRows="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Block" Binding="{Binding block}" />
-                <DataGridTextColumn Header="Lot" Binding="{Binding lot}" />
-                <DataGridTextColumn Header="Phase" Binding="{Binding phase}" />
-                <DataGridTextColumn Header="Product" Binding="{Binding product_codeNavigation.product_desc}" />
-                <DataGridTextColumn Header="Quantity" Binding="{Binding quantity}" />
-                <DataGridTextColumn Header="Price">
-                    <DataGridTextColumn.Binding>
-                        <Binding Path="price" StringFormat="₱{0:N0}" />
-                    </DataGridTextColumn.Binding>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Deliverer" Binding="{Binding deliverer.employee_name}" />
-                <DataGridTextColumn Header="Status" Binding="{Binding statusNavigation.status_desc}"/>
-                <DataGridTemplateColumn Header="Actions">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <!-- Edit button -->
-                                <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" Tag="{Binding id}" />
+        <Border Grid.Row="6" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Background="White" Margin="78,10,78,-156" Grid.RowSpan="2">
+            <DataGrid x:Name="OrderRecords" Grid.Row="5" AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" CanUserAddRows="False">
+                <DataGrid.Resources>
+                    <!-- Style for DataGrid Headers -->
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#2c61ec"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    </Style>
 
-                                <!-- Delete button -->
-                                <Button x:Name="deleteBtn" Content="Delete" Click="DeleteButtonClick" Margin="2" Tag="{Binding id}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                    <!-- Style for DataGrid Rows -->
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="FontSize" Value="12"/>
+                        <Setter Property="MinHeight" Value="30"/>
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Foreground" Value="#FF343D53"/>
+                        <Setter Property="FontWeight" Value="DemiBold"/>
+                    </Style>
 
+                    <!-- Style for DataGrid Cells -->
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="8"/>
+                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
+                        <Setter Property="BorderThickness" Value="0.5"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        <Setter Property="VerticalAlignment" Value="Stretch"/>
+                    </Style>
+                </DataGrid.Resources>
+                
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Block" Width="60" Binding="{Binding block}" />
+                    <DataGridTextColumn Header="Lot" Width="60" Binding="{Binding lot}" />
+                    <DataGridTextColumn Header="Phase" Width="60" Binding="{Binding phase}" />
+                    <DataGridTextColumn Header="Product" Width="120" Binding="{Binding product_codeNavigation.product_desc}" />
+                    <DataGridTextColumn Header="Quantity" Width="60" Binding="{Binding quantity}" />
+                    <DataGridTextColumn Header="Price" Width="60" Binding="{Binding price}" />
+                    <DataGridTextColumn Header="Deliverer" Width="100" Binding="{Binding deliverer.employee_name}" />
+                    <DataGridTextColumn Header="Status" Width="150" Binding="{Binding statusNavigation.status_desc}"/>
+                    <DataGridTemplateColumn Header="Actions">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Width="100">
+                                    <!-- Edit button -->
+                                    <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" FontWeight="Bold" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Tag="{Binding id}" />
 
-        <Border Grid.Column="1" Margin="50,50,38,50" CornerRadius="10">
-            <StackPanel Margin="10">
-                <!-- SALES & Add New Order Title -->
-                <Label Content="SALES" HorizontalAlignment="Left" Margin="10,10,0,10" FontSize="40" FontWeight="Bold" Foreground="#2C61EC"/>
-                <Label Content="Add New Order" HorizontalAlignment="Center" Margin="0,0,0,20" FontSize="30" FontWeight="Bold" Foreground="#2C61EC"/>
-
-                <!-- Customer/Order Details & Submit Button -->
-                <Border BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="10">
-                    <StackPanel Margin="10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="50*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Column="0" Content="Customer" FontSize="25" FontWeight="Bold" Foreground="#2C61EC"/>
-                            <Label Grid.Column="1" Content="Order" FontSize="25" FontWeight="Bold" Foreground="#2C61EC"/>
-                        </Grid>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label Grid.Column="0" Content="Block" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
-                            <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
-                            <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
-                            <Label Grid.Column="3" Content="Type" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
-                            <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
-                            <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="Black"/>
-
-                            <TextBox Grid.Column="0" Grid.Row="1" Width="100" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1"/>
-                            <TextBox Grid.Column="1" Grid.Row="1" Width="100" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1"/>
-                            <TextBox Grid.Column="2" Grid.Row="1" Width="100" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1"/>
-                            <ComboBox Grid.Column="3" Grid.Row="1" Width="150" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1">
-                                <ComboBoxItem>Medium Gallon</ComboBoxItem>
-                                <ComboBoxItem>Regular Gallon</ComboBoxItem>
-                                <ComboBoxItem>Small Gallon</ComboBoxItem>
-                                <ComboBoxItem>Extra Small Gallon</ComboBoxItem>
-                            </ComboBox>
-                            <TextBox Grid.Column="4" Grid.Row="1" Width="100" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1"/>
-                            <ComboBox Grid.Column="5" Grid.Row="1" Width="200" Height="30" Margin="5" BorderBrush="Black" BorderThickness="1">
-                                <ComboBoxItem>Deliverer Name</ComboBoxItem>
-                            </ComboBox>
-                        </Grid>
-
-                        <Button Content="Submit" FontSize="15" FontWeight="Bold" Margin="0,20,0,10" Width="100" Height="35" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-
-                    </StackPanel>
-                </Border>
-
-                <Grid Margin="0,30,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Column="0" Content="Order Records" FontSize="25" FontWeight="Bold" Foreground="#2C61EC" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Label Grid.Column="1" Content="Filter by date: " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#2C61EC" FontSize="20" FontWeight="Bold" Margin="268,0,0,0"/>
-                    <DatePicker Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150"/>
-                </Grid>
-
-                <Border BorderBrush="Black" BorderThickness="1" Background="White" CornerRadius="10">
-                    <StackPanel Margin="10">
-                        <Label Content="Date" FontSize="25" FontWeight="Bold" Foreground="#2C61EC" HorizontalAlignment="Left"/>
-                        <Label Content="Revenue" FontSize="25" FontWeight="Bold" Foreground="#2C61EC" HorizontalAlignment="Left"/>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="60*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                                <ColumnDefinition Width="10*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="100*"/>
-                            </Grid.RowDefinitions>
-                            <!-- Grid 0: Table -->
-                            <Button Grid.Column="2" Content="Edit" FontSize="15" FontWeight="Bold" Width="100" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-                            <Button Grid.Column="3" Content="Delete" FontSize="15" FontWeight="Bold" Width="100" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0"/>
-                        </Grid>
-                    </StackPanel>
-                </Border>
-
-            </StackPanel>
+                                    <!-- Delete button -->
+                                    <Button x:Name="deleteBtn" Content="Delete" Click="DeleteButtonClick" Margin="2" FontWeight="Bold" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Tag="{Binding id}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Border>
+
     </Grid>
 </Page>
