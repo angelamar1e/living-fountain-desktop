@@ -5,86 +5,167 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Living_Fountain"
       mc:Ignorable="d" 
+      FontFamily ="./fonts/#SF Pro Text Medium"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Edit_Order">
 
+    <Page.Resources>
+        <Style x:Key="CancelButton" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Optional: Set default properties for the button -->
+            <Setter Property="Background" Value="DarkRed"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="30"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="PaleVioletRed"/>
+                    <Setter Property="Foreground" Value="AliceBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Optional: Set default properties for the button -->
+            <Setter Property="Background" Value="#6d89d7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="130"/>
+            <Setter Property="Height" Value="30"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2C61EC"/>
+                    <Setter Property="Foreground" Value="AliceBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="200"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
         <!--Editing order title with id-->
-        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC">Editing order # </TextBlock>
-            <TextBlock x:Name="orderId" HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC"></TextBlock>
-        </StackPanel>
-        <!--Order record subsection titles-->
-        <StackPanel Grid.Row="1" Orientation="Horizontal">
-            <TextBlock Margin="78 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Customer</TextBlock>
-            <TextBlock Margin="235 5 0 0" FontSize="15" FontWeight="Bold" Foreground="#2C61EC">Order</TextBlock>
-        </StackPanel>
+        <Border Width="700" Background="#6d89d7" CornerRadius="10" BorderThickness="0 0 0 1" Height="60" Margin="0 30 0 0" HorizontalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
+            </Border.Effect>
+            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="AliceBlue">Editing order</TextBlock>
+                <TextBlock x:Name="orderId" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" Foreground="DarkBlue"></TextBlock>
+            </StackPanel>
+        </Border>
         
+        <!--Order record subsection titles-->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Width="700" Margin="0 20">
+            <TextBlock Margin="20 0 0 0" FontSize="20" FontWeight="Bold" Foreground="#2C61EC">Customer</TextBlock>
+            <TextBlock Margin="110 0 0 0" FontSize="20" FontWeight="Bold" Foreground="#2C61EC">Order</TextBlock>
+        </StackPanel>
+
         <!--Fields and labels for editing order-->
-        <Border Grid.Row="2"  BorderBrush="Black" BorderThickness="1" CornerRadius="5"  Margin="78,10,78,0">
+        <Border Grid.Row="2" BorderBrush="#2C61EC" BorderThickness="1" Width="700" Height="140" CornerRadius="10" VerticalAlignment="Top" Padding="10">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
+            </Border.Effect>
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="25"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <!--Labels-->
-                <Grid>
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width="125"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="160"/>
                     </Grid.ColumnDefinitions>
-                    <Label Content="Block" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
-                    <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
-                    <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
-                    <Label Grid.Column="3" Content="Type" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
-                    <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
-                    <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
-                    <Label Grid.Column="6" Content="Status" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold"/>
+                    <Label Content="Block" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Foreground="#2C61EC"/>
+                    <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Foreground="#2C61EC"/>
+                    <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Foreground="#2C61EC"/>
+                    <Label Grid.Column="3" Content="Type" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Foreground="#2C61EC"/>
+                    <Label Grid.Column="4" Content="Quantity" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" FontWeight="Bold" Foreground="#2C61EC"/>
+                    <Label Grid.Column="5" Content="Deliverer" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,2" FontWeight="Bold" Foreground="#2C61EC"/>
+                    <Label Grid.Column="6" Content="Status" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0" Margin="0,0,0,2" FontWeight="Bold" Foreground="#2C61EC"/>
                 </Grid>
 
                 <!--Fields-->
-                <Grid Grid.Row="1" DataContext="{Binding SelectedOrder, Mode=TwoWay}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="125"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="100"/>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="100*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Name="blockField"  Width="75" Text="{Binding block}"/>
-                    <TextBox Grid.Column="1" Name="lotField"  Width="75" Text="{Binding lot}"/>
-                    <TextBox Grid.Column="2" Name="phaseField"  Width="75" Text="{Binding phase}"/>
-                    <ComboBox Grid.Column="3" Name="productTypeCombo"
-                  DisplayMemberPath="product_desc"
-                  SelectedValuePath="code"
-                  SelectedValue="{Binding product_code, Mode=TwoWay}"/>
-                    <TextBox Grid.Column="4" Name="quantityField"  Width="75" Text="{Binding quantity}"/>
-                    <ComboBox Grid.Column="5" Name="delivererCombo"  Width="75"
-                  SelectedValue="{Binding deliverer_id, Mode=TwoWay}"
-                  DisplayMemberPath="employee_name"
-                  SelectedValuePath="id"/>
-                    <ComboBox Grid.Column="6" Name="statusCombo" 
-                  SelectedValue="{Binding status, Mode=TwoWay}"
+                <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" DataContext="{Binding SelectedOrder, Mode=TwoWay}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="125"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="160"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Name="blockField" Text="{Binding block}" Width="50" TextAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" Tag="Block" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000" BorderBrush="#2C61EC" BorderThickness="1"/>
+                        <TextBox Grid.Column="1" Width="50" Name="lotField" Text="{Binding lot}" TextAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" Tag="Lot" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000" BorderBrush="#2C61EC"/>
+                        <TextBox Grid.Column="2" Width="50" Name="phaseField" Text="{Binding phase}" TextAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" Tag="Phase" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000" BorderBrush="#2C61EC"/>
+                        <ComboBox Grid.Column="3" Name="productTypeCombo" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" DisplayMemberPath="product_desc" SelectedValuePath="code" SelectedValue="{Binding product_code, Mode=TwoWay}"
+                          SelectionChanged="ComboBox_SelectionChanged" Tag="Product Type"
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000" BorderBrush="#2C61EC" TextElement.Foreground="#2e4070" />
+                        <TextBox Grid.Column="4" Name="quantityField" Text="{Binding quantity}" Width="50" TextAlignment="Center" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" Tag="Quantity" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000" BorderBrush="#2C61EC"/>
+                        <ComboBox Grid.Column="5" Name="delivererCombo" SelectedValue="{Binding deliverer_id, Mode=TwoWay}" DisplayMemberPath="employee_name" SelectedValuePath="id" Width="90" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                           SelectionChanged="ComboBox_SelectionChanged" Tag="Deliverer" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000" BorderBrush="#2C61EC" TextElement.Foreground="#2e4070" />
+                        <ComboBox Grid.Column="6" Name="statusCombo" SelectedValue="{Binding status, Mode=TwoWay}"
                   DisplayMemberPath="status_desc"
-                  SelectedValuePath="code"/>
-                    <StackPanel Grid.Column="7">
-                        <Button Name="submitButton" Content="Submit" Click="SubmitButtonClick" FontWeight="Bold" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Width="100"/>
-                        <Button Name="cancelButton" Content="Cancel" Click="CancelButtonClick" FontWeight="Bold" Background="Red" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Width="100"/>
+                  SelectedValuePath="code" Width="140" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                         SelectionChanged="ComboBox_SelectionChanged" Tag="Status" 
+                         ToolTipService.InitialShowDelay="0" ToolTipService.ShowDuration="2000" TextElement.Foreground="#2e4070"/>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="2" Margin="0 20 0 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Border Margin="0 0 10 0">
+                            <Button Name="submitButton" Content="Submit" Click="SubmitButtonClick" Width="100" Style="{StaticResource RoundedButtonStyle}"/>
+                        </Border>
+                        <Border Margin="10 0 0 0">
+                            <Button Name="cancelButton" Content="Cancel" Click="CancelButtonClick" Width="100"  Style="{StaticResource CancelButton}"/>
+                        </Border>
                     </StackPanel>
                 </Grid>
             </Grid>

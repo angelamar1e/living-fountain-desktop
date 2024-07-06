@@ -14,12 +14,14 @@ namespace Living_Fountain
     {
         public Living_Fountain.Models.order SelectedOrder { get; set; }
         public Sales sales = new Sales(OrderHelper.GetCurrentDate());
+
+        public FrameworkElement[] orderFields = new FrameworkElement[7];
         public Edit_Order(int id)
         {
             InitializeComponent();
 
             // to display order id on edit order title
-            orderId.Text = id.ToString();
+            orderId.Text = " #" + id.ToString();
             
             // retrieving data with id
             LoadData(id);
@@ -93,18 +95,30 @@ namespace Living_Fountain
 
         private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {
-            SaveChanges();
-            MessageBox.Show("Order updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            orderFields[0] = blockField;
+            orderFields[1] = lotField;
+            orderFields[2] = phaseField;
+            orderFields[3] = productTypeCombo;
+            orderFields[4] = quantityField;
+            orderFields[5] = delivererCombo;
+            orderFields[6] = statusCombo;
 
-            // Access the parent Frame (MainFrame)
-            Frame parentFrame = NavigationHelper.FindParentFrame(this);
-
-            if (parentFrame != null)
+            if (DataValidationHelper.ValidNewOrder(orderFields)) // check the validity of inputs first before proceeding to add
             {
-                // Navigate MainFrame to Edit_Order.xaml with the id parameter
-                parentFrame.NavigationService.Navigate(new Sales(OrderHelper.GetDateOnly(SelectedOrder.date)));
+                    SaveChanges();
+
+                    MessageBox.Show("Order edited successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+                    // Access the parent Frame (MainFrame)
+                    Frame parentFrame = NavigationHelper.FindParentFrame(this);
+
+                    if (parentFrame != null)
+                    {
+                        // Navigate MainFrame to Edit_Order.xaml with the id parameter
+                        parentFrame.NavigationService.Navigate(new Sales(OrderHelper.GetDateOnly(SelectedOrder.date)));
+                    }
+                }
             }
-        }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
@@ -116,6 +130,15 @@ namespace Living_Fountain
                 // Navigate MainFrame to Edit_Order.xaml with the id parameter
                 parentFrame.NavigationService.Navigate(new Sales(OrderHelper.GetDateOnly(SelectedOrder.date)));
             }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DataValidationHelper.ValidateInput(sender as FrameworkElement);
+        }
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataValidationHelper.ValidateInput(sender as FrameworkElement);
         }
     }
 

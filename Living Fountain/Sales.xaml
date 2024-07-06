@@ -39,6 +39,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+
     </Page.Resources>
 
     <Grid Background="AliceBlue">
@@ -147,7 +149,7 @@
             </Border>
 
             <!--Table details-->
-            <Border Grid.Row="3" Width="800" Background="#6d89d7" CornerRadius="10">
+            <Border Grid.Row="3" Width="760" Background="#6d89d7" CornerRadius="10">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
                 </Border.Effect>
@@ -170,12 +172,12 @@
             </Border>
 
             <!--textblock in case of no records found-->
-            <Border Grid.Row="4" x:Name="noRecordsViewer" CornerRadius="10" Background="#6d89d7" Width="800" Height="260" Visibility="Hidden">
+            <Border Grid.Row="4" x:Name="noRecordsViewer" CornerRadius="10" Background="#6d89d7" Width="760" Height="260" Visibility="Hidden">
                 <TextBlock Name="noRecords" Grid.Row="4" Foreground="AliceBlue" FontSize="15" FontWeight="Bold" Margin="30,40,0,10">No order records found.</TextBlock>
             </Border>
             
             <!--Table-->
-            <Border Grid.Row="4" x:Name="OrderRecordsViewer" CornerRadius="10" Background="#6d89d7" Width="800" Height="260">
+            <Border Grid.Row="4" x:Name="OrderRecordsViewer" CornerRadius="10" Background="#6d89d7" Width="760" Height="260">
                 <Border.Effect>
                     <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
                 </Border.Effect>
@@ -233,7 +235,7 @@
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
 
-                            <DataGridTemplateColumn Header="Product" Width="100">
+                            <DataGridTemplateColumn Header="Product" Width="120">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding product_codeNavigation.product_desc}" Style="{StaticResource CellContent}"/>
@@ -271,15 +273,15 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="Actions" Width="120">
+                            <DataGridTemplateColumn Header="Actions" Width="130">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" Width="100">
+                                    <StackPanel Orientation="Horizontal" Width="110" HorizontalAlignment="Center">
                                         <!-- Edit button -->
-                                        <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" FontWeight="Bold" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Tag="{Binding id}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <Button x:Name="editBtn" Content="Edit" Click="EditButtonClick" Margin="2" FontSize="12" Width="50" BorderBrush="Transparent" BorderThickness="0" Tag="{Binding id}" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource ResourceKey=RoundedButtonStyle}"/>
 
                                         <!-- Delete button -->
-                                        <Button x:Name="deleteBtn" Content="Delete" Click="DeleteButtonClick" Margin="2" FontWeight="Bold" Background="#2C61EC" Foreground="White" BorderBrush="Transparent" BorderThickness="0" Tag="{Binding id}" />
+                                            <Button x:Name="deleteBtn" Content="Delete" Click="DeleteButtonClick" Margin="2" FontSize="12" Width="50" BorderBrush="Transparent" BorderThickness="0" Style="{StaticResource ResourceKey=RoundedButtonStyle}" Tag="{Binding id}" />
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
