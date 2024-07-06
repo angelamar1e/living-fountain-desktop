@@ -184,22 +184,22 @@ namespace Living_Fountain
 
             if (UnpaidDeliveries.Count == 0)
             {
-                unpaidDeliveries.Visibility = Visibility.Hidden;
+                unpaidDeliveriesViewer.Visibility = Visibility.Hidden;
                 noUnpaid.Visibility = Visibility.Visible;
             }
             else
             {
-                unpaidDeliveries.Visibility = Visibility.Visible;
+                unpaidDeliveriesViewer.Visibility = Visibility.Visible;
             }
 
             if (UndeliveredOrders.Count == 0)
             {
-                undeliveredOrders.Visibility = Visibility.Hidden;
+                undeliveredOrdersViewer.Visibility = Visibility.Hidden;
                 noUndelivered.Visibility = Visibility.Visible;
             }
             else
             {
-                undeliveredOrders.Visibility = Visibility.Visible;
+                undeliveredOrdersViewer.Visibility = Visibility.Visible;
             }
         }
     }

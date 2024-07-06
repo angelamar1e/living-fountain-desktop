@@ -157,7 +157,7 @@
                             <!--no records found-->
                             <TextBlock Grid.Row="1" Name="noUnpaid" FontWeight="Bold" Visibility="Hidden" Margin="30,20,0,10" Foreground="AliceBlue">No deliveries unpaid today.</TextBlock>
                             <!--table-->
-                            <Border Grid.Row="1" Background="#7498c4" Width="615" CornerRadius="10" Margin="0 0 0 20">
+                            <Border Grid.Row="1" Name="unpaidDeliveriesViewer" Background="#7498c4" Width="615" CornerRadius="10" Margin="0 0 0 20">
                                 <DataGrid Grid.Row="1" Name="unpaidDeliveries" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="5 10 5 10"  ItemsSource="{Binding UnpaidDeliveries}">
                                     <DataGrid.Columns>
                                         <DataGridTemplateColumn Header="Block" Width="60">
@@ -237,7 +237,7 @@
                             <!--no records found-->
                             <TextBlock Grid.Row="1" Name="noUndelivered" FontWeight="Bold" Visibility="Hidden" Margin="30,20,0,10" Foreground="AliceBlue" >No orders undelivered today.</TextBlock>
                             <!--table-->
-                                <Border Grid.Row="1" Background="#669dd4" Width="640" CornerRadius="10" Margin="0 0 0 20">
+                            <Border Grid.Row="1" Name="undeliveredOrdersViewer" Background="#669dd4" Width="640" CornerRadius="10" Margin="0 0 0 20">
                                     <DataGrid Grid.Row="1" Name="undeliveredOrders" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="5 10 5 10"  ItemsSource="{Binding UndeliveredOrders}">
 
                                         <DataGrid.Columns>

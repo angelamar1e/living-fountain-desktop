@@ -108,13 +108,13 @@ namespace Living_Fountain
         {
             if (Orders.Count == 0)
             {
-                OrderRecords.Visibility = Visibility.Hidden;
-                noRecords.Visibility = Visibility.Visible;
+                OrderRecordsViewer.Visibility = Visibility.Hidden;
+                noRecordsViewer.Visibility = Visibility.Visible;
             }
             else
             {
-                OrderRecords.Visibility = Visibility.Visible;
-                noRecords.Visibility = Visibility.Hidden;
+                OrderRecordsViewer.Visibility = Visibility.Visible;
+                noRecordsViewer.Visibility = Visibility.Hidden;
             }
         }
 
