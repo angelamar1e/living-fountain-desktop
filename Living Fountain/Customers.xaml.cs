@@ -107,14 +107,14 @@ namespace Living_Fountain
 
         private void CountRecords()
         {
-            if (customerLastOrders is null)
+            if (customerLastOrders.Count == 0)
             {
-                customerRecords.Visibility = Visibility.Hidden;
-                noRecords.Visibility = Visibility.Visible;
+                customerRecordsViewer.Visibility = Visibility.Hidden;
+                noRecordsViewer.Visibility = Visibility.Visible;
             }
             else
             {
-                customerRecords.Visibility = Visibility.Visible;
+                customerRecordsViewer.Visibility = Visibility.Visible;
             }
         }
 

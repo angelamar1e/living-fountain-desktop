@@ -5,100 +5,202 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Living_Fountain"
       mc:Ignorable="d" 
+        FontFamily ="./fonts/#SF Pro Text Medium"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Customers">
 
-    <Grid Background="White">
+    <Page.Resources>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <!-- Optional: Set default properties for the button -->
+            <Setter Property="Background" Value="#6d89d7"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="40"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#2C61EC"/>
+                    <Setter Property="Foreground" Value="AliceBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
+            <!--headline-->
+            <RowDefinition Height="100"/>
+            <!--body-->
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <!--headline-->
+        <Border Background="AliceBlue">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+            </Border.Effect>
         <Grid>
             <Grid.ColumnDefinitions>
+                <!--title-->
                 <ColumnDefinition Width="50*"/>
+                <!--search-->
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Customer Activity" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,20,0,0" Foreground="#2c61ec"/>
+            <!--title-->
+                <TextBlock Text="Customer Activity" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,20,0,10" FontSize="40" FontWeight="Bold" Foreground="#2C61EC"/>
+            <!--search-->
             <Grid Grid.Column="1">
                 <Grid HorizontalAlignment="Center" Width="300">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="103*"/>
-                        <ColumnDefinition Width="47*"/>
+                         <!--search labels, fields-->
+                        <ColumnDefinition Width="200"/>
+                        <!--search button-->
+                        <ColumnDefinition Width="100"/>
                     </Grid.ColumnDefinitions>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50*"/>
-                            <RowDefinition Height="50*"/>
+                            <!--labels-->
+                            <RowDefinition Height="50"/>
+                            <!--fields-->
+                            <RowDefinition Height="30"/>
                         </Grid.RowDefinitions>
-                        <Grid Margin="0,0,-24,36" Grid.RowSpan="2">
+                        <!--labels-->
+                        <Grid VerticalAlignment="Bottom" Margin="0 15 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="60"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="Block" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="SemiBold" Width="46"/>
-                            <Label Grid.Column="1" Content="Lot" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="SemiBold" Margin="24,0,0,0" Width="32"/>
-                            <Label Grid.Column="2" Content="Phase" HorizontalAlignment="Center" VerticalAlignment="Top" FontWeight="SemiBold" Width="44" Margin="24,11,0,0" Foreground="Black"/>
+                                <Label Content="Block" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="#2C61EC"/>
+                                <Label Grid.Column="1" Content="Lot" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="5 0 5 0" Foreground="#2C61EC"/>
+                                <Label Grid.Column="2" Content="Phase" FontWeight="SemiBold" Foreground="#2C61EC" HorizontalAlignment="Center" />
                         </Grid>
+                        <!--fields-->
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="51.2"/>
-                                <ColumnDefinition Width="8.8"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Name="blockField" Margin="0,10,0,0"/>
-                            <TextBox Grid.Column="1" Name="lotField" RenderTransformOrigin="0.432,0.555" Grid.ColumnSpan="2" Margin="10,10,41,0"/>
-                            <TextBox Grid.Column="2" Name="phaseField" Margin="19,10,-19,0" Grid.ColumnSpan="2"/>
+                                <ColumnDefinition Width="60"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Name="blockField" Margin="5 0 5 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#2C61EC" TextElement.Foreground="#2e4070"/>
+                                <TextBox Grid.Column="1" Name="lotField" Margin="5 0 5 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#2C61EC" TextElement.Foreground="#2e4070"/>
+                                <TextBox Grid.Column="2" Name="phaseField" Margin="5 0 5 0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderBrush="#2C61EC" TextElement.Foreground="#2e4070"/>
                         </Grid>
                     </Grid>
-                    <Grid Grid.Column="1" HorizontalAlignment="Center" Width="60">
-                        <Button x:Name="searchButton" Content="Search" Click="SearchButtonClick" Width="60" Margin="0,37,0,0" Background="#FF2C61EC" Foreground="White" FontWeight="Medium" BorderBrush="#FFF0F0F0"/>
+                    <!--search button-->
+                    <Grid Grid.Column="1" HorizontalAlignment="Left" >
+                            <Button x:Name="searchButton" Content="Search" Click="SearchButtonClick" FontWeight="Medium" Style="{StaticResource RoundedButtonStyle}"/>
                     </Grid>
                 </Grid>
             </Grid>
         </Grid>
-        <TextBlock Grid.Row="1" Name="noRecords" Visibility="Hidden">No customers found.</TextBlock>
-        <Grid Grid.Row="1" Height="700">
-            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged" Width="650" Margin="0,50" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Block" Width="150" Binding="{Binding Customer.block}"/>
-                    <DataGridTextColumn Header="Lot" Width="150" Binding="{Binding Customer.lot}"/>
-                    <DataGridTextColumn Header="Phase" Width="150" Binding="{Binding Customer.phase}"/>
-                    <DataGridTextColumn Header="Last Order Date" Width="200" Binding="{Binding LastOrderDate}"/>
-                </DataGrid.Columns>
+        </Border>
+
+        <Border Grid.Row="1" Background="#6587b1" CornerRadius="10" Width="500" Height="40" Margin="0 20 0 0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
+            </Border.Effect>
+            <TextBlock FontSize="20" Padding="10" Foreground="AliceBlue">Select a customer to view.</TextBlock>
+        </Border>
+
+        <Border Grid.Row="2" Name="noRecordsViewer" Background="#6587b1" CornerRadius="10" Width="500" Height="530" Visibility="Hidden">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
+            </Border.Effect>
+            <TextBlock Grid.Row="2" Foreground="AliceBlue" Name="noRecords" FontSize="20" Margin="30 30 0 0">No customers found.</TextBlock>
+        </Border>
+
+        <Border Grid.Row="2" Name="customerRecordsViewer" Background="#6587b1" CornerRadius="10" Width="500" Height="500">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
+            </Border.Effect>
+            <ScrollViewer Grid.Row="2" MaxHeight="500" VerticalScrollBarVisibility="Auto" Margin="20">
+            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged" Width="400" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2">
 
                 <DataGrid.Resources>
-                    <!-- Style for DataGrid Headers -->
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#2c61ec"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
-                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                    </Style>
-
-                    <!-- Style for DataGrid Rows -->
+                    <!-- Style for DataGridRow -->
                     <Style TargetType="DataGridRow">
-                        <Setter Property="FontSize" Value="12"/>
-                        <Setter Property="MinHeight" Value="30"/>
+                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="MinHeight" Value="25"/>
                         <Setter Property="Background" Value="White"/>
                         <Setter Property="Foreground" Value="#FF343D53"/>
                         <Setter Property="FontWeight" Value="DemiBold"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="AliceBlue"/>
+                                    <Setter Property="Background" Value="#6587b1"/>
+                                </Trigger>
+                            </Style.Triggers>
+                     </Style>
+
+                    <Style TargetType="TextBlock" x:Key="CellContent">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
                     </Style>
 
-                    <!-- Style for DataGrid Cells -->
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Padding" Value="8"/>
-                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                    <!-- Style for DataGridColumnHeader -->
+                    <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="Padding" Value="8"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Foreground" Value="#6587b1"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="35"/>
                     </Style>
                 </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Block" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Customer.block}" Style="{StaticResource CellContent}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Lot" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Customer.lot}" Style="{StaticResource CellContent}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Phase" Width="80">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Customer.phase}" Style="{StaticResource CellContent}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Header="Last Order Date" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                    <TextBlock Text="{Binding LastOrderDate, StringFormat={}{0:MMM d, yyyy}}" Style="{StaticResource CellContent}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
-        </Grid>
+        </ScrollViewer>
+        </Border>
     </Grid>
 </Page>
