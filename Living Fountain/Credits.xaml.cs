@@ -1,10 +1,12 @@
 ﻿using Living_Fountain.Helpers;
 using Living_Fountain.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace Living_Fountain
 {
@@ -52,14 +54,56 @@ namespace Living_Fountain
         {
             foreach (var group in groupedData)
             {
+                var border = new Border
+                {
+                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#396cae")),
+                    Width = 600,
+                    CornerRadius = new CornerRadius(10),
+                    Margin = new Thickness(0, 0, 0, 20),
+                    Padding = new Thickness(10),
+                    Effect = new DropShadowEffect
+                    {
+                        Color = Colors.Gray,
+                        BlurRadius = 10,
+                        Opacity = 0.1,
+                        Direction = 290
+                    }
+                };
+                
+                var recordContainer = new StackPanel
+                {
+                    Orientation = Orientation.Vertical,
+                };
+                
+                border.Child = recordContainer;
+
                 // Add a label for the date
                 var dateLabel = new TextBlock
                 {
-                    Text = group.Key.ToString("MMMM dd, yyyy"), // Format the date as desired
+                    Text = group.Key.ToString("MMMM d, yyyy"), // Format the date as desired
                     FontWeight = FontWeights.Bold,
-                    Margin = new Thickness(10)
+                    Margin = new Thickness(10),
+                    Foreground = new SolidColorBrush(Colors.AliceBlue),
+                    FontSize = 20
                 };
-                dataGridContainer.Children.Add(dateLabel);
+
+                recordContainer.Children.Add(dateLabel);
+
+                var gridBorder = new Border
+                {
+                    Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4e78ae")),
+                    Width = 580,
+                    CornerRadius = new CornerRadius(10)
+                };
+
+                recordContainer.Children.Add(gridBorder);
+
+                var dataGridContainer = new StackPanel
+                {
+                    Orientation = Orientation.Vertical
+                };
+
+                gridBorder.Child = dataGridContainer;
 
                 // Create and bind the DataGrid
                 var dataGrid = new DataGrid
@@ -67,8 +111,12 @@ namespace Living_Fountain
                     AutoGenerateColumns = false,
                     ItemsSource = group.Value,
                     Margin = new Thickness(10),
-                    CanUserAddRows = false
+                    CanUserAddRows = false,
+                    HorizontalGridLinesBrush = new SolidColorBrush(Colors.LightGray),
+                    VerticalGridLinesBrush = new SolidColorBrush(Colors.LightGray)
                 };
+
+                DataGridStyle(dataGrid);
 
                 var columns = new List<(string Header, string Binding)>
                 {
@@ -84,15 +132,28 @@ namespace Living_Fountain
                 // Add columns using a loop
                 foreach (var column in columns)
                 {
-                    var col = new DataGridTextColumn
+                    var col = new DataGridTemplateColumn
                     {
-                        Header = column.Header,
-                        Binding = new Binding(column.Binding)
+                        Header = column.Header
                     };
 
+                    // Create DataTemplate for the cell
+                    FrameworkElementFactory textBlockFactory = new FrameworkElementFactory(typeof(TextBlock));
+                    textBlockFactory.SetBinding(TextBlock.TextProperty, new Binding(column.Binding));
+                    textBlockFactory.SetValue(TextBlock.StyleProperty, dataGrid.Resources["CellContent"]);
+
+                    DataTemplate cellTemplate = new DataTemplate
+                    {
+                        VisualTree = textBlockFactory
+                    };
+
+                    col.CellTemplate = cellTemplate;
+
+                    // If the column is "Price", apply string formatting
                     if (column.Header == "Price")
                     {
-                        col.Binding.StringFormat = "₱{0:N0}";
+                        var binding = new Binding(column.Binding) { StringFormat = "₱{0:N0}" };
+                        textBlockFactory.SetBinding(TextBlock.TextProperty, binding);
                     }
 
                     dataGrid.Columns.Add(col);
@@ -107,6 +168,7 @@ namespace Living_Fountain
                 dataGrid.Columns.Add(checkBoxColumn);
 
                 dataGridContainer.Children.Add(dataGrid);
+                container.Children.Add(border);
             }
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -150,8 +212,39 @@ namespace Living_Fountain
         {
             if (Credit.Count == 0)
             {
-                noRecords.Visibility = Visibility.Visible;
+                noRecordsViewer.Visibility = Visibility.Visible;
             }
+        }
+
+        private void DataGridStyle(DataGrid dataGrid)
+        {
+            // Create Style for DataGridRow
+            Style dataGridRowStyle = new Style(typeof(DataGridRow));
+            dataGridRowStyle.Setters.Add(new Setter(DataGridRow.FontSizeProperty, 12.0));
+            dataGridRowStyle.Setters.Add(new Setter(DataGridRow.VerticalAlignmentProperty, VerticalAlignment.Center));
+            dataGridRowStyle.Setters.Add(new Setter(DataGridRow.MinHeightProperty, 25.0));
+            dataGridRowStyle.Setters.Add(new Setter(DataGridRow.BackgroundProperty, Brushes.White));
+            dataGridRowStyle.Setters.Add(new Setter(DataGridRow.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF343D53"))));
+            dataGridRowStyle.Setters.Add(new Setter(DataGridRow.FontWeightProperty, FontWeights.DemiBold));
+
+            // Create Style for TextBlock with x:Key="CellContent"
+            Style textBlockStyle = new Style(typeof(TextBlock));
+            textBlockStyle.Setters.Add(new Setter(TextBlock.HorizontalAlignmentProperty, HorizontalAlignment.Center));
+            textBlockStyle.Setters.Add(new Setter(TextBlock.VerticalAlignmentProperty, VerticalAlignment.Center));
+            textBlockStyle.Setters.Add(new Setter(TextBlock.PaddingProperty, new Thickness(8.0)));
+
+            // Create Style for DataGridColumnHeader
+            Style dataGridColumnHeaderStyle = new Style(typeof(DataGridColumnHeader));
+            dataGridColumnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.PaddingProperty, new Thickness(8)));
+            dataGridColumnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.FontWeightProperty, FontWeights.Bold));
+            dataGridColumnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.ForegroundProperty, new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6587b1"))));
+            dataGridColumnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.HorizontalContentAlignmentProperty, HorizontalAlignment.Center));
+            dataGridColumnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.VerticalContentAlignmentProperty, VerticalAlignment.Center));
+            dataGridColumnHeaderStyle.Setters.Add(new Setter(DataGridColumnHeader.HeightProperty, 35.0));
+
+            dataGrid.Resources.Add(typeof(DataGridRow), dataGridRowStyle);
+            dataGrid.Resources.Add("CellContent", textBlockStyle);
+            dataGrid.Resources.Add(typeof(DataGridColumnHeader), dataGridColumnHeaderStyle);
         }
     }
 }

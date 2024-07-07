@@ -5,22 +5,37 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Living_Fountain"
       mc:Ignorable="d" 
+      FontFamily ="./fonts/#SF Pro Text Medium"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Credits">
     <Page.Resources>
         <DataTemplate x:Key="CheckBoxCellTemplate">
-            <CheckBox Checked="CheckBox_Checked"/>
+            <CheckBox Checked="CheckBox_Checked" HorizontalAlignment="Center" VerticalAlignment="Center"/> 
         </DataTemplate>
     </Page.Resources>
-    <Grid Background="White">
+    <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="500"/>
+            <!--headline-->
+            <RowDefinition Height="100"/>
+            <!--body-->
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="25" FontWeight="Bold" Foreground="#2C61EC">Credits</TextBlock>
-        <ScrollViewer Grid.Row="1">
-            <StackPanel x:Name="dataGridContainer" Orientation="Vertical">
-                <TextBlock x:Name="noRecords" Visibility="Hidden" FontWeight="Bold" Margin="20,10,0,10">No credits recorded. All orders are paid.</TextBlock>
+        
+        <!--headline - title-->
+        <Border Background="AliceBlue">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+            </Border.Effect>
+            <TextBlock VerticalAlignment="Center" Margin="20,20,0,10" FontSize="40" FontWeight="Bold" Foreground="#396cae">Credits</TextBlock>
+        </Border>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="container" Orientation="Vertical">
+                <Border Background="#396cae" CornerRadius="10" Width="600" x:Name="noRecordsViewer" Visibility="Hidden">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
+                    </Border.Effect>
+                    <TextBlock x:Name="noRecords" FontWeight="Bold" Foreground="AliceBlue" FontSize="16" Margin="20,10,0,10">No credits recorded. All orders are paid.</TextBlock>
+                </Border>
             </StackPanel>
         </ScrollViewer>
     </Grid>
