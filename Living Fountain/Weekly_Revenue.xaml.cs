@@ -55,83 +55,75 @@ namespace Living_Fountain
 
                 foreach (var weekRevenue in revenueByWeek)
                 {
-                    var revenueGrid = new Grid();
-
-                    for (var x = 0; x <= 2; x++)
-                    {
-                        revenueGrid.ColumnDefinitions.Add(new ColumnDefinition
-                        {
-                            Width = new GridLength(50, GridUnitType.Star)
-                        });
-                    }
-
-                    container.Children.Add(revenueGrid);
-
-                    var week = new TextBlock
-                    {
-                        Text = weekRevenue.StartDate.ToString("MMM d, yyyy") + " to " + weekRevenue.EndDate.ToString("MMM d, yyyy"),
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Margin = new System.Windows.Thickness(150, 5, -125, 0),
-                        FontWeight = FontWeights.SemiBold
-                    };
-
-                    revenueGrid.Children.Add(week);
-                    
-                    var outerRectangleContainer = new Grid
-                    {
-                        Width = 250,
-                        Height = 50,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Margin = new System.Windows.Thickness(15)
-                    };
-
-                    var outerRectangle = new Rectangle
-                    {
-                        Width = outerRectangleContainer.Width + 250,
-                        Height = outerRectangleContainer.Height,
-                        Stroke = new SolidColorBrush(Colors.Black),
-                        StrokeThickness = 1,
-                        RadiusX = 10,
-                        RadiusY = 10,
-                        Margin = new System.Windows.Thickness(0, 5, 0, 5)
-                    };
-
-                    Grid.SetColumnSpan(outerRectangle, 3); 
-                    revenueGrid.Children.Add(outerRectangle);
-
-                    var rectangleContainer = new Grid
-                    {
-                        Width = 100,
-                        Height = 50, 
-                        VerticalAlignment = VerticalAlignment.Center,
-                        Margin = new System.Windows.Thickness(5)
-                    };
-
-                    var rectangle = new Rectangle
-                    {
-                        Fill = new SolidColorBrush(Color.FromRgb(44, 97, 236)),
-                        Width = rectangleContainer.Width - 10,
-                        Height = rectangleContainer.Height - 10,
-                        RadiusX = 8,
-                        RadiusY = 8,
-                        Margin = new System.Windows.Thickness(5)
-                    };
-
-                    var revenue = new TextBlock
-                    {
-                        Text = weekRevenue.TotalRevenue.ToString("C"),
-                        Foreground = new SolidColorBrush(Colors.White),
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Center
-                    };
-
-                    rectangleContainer.Children.Add(rectangle);
-                    rectangleContainer.Children.Add(revenue);
-
-                    Grid.SetColumn(rectangleContainer, 2);
-                    revenueGrid.Children.Add(rectangleContainer);
+                    CreateRevenueGrid(weekRevenue.StartDate.ToString("MMM d, yyyy") + " to " + weekRevenue.EndDate.ToString("MMM d, yyyy"), weekRevenue.TotalRevenue.ToString("₱#,0"));
                 }
             }
+        }
+
+        private void CreateRevenueGrid(string period, string totalRevenue)
+        {
+            var border = new Border()
+            {
+                CornerRadius = new CornerRadius(10),
+                BorderBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1e90bf")),
+                BorderThickness = new Thickness(1),
+                Margin = new Thickness(10),
+                Padding = new Thickness(10),
+                Width = 450
+
+            };
+
+            var revenueGrid = new Grid();
+
+            revenueGrid.ColumnDefinitions.Add(new ColumnDefinition
+            {
+                Width = new GridLength(250)
+            });
+
+            revenueGrid.ColumnDefinitions.Add(new ColumnDefinition
+            {
+                Width = new GridLength(200)
+            });
+
+            border.Child = revenueGrid;
+
+            var week = new TextBlock
+            {
+                Text = period,
+                Foreground = new SolidColorBrush(Colors.AliceBlue),
+                TextAlignment = TextAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                FontWeight = FontWeights.SemiBold,
+                FontSize = 16,
+                Width = 250
+            };
+
+            revenueGrid.Children.Add(week);
+            Grid.SetColumn(week, 0);
+
+            var revenueBorder = new Border
+            {
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#1e90bf")),
+                CornerRadius = new CornerRadius(10),
+                Width = 100
+            };
+
+            var revenue = new TextBlock
+            {
+                Text = totalRevenue,
+                Foreground = new SolidColorBrush(Colors.White),
+                TextAlignment = TextAlignment.Center,
+                Padding = new Thickness(5),
+                FontSize = 20,
+                Width = 100
+            };
+
+            revenueBorder.Child = revenue;
+
+            revenueGrid.Children.Add(revenueBorder);
+            Grid.SetColumn(revenueBorder, 1);
+
+            container.Children.Add(border);
         }
     }
 }
