@@ -30,7 +30,7 @@
         </Border>
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="container" Orientation="Vertical">
-                <Border Background="#396cae" CornerRadius="10" Width="600" x:Name="noRecordsViewer" Visibility="Hidden">
+                <Border Background="#396cae" CornerRadius="10" Width="600" x:Name="noRecordsViewer" Visibility="Hidden" Margin="0 50 0 0">
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
                     </Border.Effect>
