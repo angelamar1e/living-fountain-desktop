@@ -45,8 +45,9 @@
         <Grid.RowDefinitions>
             <!--headline-->
             <RowDefinition Height="100"/>
-            <!--body-->
+            <!--instruction-->
             <RowDefinition Height="Auto"/>
+            <!--body - table-->
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <!--headline-->
@@ -62,7 +63,7 @@
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
             <!--title-->
-                <TextBlock Text="Customer Activity" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,20,0,10" FontSize="40" FontWeight="Bold" Foreground="#2C61EC"/>
+                <TextBlock Text="Customer Activity" VerticalAlignment="Center" Margin="20,20,0,10" FontSize="40" FontWeight="Bold" Foreground="#6587b1"/>
             <!--search-->
             <Grid Grid.Column="1">
                 <Grid HorizontalAlignment="Center" Width="300">
@@ -111,98 +112,102 @@
         </Grid>
         </Border>
     
-        
-        <Border Grid.Row="1" Background="#6587b1" CornerRadius="10" Width="500" Height="40" Margin="0 20 0 0">
+        <!--instruction-->
+        <Border Grid.Row="1" Background="#6587b1" CornerRadius="10" Width="460" Height="40" Margin="0 20 0 0">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
             </Border.Effect>
             <TextBlock FontSize="20" Padding="50 10" Foreground="AliceBlue">Select a customer to view.</TextBlock>
         </Border>
 
-        <Border Grid.Row="2" Name="noRecordsViewer" Background="#6587b1" CornerRadius="10" Width="500" Height="530" Visibility="Hidden">
+        <!--in case of no records-->
+        <Border Grid.Row="2" Name="noRecordsViewer" Background="#6587b1" CornerRadius="10" Width="460" Height="500" Visibility="Hidden">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
             </Border.Effect>
             <TextBlock Grid.Row="2" Foreground="AliceBlue" Name="noRecords" FontSize="20" Margin="30 30 0 0">No customers found.</TextBlock>
         </Border>
 
-        <Border Grid.Row="2" Name="customerRecordsViewer" Background="#6587b1" CornerRadius="10" Width="500" Height="500">
+        <!--body - table-->
+        <Border Grid.Row="2" Name="customerRecordsViewer" Background="#6587b1" CornerRadius="10" Width="460" Height="500" Margin="0 20 0 0">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
             </Border.Effect>
-            <ScrollViewer Grid.Row="2" MaxHeight="500" VerticalScrollBarVisibility="Auto" Margin="20">
-            <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged" Width="400" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2">
+            <Border Background="#749ccc" CornerRadius="10" Width="430" Height="470">
+                <ScrollViewer Grid.Row="2" MaxHeight="500" VerticalScrollBarVisibility="Auto" Margin="10">
+                    <DataGrid Name="customerRecords" AutoGenerateColumns="False" CanUserAddRows="False" SelectionChanged="CustomerRecords_SelectionChanged" Width="400" ScrollViewer.HorizontalScrollBarVisibility="Hidden" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2">
 
-                <DataGrid.Resources>
-                    <!-- Style for DataGridRow -->
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="FontSize" Value="16"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="MinHeight" Value="25"/>
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="Foreground" Value="#FF343D53"/>
-                            <Setter Property="FontWeight" Value="DemiBold"/>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Foreground" Value="AliceBlue"/>
-                                    <Setter Property="Background" Value="#6587b1"/>
-                                </Trigger>
-                            </Style.Triggers>
-                     </Style>
+                        <DataGrid.Resources>
+                            <!-- Style for DataGridRow -->
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="MinHeight" Value="25"/>
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="#FF343D53"/>
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="AliceBlue"/>
+                                        <Setter Property="Background" Value="#6587b1"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
 
-                    <Style TargetType="TextBlock" x:Key="CellContent">
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                        <Setter Property="Padding" Value="4"/>
-                    </Style>
+                            <Style TargetType="TextBlock" x:Key="CellContent">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="4"/>
+                            </Style>
 
-                    <!-- Style for DataGridColumnHeader -->
-                    <Style TargetType="DataGridColumnHeader">
-                            <Setter Property="FontSize" Value="16"/>
-                            <Setter Property="Padding" Value="8"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Foreground" Value="#6587b1"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="Height" Value="35"/>
-                    </Style>
-                </DataGrid.Resources>
+                            <!-- Style for DataGridColumnHeader -->
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Padding" Value="8"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Foreground" Value="#6587b1"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                            </Style>
+                        </DataGrid.Resources>
 
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn Header="Block" Width="80">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Customer.block}" Style="{StaticResource CellContent}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Block" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Customer.block}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Lot" Width="80">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Customer.lot}" Style="{StaticResource CellContent}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Lot" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Customer.lot}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Phase" Width="80">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Customer.phase}" Style="{StaticResource CellContent}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Phase" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Customer.phase}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
 
-                    <DataGridTemplateColumn Header="Last Order Date" Width="150">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                    <TextBlock Text="{Binding LastOrderDate, StringFormat={}{0:MMM d, yyyy}}" Style="{StaticResource CellContent}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </ScrollViewer>
+                            <DataGridTemplateColumn Header="Last Order Date" Width="150">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding LastOrderDate, StringFormat={}{0:MMM d, yyyy}}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+            </Border>
         </Border>
     </Grid>
 </Page>
