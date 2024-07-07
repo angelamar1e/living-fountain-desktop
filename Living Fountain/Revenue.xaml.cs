@@ -23,16 +23,37 @@ namespace Living_Fountain
         public Revenue()
         {
             InitializeComponent();
+            revenueFrame.Content = new Weekly_Revenue();
+            SelectButton(weekly);
         }
 
         private void weekly_Click(object sender, RoutedEventArgs e)
         {
             revenueFrame.Content = new Weekly_Revenue();
+            SelectButton(weekly);
         }
 
         private void monthly_Click(object sender, RoutedEventArgs e)
         {
             revenueFrame.Content = new Monthly_Revenue();
+            SelectButton(monthly);
+        }
+
+        private void SetButtonStyle(Button button, Style style)
+        {
+            button.Style = style;
+        }
+
+        private void SelectButton(Button selectedButton)
+        {
+            // Reset all buttons to default style
+            foreach (Button button in new Button[] { weekly, monthly })
+            {
+                SetButtonStyle(button, (Style)FindResource("RoundedButtonStyle"));
+            }
+
+            // Apply selected style to the selected button
+            SetButtonStyle(selectedButton, (Style)FindResource("RoundedButtonStyle_Selected"));
         }
     }
 }
