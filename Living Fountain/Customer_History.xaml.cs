@@ -64,25 +64,10 @@ namespace Living_Fountain
         {
             if (OrderHistory.Count == 0)
             {
-                orderHistory.Visibility = Visibility.Hidden;
+                orderHistoryViewer.Visibility = Visibility.Hidden;
                 totalAmountContainer.Visibility = Visibility.Hidden;
-                noRecords.Visibility = Visibility.Visible;
+                noRecordsViewer.Visibility = Visibility.Visible;
             }
-        }
-
-        private void OnDataGridLoaded(object sender, RoutedEventArgs e)
-        {
-            // AdjustTotalAmountPosition();
-        }
-
-        private void OnDataGridSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            // AdjustTotalAmountPosition();
-        }
-
-        private void AdjustTotalAmountPosition()
-        {
-            
         }
     }
 }

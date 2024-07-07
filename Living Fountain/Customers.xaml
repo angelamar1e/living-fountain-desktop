@@ -110,12 +110,13 @@
             </Grid>
         </Grid>
         </Border>
-
+    
+        
         <Border Grid.Row="1" Background="#6587b1" CornerRadius="10" Width="500" Height="40" Margin="0 20 0 0">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1"/>
             </Border.Effect>
-            <TextBlock FontSize="20" Padding="10" Foreground="AliceBlue">Select a customer to view.</TextBlock>
+            <TextBlock FontSize="20" Padding="50 10" Foreground="AliceBlue">Select a customer to view.</TextBlock>
         </Border>
 
         <Border Grid.Row="2" Name="noRecordsViewer" Background="#6587b1" CornerRadius="10" Width="500" Height="530" Visibility="Hidden">
@@ -140,7 +141,7 @@
                         <Setter Property="MinHeight" Value="25"/>
                         <Setter Property="Background" Value="White"/>
                         <Setter Property="Foreground" Value="#FF343D53"/>
-                        <Setter Property="FontWeight" Value="DemiBold"/>
+                            <Setter Property="FontWeight" Value="DemiBold"/>
                             <Style.Triggers>
                                 <Trigger Property="IsMouseOver" Value="True">
                                     <Setter Property="Foreground" Value="AliceBlue"/>
@@ -152,6 +153,7 @@
                     <Style TargetType="TextBlock" x:Key="CellContent">
                         <Setter Property="HorizontalAlignment" Value="Center"/>
                         <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="4"/>
                     </Style>
 
                     <!-- Style for DataGridColumnHeader -->

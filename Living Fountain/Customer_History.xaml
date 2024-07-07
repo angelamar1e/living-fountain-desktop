@@ -5,86 +5,143 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Living_Fountain"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      FontFamily ="./fonts/#SF Pro Text Medium"
+      d:DesignHeight="750" d:DesignWidth="1040"
       Title="Customer History">
 
-    <Grid Background="White">
+    <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
+            <!--headline-->
+            <RowDefinition Height="100"/>
+            <!--body-->
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <!--total amount of orders-->
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Grid Margin="10,0,0,0">
+        <!--headline-->
+        <Border Background="AliceBlue">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+            </Border.Effect>
+            <Grid>
             <Grid.ColumnDefinitions>
+                <!--title-->
                 <ColumnDefinition Width="50*"/>
+                <!--address-->
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Width="400" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,20,0,0" Foreground="#2c61ec" Grid.ColumnSpan="2">Order History</TextBlock>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,90,0">
-                <TextBlock Name="blockField" FontSize="25" FontWeight="SemiBold" Foreground="#FF343D53" Margin="0,37,17,0"/>
-                <TextBlock Name="lotField" FontSize="25" FontWeight="SemiBold" Foreground="#FF343D53" Margin="0,37,17,0"/>
-                <TextBlock Name="phaseField" FontSize="25" FontWeight="SemiBold" Foreground="#FF343D53" Margin="0,37,0,0"/>
-            </StackPanel>
-        </Grid>
-
-        <TextBlock Grid.Row="1" Name="noRecords" Visibility="Hidden" Width="500" Margin="0,0,0,0">No transactions were recorded for this customer.</TextBlock>
-        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="10" Padding="10" Background="White" Margin="78,30,78,-156" Grid.RowSpan="2" Grid.Row="1">
-            <DataGrid Grid.Row="1" Name="orderHistory" CanUserAddRows="False" AutoGenerateColumns="False" Visibility="Visible" Foreground="#FF343D53" Margin="-1,-1,-1,0" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2" VerticalAlignment="Stretch" Loaded="OnDataGridLoaded" SizeChanged="OnDataGridSizeChanged">
-                <DataGrid.Resources>
-                    <!-- Style for DataGrid Headers -->
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#2c61ec"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
-                        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                    </Style>
-
-                    <!-- Style for DataGrid Rows -->
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="FontSize" Value="12"/>
-                        <Setter Property="MinHeight" Value="30"/>
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="Foreground" Value="#FF343D53"/>
-                        <Setter Property="FontWeight" Value="DemiBold"/>
-                    </Style>
-
-                    <!-- Style for DataGrid Cells -->
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="Padding" Value="8"/>
-                        <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    </Style>
-                </DataGrid.Resources>
-
-                <DataGrid.Columns>
-                        <DataGridTextColumn Header="Date" Width="70" Binding="{Binding date}"/>
-                    <DataGridTextColumn Header="Product" Width="100" Binding="{Binding product_codeNavigation.product_desc}"/>
-                        <DataGridTextColumn Header="Quantity" Width="60" Binding="{Binding quantity}"/>
-                    <DataGridTextColumn Header="Price" Width="60">
-                            <DataGridTextColumn.Binding>
-                                <Binding Path="price" StringFormat="₱{0:N0}" />
-                            </DataGridTextColumn.Binding>
-                        </DataGridTextColumn>
-                    <DataGridTextColumn Header="Deliverer" Width="100" Binding="{Binding deliverer.employee_name}"/>
-                    <DataGridTextColumn Header="Status" Width="170" Binding="{Binding statusNavigation.status_desc}"/>
-                    </DataGrid.Columns>
-            </DataGrid>
+                <!--title-->
+                <TextBlock HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Foreground="#1b5db4" Margin="20,30,0,10">Order History</TextBlock>
+            <!--address-->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Name="blockField" FontSize="25" FontWeight="SemiBold" Foreground="#1b5db4" Margin="0 40 10 0"/>
+                    <TextBlock Name="lotField" FontSize="25" FontWeight="SemiBold" Foreground="#1b5db4" Margin="0 40 10 0"/>
+                    <TextBlock Name="phaseField" FontSize="25" FontWeight="SemiBold" Foreground="#1b5db4" Margin="0 40 80 0"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
-        <Grid DockPanel.Dock="Bottom" Width="500" Name="totalAmountContainer" Margin="155,215,145,-269" Grid.Row="2">
+        <!--body - no records found-->
+        <Border x:Name="noRecordsViewer" CornerRadius="10" Padding="10" Background="#6995d0" Grid.Row="1" Width="620" Margin="0 30 0 0">
+            <TextBlock Grid.Row="1" Name="noRecords" Margin="30,20,0,0" FontSize="16" Foreground="AliceBlue">No transactions were recorded for this customer.
+        </TextBlock>
+        </Border>
+
+        <!--body - table-->
+        <Border Name="orderHistoryViewer" CornerRadius="10" Padding="10" Background="#6995d0" Grid.Row="1" Width="620" Margin="0 30 0 0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+            </Border.Effect>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="400">
+                <Border CornerRadius="10" Background="#7ca0d0" Padding="10" Width="590">
+                    <DataGrid Grid.Row="1" Name="orderHistory" CanUserAddRows="False" AutoGenerateColumns="False" Visibility="Visible" Foreground="#FF343D53" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2" VerticalAlignment="Stretch">
+                <DataGrid.Resources>
+                            <!-- Style for DataGridRow -->
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="FontSize" Value="12"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="MinHeight" Value="25"/>
+                                <Setter Property="Background" Value="White"/>
+                                <Setter Property="Foreground" Value="#FF343D53"/>
+                                <Setter Property="FontWeight" Value="DemiBold"/>
+                            </Style>
+
+                            <Style TargetType="TextBlock" x:Key="CellContent">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+
+                            <!-- Style for DataGridColumnHeader -->
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="Padding" Value="8"/>
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Foreground" Value="#6587b1"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Height" Value="35"/>
+                            </Style>
+                        </DataGrid.Resources>
+
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Date" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding date, StringFormat={}{0:MMM d, yyyy}}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Product" Width="120">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding product_codeNavigation.product_desc}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Quantity" Width="70">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding quantity}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Price" Width="70">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding price, StringFormat=₱{0:N0}}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Deliverer" Width="80">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding deliverer.employee_name}" Style="{StaticResource CellContent}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Status" Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding statusNavigation.status_desc}" Style="{StaticResource CellContent}" Padding="5"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </ScrollViewer>
+        </Border>
+
+        
+        <Grid Name="totalAmountContainer" Grid.Row="2" Width="620" Margin="0 20 0 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Total Amount of Orders:" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Foreground="#2c61ec" Grid.ColumnSpan="2" Margin="0,0,15,0"/>
-            <TextBlock Grid.Column="1" Name="totalAmount" VerticalAlignment="Center" FontSize="20" Margin="88,0,-88,0"/>
+            <TextBlock Text="Total Amount of Orders:" VerticalAlignment="Center" FontSize="20" FontWeight="SemiBold" Foreground="#1b5db4"/>
+            <TextBlock Grid.Column="1" Name="totalAmount" VerticalAlignment="Center" FontSize="20" Foreground="#1b5db4"/>
         </Grid>
     </Grid>
 </Page>
