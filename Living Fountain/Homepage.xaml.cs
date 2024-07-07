@@ -56,7 +56,7 @@ namespace Living_Fountain
 
         private void TimerTick(object sender, EventArgs e)
         {
-            currentDateTime.Content = DateTime.Now.ToString("MMMM dd, yyyy • h:mm tt");
+            currentDateTime.Content = DateTime.Now.ToString("MMMM d, yyyy • h:mm tt");
         }
 
         private void GetRevenueToday()

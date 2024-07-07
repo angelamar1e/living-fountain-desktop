@@ -72,93 +72,98 @@
             </Grid>
         </Border>
         <!--body-->
-        <ScrollViewer Grid.Row="1" MaxHeight="500" Margin="20 20">
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <!--revenue, products sold-->
-                    <RowDefinition Height="50*"/>
-                    <!--unpaid, undelivered-->
-                    <RowDefinition Height="50*"/>
-                </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
                 <!--revenue, products sold-->
-                <Grid HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="300"/>
-                        <ColumnDefinition Width="400"/>
-                    </Grid.ColumnDefinitions>
-                    <!--revenue-->
-                    <Border Background="#2378E8" CornerRadius="10" Margin="20 20 20 10">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
-                        </Border.Effect>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="20*"/>
-                                <RowDefinition Height="80*"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Text="Revenue" FontSize="15" Foreground="AliceBlue" Margin="20,10,0,0" />
-                            <TextBlock Grid.Row="1" FontSize="30" Foreground="AliceBlue" Margin="20,10,0,10" x:Name="revenue" VerticalAlignment="Center"/>
-                        </Grid>
-                    </Border>
-                    <!--products sold-->
-                    <Border Grid.Column="1" Background="#6d89d7" CornerRadius="10" Margin="0 20 20 10">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
-                        </Border.Effect>
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <TextBlock FontSize="15" FontWeight="Bold" Foreground="AliceBlue" Margin="20 10 0 0">Products Sold</TextBlock>
-                            <TextBlock Grid.Row="1" Name="zeroSold" FontSize="30" FontWeight="Bold" Foreground="AliceBlue" Margin="20 10 0 0" Visibility="Hidden">0</TextBlock>
-                            <ListView Grid.Row="1" Name="productTypeListView" Margin="20,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <ListView.Resources>
-                                    <Style TargetType="{x:Type GridViewColumnHeader}">
-                                        <Setter Property="Background" Value="#6d89d7"/>
-                                        <Setter Property="Foreground" Value="White"/>
-                                        <Setter Property="FontSize" Value="12"/>
-                                        <Setter Property="FontWeight" Value="Bold"/>
-                                    </Style>
-                                </ListView.Resources>
-
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header="Product Type" Width="160" DisplayMemberBinding="{Binding ProductType}"/>
-                                        <GridViewColumn Header="Quantity Sold" Width="90" DisplayMemberBinding="{Binding TotalQuantity}"/>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
-                        </Grid>
-                    </Border>
-                </Grid>
+                <RowDefinition Height="50*"/>
                 <!--unpaid, undelivered-->
-                <Grid Grid.Row="1" VerticalAlignment="Center">
-                    <Grid.RowDefinitions>
-                        <!--unpaid-->
-                        <RowDefinition Height="50*"/>
-                        <!--undelivered-->
-                        <RowDefinition Height="50*" />
-                    </Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+            <!--revenue, products sold-->
+            <Grid HorizontalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="400"/>
+                </Grid.ColumnDefinitions>
+                <!--revenue-->
+                <Border Background="#2378E8" CornerRadius="10" Margin="20 20 20 10">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20*"/>
+                            <RowDefinition Height="80*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Revenue" FontSize="15" Foreground="AliceBlue" Margin="20,10,0,0" />
+                        <TextBlock Grid.Row="1" FontSize="40" Foreground="AliceBlue" Margin="20,10,0,10" x:Name="revenue" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+                <!--products sold-->
+                <Border Grid.Column="1" Background="#6d89d7" CornerRadius="10" Margin="0 20 20 10">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
+                    </Border.Effect>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock FontSize="15" FontWeight="Bold" Foreground="AliceBlue" Margin="20 10 0 0">Products Sold</TextBlock>
+                        <TextBlock Grid.Row="1" Name="zeroSold" FontSize="30" FontWeight="Bold" Foreground="AliceBlue" Margin="20 10 0 0" Visibility="Hidden">0</TextBlock>
+                        <ListView Grid.Row="1" Name="productTypeListView" Margin="20,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <ListView.Resources>
+                                <Style TargetType="{x:Type GridViewColumnHeader}">
+                                    <Setter Property="Background" Value="#6d89d7"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="FontSize" Value="12"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                </Style>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+
+                            </ListView.Resources>
+
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Product Type" Width="160" DisplayMemberBinding="{Binding ProductType}"/>
+                                    <GridViewColumn Header="Quantity Sold" Width="90" DisplayMemberBinding="{Binding TotalQuantity}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </Grid>
+            <!--unpaid, undelivered-->
+            <Grid Grid.Row="1" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
                     <!--unpaid-->
-                    <Border Background="#6587b1" CornerRadius="10" Margin="20 10 20 10" Width="670">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
-                        </Border.Effect>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <!--title-->
-                                <RowDefinition Height="Auto"/>
-                                <!--table/no records found-->
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                    <RowDefinition Height="50*"/>
+                    <!--undelivered-->
+                    <RowDefinition Height="50*" />
+                </Grid.RowDefinitions>
+                <!--unpaid-->
+                <Border Background="#6587b1" CornerRadius="10" Margin="20 10 20 10" Width="670">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
                             <!--title-->
-                            <TextBlock FontSize="15" FontWeight="Bold" Foreground="AliceBlue" Margin="30,20,0,10">Unpaid Deliveries</TextBlock>
-                            <!--no records found-->
-                            <TextBlock Grid.Row="1" Name="noUnpaid" FontWeight="Bold" Visibility="Hidden" Margin="30,20,0,10" Foreground="AliceBlue">No deliveries unpaid today.</TextBlock>
-                            <!--table-->
-                            <Border Grid.Row="1" Name="unpaidDeliveriesViewer" Background="#7498c4" Width="615" CornerRadius="10" Margin="0 0 0 20">
-                                <DataGrid Grid.Row="1" Name="unpaidDeliveries" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="5 10 5 10"  ItemsSource="{Binding UnpaidDeliveries}">
+                            <RowDefinition Height="Auto"/>
+                            <!--table/no records found-->
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--title-->
+                        <TextBlock FontSize="15" FontWeight="Bold" Foreground="AliceBlue" Margin="20,20,0,10">Unpaid Deliveries</TextBlock>
+                        <!--no records found-->
+                        <TextBlock Grid.Row="1" Name="noUnpaid" FontWeight="Bold" Visibility="Hidden" Margin="20,20,0,10" Foreground="AliceBlue">No deliveries unpaid today.</TextBlock>
+                        <!--table-->
+                        <Border Grid.Row="1" Name="unpaidDeliveriesViewer" Background="#7498c4" Width="640" CornerRadius="10" Margin="0 0 0 20">
+                            <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">
+                                <DataGrid Grid.Row="1" Name="unpaidDeliveries" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="5 10 5 10"  ItemsSource="{Binding UnpaidDeliveries}" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
                                     <DataGrid.Columns>
                                         <DataGridTemplateColumn Header="Block" Width="60">
                                             <DataGridTemplateColumn.CellTemplate>
@@ -184,7 +189,7 @@
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
 
-                                        <DataGridTemplateColumn Header="Product" Width="100">
+                                        <DataGridTemplateColumn Header="Product" Width="120">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
                                                     <TextBlock Text="{Binding product_codeNavigation.product_desc}" Style="{StaticResource CellContent}"/>
@@ -217,92 +222,95 @@
                                         </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
-                            </Border>
-                        </Grid>
-                    </Border>
-                    <!--undelivered-->
-                    <Border Grid.Row="1" Background="#5d91c4" CornerRadius="10" Margin="20 10 20 40" Width="680">
-                        <Border.Effect>
-                            <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
-                        </Border.Effect>
-                        <Grid Grid.Row="1">
-                            <Grid.RowDefinitions>
-                                <!--title-->
-                                <RowDefinition Height="Auto"/>
-                                <!--table/no records found-->
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid>
+                </Border>
+                <!--undelivered-->
+                <Border Grid.Row="1" Background="#5d91c4" CornerRadius="10" Margin="20 10 20 40" Width="710">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="15" Color="Gray" Direction="300" Opacity="0.03"/>
+                    </Border.Effect>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
                             <!--title-->
-                            <TextBlock FontSize="15" FontWeight="Bold" Foreground="AliceBlue" Margin="30,20,0,10">Undelivered Orders</TextBlock>
-                            <!--no records found-->
-                            <TextBlock Grid.Row="1" Name="noUndelivered" FontWeight="Bold" Visibility="Hidden" Margin="30,20,0,10" Foreground="AliceBlue" >No orders undelivered today.</TextBlock>
-                            <!--table-->
-                            <Border Grid.Row="1" Name="undeliveredOrdersViewer" Background="#669dd4" Width="640" CornerRadius="10" Margin="0 0 0 20">
-                                    <DataGrid Grid.Row="1" Name="undeliveredOrders" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="5 10 5 10"  ItemsSource="{Binding UndeliveredOrders}">
+                            <RowDefinition Height="Auto"/>
+                            <!--table/no records found-->
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--title-->
+                        <TextBlock FontSize="15" FontWeight="Bold" Foreground="AliceBlue" Margin="20,20,0,10">Undelivered Orders</TextBlock>
+                        <!--no records found-->
+                        <TextBlock Grid.Row="1" Name="noUndelivered" FontWeight="Bold" Visibility="Hidden" Margin="20,20,0,10" Foreground="AliceBlue" >No orders undelivered today.</TextBlock>
+                        <!--table-->
+                        <Border Grid.Row="1" Name="undeliveredOrdersViewer" Background="#669dd4" Width="670" CornerRadius="10" Margin="0 0 0 20">
+                            <ScrollViewer MaxHeight="300" VerticalScrollBarVisibility="Auto">
 
-                                        <DataGrid.Columns>
-                                            <DataGridTemplateColumn Header="Block" Width="60">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding block}" Style="{StaticResource CellContent}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                <DataGrid Grid.Row="1" Name="undeliveredOrders" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="5 10 5 10"  ItemsSource="{Binding UndeliveredOrders}" HorizontalGridLinesBrush="LightGray" VerticalGridLinesBrush="LightGray">
 
-                                            <DataGridTemplateColumn Header="Lot" Width="60">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding lot}" Style="{StaticResource CellContent}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Header="Block" Width="60">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding block}" Style="{StaticResource CellContent}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
 
-                                            <DataGridTemplateColumn Header="Phase" Width="60">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding phase}" Style="{StaticResource CellContent}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Header="Lot" Width="60">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding lot}" Style="{StaticResource CellContent}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
 
-                                            <DataGridTemplateColumn Header="Product" Width="100">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding product_codeNavigation.product_desc}" Style="{StaticResource CellContent}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Header="Phase" Width="60">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding phase}" Style="{StaticResource CellContent}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
 
-                                            <DataGridTemplateColumn Header="Quantity" Width="70">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding quantity}" Style="{StaticResource CellContent}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Header="Product" Width="120">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding product_codeNavigation.product_desc}" Style="{StaticResource CellContent}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
 
-                                            <DataGridTemplateColumn Header="Price" Width="70">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding price, StringFormat=₱{0:N0}}" Style="{StaticResource CellContent}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Header="Quantity" Width="70">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding quantity}" Style="{StaticResource CellContent}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
 
-                                            <DataGridTemplateColumn Header="Deliverer" Width="80">
-                                                <DataGridTemplateColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <TextBlock Text="{Binding deliverer.employee_name}" Style="{StaticResource CellContent}"/>
-                                                    </DataTemplate>
-                                                </DataGridTemplateColumn.CellTemplate>
-                                            </DataGridTemplateColumn>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
-                                </Border>
-                        </Grid>
-                    </Border>
-                </Grid>
+                                        <DataGridTemplateColumn Header="Price" Width="70">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding price, StringFormat=₱{0:N0}}" Style="{StaticResource CellContent}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+
+                                        <DataGridTemplateColumn Header="Deliverer" Width="80">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding deliverer.employee_name}" Style="{StaticResource CellContent}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid>
+                </Border>
             </Grid>
-        </ScrollViewer>
+        </Grid>
     </Grid>
 </Page>
