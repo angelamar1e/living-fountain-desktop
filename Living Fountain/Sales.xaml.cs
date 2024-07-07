@@ -88,7 +88,7 @@ namespace Living_Fountain
         private void GetInitialData(DateOnly date)
         {
 
-            currentDate.Text = date.ToString("MMMM dd, yyyy");
+            currentDate.Text = date.ToString("MMMM d, yyyy");
 
             LoadData(date);
         }
