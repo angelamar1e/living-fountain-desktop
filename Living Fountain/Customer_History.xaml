@@ -48,12 +48,12 @@
         </Border>
 
         <!--body - table-->
-        <Border Name="orderHistoryViewer" CornerRadius="10" Padding="10" Background="#6995d0" Grid.Row="1" Width="620" Margin="0 30 0 0">
+        <Border Name="orderHistoryViewer" CornerRadius="10" Padding="10" Background="#6995d0" Grid.Row="1" Width="680" Margin="0 30 0 0">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
             </Border.Effect>
+                <Border CornerRadius="10" Background="#7ca0d0" Padding="10" Width="650">
             <ScrollViewer VerticalScrollBarVisibility="Auto" MaxHeight="400">
-                <Border CornerRadius="10" Background="#7ca0d0" Padding="10" Width="590">
                     <DataGrid Grid.Row="1" Name="orderHistory" CanUserAddRows="False" AutoGenerateColumns="False" Visibility="Visible" Foreground="#FF343D53" HorizontalGridLinesBrush="#FFE2E2E2" VerticalGridLinesBrush="#FFE2E2E2" VerticalAlignment="Stretch">
                 <DataGrid.Resources>
                             <!-- Style for DataGridRow -->
@@ -130,8 +130,8 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                </Border>
             </ScrollViewer>
+                </Border>
         </Border>
 
         
