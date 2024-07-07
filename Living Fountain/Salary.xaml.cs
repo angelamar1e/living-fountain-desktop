@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.ComponentModel.DataAnnotations;
+using System.Windows.Media.Effects;
 
 namespace Living_Fountain
 {
@@ -28,6 +29,7 @@ namespace Living_Fountain
     {
         private List<employee> Employees;
         int totalToday;
+        TextBlock nameLabel;
 
         public Salary()
         {
@@ -45,7 +47,7 @@ namespace Living_Fountain
         private void GetEmployees()
         {
             List<salary_details> details;
-            ListView listView;
+            Border recordContainer;
 
             using (var dc = new living_fountainContext())
             {
@@ -56,29 +58,29 @@ namespace Living_Fountain
                 foreach (var employee in Employees)
                 {
                     var empType = employee.emp_type_code;
-                    var nameLabel = new TextBlock
+                    nameLabel = new TextBlock
                     {
-                        Text = employee.employee_name
+                        Text = employee.employee_name,
+                        Foreground = new SolidColorBrush(Colors.AliceBlue),
+                        FontSize = 16,
+                        Margin = new Thickness(20, 0, 0, 0)
                     };
                     
                     // emp type determines where to display details and how to generate salary
                     switch (empType)
                     {
                         case 'D':
-                            deliverersContainer.Children.Add(nameLabel);
                             GetDelivererSalary(employee.id);
                             break;
                         case 'W':
-                            washersContainer.Children.Add(nameLabel);
                             details = GetSalary('W');
-                            listView = CreateSalaryListView(details);
-                            washersContainer.Children.Add(listView);
+                            recordContainer = CreateSalaryListView(details);
+                            washersContainer.Children.Add(recordContainer);
                             break;
                         case 'R':
-                            refillersContainer.Children.Add(nameLabel);
                             details = GetSalary('R');
-                            listView = CreateSalaryListView(details);
-                            refillersContainer.Children.Add(listView);
+                            recordContainer = CreateSalaryListView(details);
+                            refillersContainer.Children.Add(recordContainer);
                             break;
                     }
                 }
@@ -113,7 +115,7 @@ namespace Living_Fountain
                     basePay = salaryTypes.ElementAt(2).amount; // 450
                 }
                 
-                // every regular gallon delivered adds 3 to base pay
+                // every regular gallon delivered adds 3 pesos to base pay
                 var regularGallonsCount = orders.Sum(o => o.quantity); 
                 var totalPay = basePay + (regularGallonsCount * salaryTypes.ElementAt(3).amount);
 
@@ -130,9 +132,39 @@ namespace Living_Fountain
 
         private void DisplayDelivererSalary(List<salary_details> details)
         {
+            Style headerStyle = (Style)FindResource("WrappedHeaderStyle");
+            Style listViewItemStyle = (Style)FindResource("ListViewItemStyle");
+
+
+            var border = new Border
+            {
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3a84a7")),
+                Width = 210,
+                CornerRadius = new CornerRadius(10),
+                Margin = new Thickness(0, 0, 0, 20),
+                Padding = new Thickness(8),
+                Effect = new DropShadowEffect
+                {
+                    Color = Colors.Gray,
+                    BlurRadius = 10,
+                    Opacity = 0.1,
+                    Direction = 290
+                }
+            };
+
+            var container = new StackPanel 
+            {
+                Orientation = Orientation.Vertical,
+            };
+
+            border.Child = container;
+            container.Children.Add(nameLabel);
+
             var salaryListView = new ListView
             {
-                Margin = new Thickness(10)
+                Margin = new Thickness(10),
+                Width = 170,
+                ItemContainerStyle = listViewItemStyle
             };
 
             var gridView = new GridView();
@@ -150,7 +182,8 @@ namespace Living_Fountain
                 var gridViewColumn = new GridViewColumn
                 {
                     Header = column.Header,
-                    DisplayMemberBinding = new Binding(column.Binding)
+                    DisplayMemberBinding = new Binding(column.Binding),
+                    HeaderContainerStyle = headerStyle
                 };
 
                 if (column.Header == "Salary")
@@ -163,7 +196,9 @@ namespace Living_Fountain
 
             salaryListView.ItemsSource = details;
 
-            deliverersContainer.Children.Add(salaryListView);
+            container.Children.Add(salaryListView);
+
+            deliverersContainer.Children.Add(border);
         }
 
         private List<salary_details> GetSalary(char empType)
@@ -187,12 +222,41 @@ namespace Living_Fountain
             return details;
         }
 
-        private ListView CreateSalaryListView(List<salary_details> details)
+        private Border CreateSalaryListView(List<salary_details> details)
         {
+            Style headerStyle = (Style)FindResource("WrappedHeaderStyle");
+            Style listViewItemStyle = (Style)FindResource("ListViewItemStyle");
+
+            var border = new Border
+            {
+                Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3a84a7")),
+                Width = 210,
+                CornerRadius = new CornerRadius(10),
+                Margin = new Thickness(0, 0, 0, 20),
+                Padding = new Thickness(8),
+                Effect = new DropShadowEffect
+                {
+                    Color = Colors.Gray,
+                    BlurRadius = 10,
+                    Opacity = 0.1,
+                    Direction = 290
+                }
+            };
+
+            var container = new StackPanel
+            {
+                Orientation = Orientation.Vertical,
+            };
+
+            border.Child = container;
+            container.Children.Add(nameLabel);
+
             // Create a new ListView
             var salaryListView = new ListView
             {
-                Margin = new Thickness(10)
+                Margin = new Thickness(10),
+                Width = 90,
+                ItemContainerStyle = listViewItemStyle
             };
 
             // Create a GridView to define columns
@@ -203,6 +267,7 @@ namespace Living_Fountain
             var salaryColumn = new GridViewColumn
             {
                 Header = "Salary",
+                HeaderContainerStyle = headerStyle,
                 DisplayMemberBinding = new Binding("salary")
                 {
                     StringFormat = "₱{0:N0}" // Format as currency without decimal places
@@ -215,7 +280,9 @@ namespace Living_Fountain
             // Bind the data
             salaryListView.ItemsSource = details;
 
-            return salaryListView;
+            container.Children.Add(salaryListView);
+
+            return border;
         }
 
         private List<salary_type> GetSalaryTypes(char empType)

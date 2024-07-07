@@ -5,112 +5,136 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Living_Fountain"
       mc:Ignorable="d" 
+       FontFamily ="./fonts/#SF Pro Text Medium"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Salary">
 
 
     <Page.Resources>
-        <!-- Style for the DataGrid -->
-        <Style x:Key="DataGridStyle" TargetType="DataGrid">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="Gray"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="RowBackground" Value="#F0F0F0"/>
-            <Setter Property="AlternatingRowBackground" Value="WhiteSmoke"/>
-            <Setter Property="RowHeight" Value="30"/>
-            <Setter Property="GridLinesVisibility" Value="All"/>
-            <Setter Property="HeadersVisibility" Value="Column"/>
-            <Setter Property="AutoGenerateColumns" Value="False"/>
-            <Setter Property="CanUserResizeRows" Value="False"/>
-            <Setter Property="CanUserResizeColumns" Value="False"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="SelectionMode" Value="Single"/>
-            <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="Width" Value="200"/>
-        </Style>
-
-        <!-- Style for DataGrid Headers -->
-        <Style TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#2c61ec"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+        <Style x:Key="WrappedHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-            <Setter Property="BorderThickness" Value="0,0,1,0"/>
-            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Background" Value="#1c7ba7"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="AliceBlue"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
-        <!-- Style for DataGrid Rows -->
-        <Style TargetType="DataGridRow">
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="MinHeight" Value="30"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="#FF343D53"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Width" Value="400"/>
-        </Style>
-
-        <!-- Style for DataGrid Cells -->
-        <Style TargetType="DataGridCell">
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="BorderBrush" Value="#FFE2E2E2"/>
-            <Setter Property="BorderThickness" Value="0.5"/>
-            <Setter Property="Width" Value="200"/>
+        <!-- Style for ListViewItem -->
+        <Style x:Key="ListViewItemStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Foreground" Value="#1c7ba7"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            
         </Style>
     </Page.Resources>
 
-    <Grid Background="White">
+    <Grid Background="AliceBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <!--headline-->
+            <RowDefinition Height="100"/>
+            <!--body-->
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50*"/>
-                <ColumnDefinition Width="50*"/>
-            </Grid.ColumnDefinitions>
-            
-            <TextBlock Text="Salary" Width="196" HorizontalAlignment="Left" FontSize="40" FontWeight="Bold" Margin="10,10,0,10" Foreground="#2c61ec"/>
-            <TextBlock Grid.Column="1" Name="currentDate" FontSize="25" FontWeight="SemiBold" Foreground="#FF343D53" Margin="200,22"/>
-
-        </Grid>
+        
+        <!--headline-->
+        <Border Background="AliceBlue">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+            </Border.Effect>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <!--title-->
+                <TextBlock Text="Salary" VerticalAlignment="Center" Margin="20,20,0,10" FontSize="40" FontWeight="Bold" Foreground="#1c7ba7"/>
+                <!--date-->
+                <TextBlock Grid.Column="1" Name="currentDate"  VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 60 0"  FontSize="25" FontWeight="SemiBold" Foreground="#1c7ba7"/>
+            </Grid>
+        </Border>
+        
+        <!--body-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <!--deliverers-->
                 <ColumnDefinition Width="50*"/>
+                <!--refillers, washers-->
                 <ColumnDefinition Width="50*"/>
             </Grid.ColumnDefinitions>
-            <Grid>
+            <!--deliverers-->
+            <Grid HorizontalAlignment="Right" Margin="0 0 20 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Deliverers" Background="#FF2C61EC" Foreground="White" HorizontalAlignment="Center" Width="400" Padding="165,10,0,10" FontWeight="Bold"/>
-                <StackPanel Grid.Row="1" x:Name="deliverersContainer" Width="400"></StackPanel>
+                <Border Background="#1c7ba7" CornerRadius="10" Width="300" Height="Auto" Margin="0 30 0 0">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <!--title-->
+                            <RowDefinition Height="Auto"/>
+                            <!--emp, salary details-->
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--title-->
+                        <TextBlock Text="Deliverers" Foreground="AliceBlue" FontWeight="Bold" FontSize="20" Margin="40 20 0 10"/>
+                        <!--emp, salary details-->
+                        <StackPanel Grid.Row="1" x:Name="deliverersContainer" Width="300"></StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
-            <Grid Grid.Column="1">
+            <!--refillers, washers-->
+            <Grid Grid.Column="1" HorizontalAlignment="Left" Margin="20 0 0 0">
                 <Grid.RowDefinitions>
+                    <!--refillers-->
                     <RowDefinition Height="50*"/>
+                    <!--washers-->
                     <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Text="Refillers" Background="#FF2C61EC" Foreground="White" FontWeight="Bold" Padding="167,10,0,10" HorizontalAlignment="Center" Width="400"/>
-                    <StackPanel Grid.Row="1" x:Name="refillersContainer" Width="400"></StackPanel>
-                </Grid>
-                <Grid Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Background="#FF2C61EC" Foreground="White" Padding="165,10,0,7" FontWeight="Bold" HorizontalAlignment="Center" Width="400">Washers</TextBlock>
-                    <StackPanel Grid.Row="1" x:Name="washersContainer" Width="400"></StackPanel>
-                </Grid>
+                <!--refillers-->
+                <Border Background="#1c7ba7" CornerRadius="10" Width="300" Margin="0 30 0 0">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+                    </Border.Effect>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <!--title-->
+                            <RowDefinition Height="Auto"/>
+                            <!--emp, salary details-->
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--title-->
+                        <TextBlock Text="Refillers" Foreground="AliceBlue" FontWeight="Bold" FontSize="20" Margin="40 20 0 10"/>
+                        <!--emp, salary details-->
+                        <StackPanel Grid.Row="1" x:Name="refillersContainer" MinHeight="145" Width="300"></StackPanel>
+                    </Grid>
+                </Border>
+                <!--washers-->
+                <Border Grid.Row="1" Background="#1c7ba7" CornerRadius="10" Width="300" Margin="0 30 0 0">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" Color="Gray" Direction="290" Opacity="0.1" />
+                    </Border.Effect>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <!--title-->
+                            <RowDefinition Height="Auto"/>
+                            <!--emp, salary details-->
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!--title-->
+                        <TextBlock Foreground="AliceBlue" FontWeight="Bold" FontSize="20" Margin="40 20 0 10">Washers</TextBlock>
+                        <!--emp, salary details-->
+                        <StackPanel Grid.Row="1" x:Name="washersContainer" MinHeight="145" Width="300"></StackPanel>
+                    </Grid>
+                </Border>
             </Grid>
         </Grid>
     </Grid>
